@@ -3,7 +3,40 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SF_Door
+  - door0Pos
+  - door1Pos
+  - door2Pos
+  - SectionP1
+  - playerThinkPos
+  - thinkPosLooking
+  - cageDoor0
+  - cageDoor1
+  - cageDoor2
+  - equation
+  - result0
+  - result1
+  - result2
+  - wrongDoor0
+  - wrongDoor1
+  - wrongDoor2
+  - equation1
+  - result0_1
+  - result1_1
+  - result2_1
+  - wrongDoor0_1
+  - wrongDoor1_1
+  - wrongDoor2_1
+  - cageDoor0_1
+  - cageDoor1_1
+  - cageDoor2_1
+  - door0Pos1
+  - door1Pos1
+  - door2Pos1
+  - playerThinkPos1
+  - thinkPosLooking1
+  - Section1P1
   layers:
   - Default
   - TransparentFX
