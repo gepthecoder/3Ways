@@ -17,6 +17,8 @@
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
+	
+
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
 
@@ -48,6 +50,9 @@ ExportedObj/
 *.VC.db
 *.meta
 *.info
+3Ways/Temp/*
+3Ways/Assets/Assets*
+3Ways/Library/*
 
 # Unity3D generated meta files
 *.pidb.meta
