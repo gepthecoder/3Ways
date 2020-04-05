@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
     public static bool passLevel;
     public static bool canChooseDoor;
     public static bool transition;
+    public static bool changeData;
 
     [SerializeField]
     private float moveSpeed = 10f;
@@ -62,8 +63,9 @@ public class PlayerControl : MonoBehaviour
         cage            = GetComponent<CageScript>();
 
         doorAnimeOpened = false;
-        passLevel = false;
-        canChooseDoor = true;
+        passLevel       = false;
+        canChooseDoor   = true;
+        changeData      = false;
 
         StartCoroutine(WAIT_ROOM());
     }
@@ -369,33 +371,40 @@ public class PlayerControl : MonoBehaviour
         yield return new WaitForSeconds(.4f);
         //////////////////////////////////////////////////////////////////////
         //DestroyPreviousSection(LevelManager.currentLevel);
-        Debug.Log("<color=red>curent level = </color>: " + LevelManager.currentLevel);
+        if (changeData)
+        {
+            Debug.Log("<color=red>curent level = </color>: " + LevelManager.currentLevel);
 
+            StartCoroutine(HandleValues());
+            changeData = false;
+        }
+      
+        transform.LookAt(centerDoorLookPos);
+        StateMachine.iCurrentState = (int)StateMachine.PlayerStates.RUNNING;
+    }
+
+    private IEnumerator HandleValues()
+    {
         if (LevelManager.currentSectionCount % 2 == 0 && LevelManager.currentSectionCount != 0)
         {
             //GET FIRST SECTION DATA
+            Debug.Log("<color=red>FIRST SECTION DATA</color>");
             GetValues(1);
             calcucaltions.GetValues(1);
-            Debug.Log("<color=red>FIRST SECTION DATA</color>");
-
             cage.GetValues(1);
-
+            yield return new WaitForSeconds(.75f);
             calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);
         }
         else
         {
             //GET SECOND SECTION DATA
+            Debug.Log("<color=red>SECOND SECTION DATA</color>");
             GetValues(2);
             calcucaltions.GetValues(2);
-            Debug.Log("<color=red>SECOND SECTION DATA</color>");
-
             cage.GetValues(2);
-
+            yield return new WaitForSeconds(.75f);
             calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);
-
         }
-        transform.LookAt(centerDoorLookPos);
-        StateMachine.iCurrentState = (int)StateMachine.PlayerStates.RUNNING;
     }
 
     private void DestroyPreviousSection(int currentLvL)

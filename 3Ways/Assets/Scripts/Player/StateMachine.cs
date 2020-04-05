@@ -87,9 +87,11 @@ public class StateMachine : MonoBehaviour
                 LevelManager.currentSectionCount++;
                 Debug.Log("<color=blue>CURRENT SECTION = </color>" + LevelManager.currentSectionCount);
                 LevelManager.currentLevel++;
+                PlayerControl.changeData = true;
 
                 if (LevelManager.currentSectionCount >= 2)
                 {
+                    Debug.Log("Spawn!");
                     LevelManager.spawnNewSection = true;
                 }
                 PlayerControl.doorAnimeOpened = false;
