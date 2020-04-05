@@ -37,7 +37,6 @@ public class LevelManager : MonoBehaviour
     {
         if (spawnNewSection)
         {
-            CageScript.enemiesSpawned = false;
             bool bIs2ndSection = (currentSectionCount % 2 == 0);
             bool bCanCreate = currentSectionCount >= 2;
 
@@ -47,11 +46,13 @@ public class LevelManager : MonoBehaviour
                 {
                     StartCoroutine(DestroyFirstSection());
                     StartCoroutine(CreateNewSection(true));
+                    CageScript.enemiesSpawned = false;
                 }
                 else
                 {
                     StartCoroutine(DestroySecondSection());
                     StartCoroutine(CreateNewSection(false));
+                    CageScript.enemiesSpawned = false;
                 }
             }
 
@@ -98,23 +99,23 @@ public class LevelManager : MonoBehaviour
         if (is2nd)
         { // SPAWN FIRST SECTION, ON SECOND (current) POSITION WITH OFFSET
             Transform section2pos = GameObject.FindGameObjectWithTag("Section1P1").GetComponent<Transform>();
-
+            Debug.Log("SPAWN 1ST SECTION!");
             Vector3 spawnPos = new Vector3(section2pos.position.x, section2pos.position.y, section2pos.position.z + offsetZ);
             Instantiate(SECTION1, spawnPos, section2pos.rotation);
 
             yield return new WaitForSeconds(1f);
-            playerControler.GetValues(1);
+            //playerControler.GetValues(1);
 
         }
         else
         { // SPAWN SECOND SECTION, ON FIRST (current) POSITION WITH OFFSET
             Transform section1pos = GameObject.FindGameObjectWithTag("SectionP1").GetComponent<Transform>();
             Vector3 spawnPos = new Vector3(section1pos.position.x, section1pos.position.y, section1pos.position.z + offsetZ);
-
+            Debug.Log("SPAWN 2ND SECTION!");
             Instantiate(SECTION2, spawnPos, section1pos.rotation);
 
             yield return new WaitForSeconds(1f);
-            playerControler.GetValues(2);
+            //playerControler.GetValues(2);
 
         }
         //int section0 = is2ndSection ? 2 : 1;
@@ -131,6 +132,7 @@ public class LevelManager : MonoBehaviour
     {
         GameObject firstSection = GameObject.FindGameObjectWithTag("SectionP1");
         Destroy(firstSection);
+        Debug.Log("FirstSectionDestroyed");
         yield return new WaitForSeconds(1.5f);
     }
 
@@ -138,6 +140,7 @@ public class LevelManager : MonoBehaviour
     {
         GameObject secondSection = GameObject.FindGameObjectWithTag("Section1P1");
         Destroy(secondSection);
+        Debug.Log("SecondSectionDestroyed");
         yield return new WaitForSeconds(1.5f);
     }
 }
