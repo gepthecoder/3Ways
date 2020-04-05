@@ -21,6 +21,9 @@ public class CalculationManager : MonoBehaviour
     private string MULTIPLICATION = "x";
     private string DIVISION = "/";
 
+    private string SQUARED = "²";
+    private string SQUAREROOT = "√";
+
     string currentEquation;
 
     public void GetValues(int section)
@@ -74,7 +77,7 @@ public class CalculationManager : MonoBehaviour
             LevelManager.addNewSection = false;
         }
     }
-   
+
     public void SET_DIFFICULTY(int difficulty)
     {
         currentDifficulty = difficulty;
@@ -103,9 +106,9 @@ public class CalculationManager : MonoBehaviour
         int correctDoor = -1;
 
         int tripleR = Random.Range(0, 3);
-        
+
         Debug.Log(tripleR + "  TRIPLE R");
-        if(tripleR == 0)
+        if (tripleR == 0)
         {
             result0Text.text = rightResult.ToString();
             result1Text.text = result1.ToString();
@@ -113,7 +116,7 @@ public class CalculationManager : MonoBehaviour
 
             correctDoor = 0;
         }
-        else if(tripleR == 1)
+        else if (tripleR == 1)
         {
             result0Text.text = result1.ToString();
             result1Text.text = result2.ToString();
@@ -130,7 +133,7 @@ public class CalculationManager : MonoBehaviour
             correctDoor = 1;
         }
 
-        if(correctDoor == -1)
+        if (correctDoor == -1)
         {
             Debug.LogError("correctDoor wasnt set.. check line 60 -> Calcucaltion Manager!");
             return;
@@ -143,133 +146,373 @@ public class CalculationManager : MonoBehaviour
     {
         int result;
 
-        if(operation == ADDITION)
-        {
-            result = a + b;
-        }
-        else if (operation == SUBSTRACTION)
-        {
-            result = a - b;
-        }
-        else if (operation == MULTIPLICATION)
-        {
-            result = a * b;
-        }
-        else if (operation == DIVISION)
-        {
-            result = a / b;
-        }
-        else { result = 0; }
+             if (operation == ADDITION)         { result = a + b;                   }
+        else if (operation == SUBSTRACTION)     { result = a - b;                   }
+        else if (operation == MULTIPLICATION)   { result = a * b;                   }
+        else if (operation == DIVISION)         { result = a / b;                   }
+        else if (operation == SQUARED)          { result = (int)Mathf.Pow(a, 2);    }
+        else if (operation == SQUAREROOT)       { result = (int)Mathf.Sqrt(a);      }
+        else                                    { result = 0;                       }
 
         return result;
     }
 
-    public void CreateEquation(int p_difficulty, int level)
+    private void NotifyForException(int level)
+    {
+        if (level < 0 || level > 10) { Debug.LogWarning("<color=red>level num to create equation was out of range</color>");
+
+            return;
+        }
+    }
+
+    public void CreateEquation(int p_difficulty, int p_level)
     {
         switch (p_difficulty)
         {
             case (int)DIFFICULTIES.EASY:
-                switch (level)
-                {
-                    case 1:
-                        // A + B = C
-                        // MATH->EASY->LEVEL1
-                        string operation1 = ADDITION;
-                        int A = Random.Range(1, 11);
-                        int B = Random.Range(1, 11);
-                        int C = GET_RESULT(A, B, operation1);
-
-                        string equation1 = A.ToString() + " " + operation1 + " " + B.ToString();
-                        currentEquation = equation1;
-
-                        int D = C - (int)Random.Range(1, 3);
-                        int E = C + (int)Random.Range(1, 3);
-
-                        SET_TEXT_ELEMENTS(equation1, C, D, E);
-                        break;
-
-                    case 2:
-                        // A + B = C
-                        // MATH->EASY->LEVEL2
-                        string operation2 = ADDITION;
-                        int Aa = Random.Range(5, 21);
-                        int Bb = Random.Range(5, 21);
-                        int Cc= GET_RESULT(Aa, Bb, operation2);
-
-                        string equation2 = Aa.ToString() + " " + operation2 + " " + Bb.ToString();
-                        currentEquation = equation2;
-
-                        int Dd = Cc - (int)Random.Range(1, 2);
-                        int Ee= Cc + (int)Random.Range(1, 2);
-
-                        SET_TEXT_ELEMENTS(equation2, Cc, Dd, Ee);
-                        break;
-                    case 3:
-                        // A +- B = C
-                        // MATH->EASY->LEVEL3
-                        int r = Random.Range(0, 100);
-                        string operation3 = r <= 50 ? ADDITION : SUBSTRACTION;
-                        int Aaa = Random.Range(5, 21);
-                        int Bbb = Random.Range(5, 21);
-                        int Ccc = GET_RESULT(Aaa, Bbb, operation3);
-
-                        string equation3 = Aaa.ToString() + " " + operation3 + " " + Bbb.ToString();
-                        currentEquation = equation3;
-
-                        int Ddd = Ccc - (int)Random.Range(1, 2);
-                        int Eee = Ccc + (int)Random.Range(1, 2);
-
-                        SET_TEXT_ELEMENTS(equation3, Ccc, Ddd, Eee);
-                        break;
-                }
+                NotifyForException(p_level);
+                MATH_EASY(p_level);
                 break;
-
             case (int)DIFFICULTIES.MEDIUM:
+                NotifyForException(p_level);
+                MATH_MEDIUM(p_level);
                 break;
             case (int)DIFFICULTIES.HARD:
+                NotifyForException(p_level);
+                MATH_HARD(p_level);
                 break;
             case (int)DIFFICULTIES.GENIOUS:
+
                 break;
 
         }
-        //if (p_difficulty == (int)DIFFICULTIES.EASY)
-        //{
-        //    if (level == 1)
-        //    {
-        //        // A + B = C
-        //        // MATH->EASY->LEVEL1
-        //        string operation = ADDITION;
-        //        int A = Random.Range(1, 11);
-        //        int B = Random.Range(1, 11);
-        //        int C = GET_RESULT(A, B, operation);
+    }
 
-        //        string equation = A.ToString() + " " + operation + " " + B.ToString();
-        //        currentEquation = equation;
-                
-        //        int D = C - (int)Random.Range(1, 2);
-        //        int E = C + (int)Random.Range(1, 2);
+    private void MATH_EASY(int lvl)
+    {
+        switch (lvl)
+        {
+            ////////////////////////////////////////////////ADDITION//////////////////////////////////////////
+            case 1:
+                // A + B = C
+                // MATH->EASY->LEVEL1 [1,11]
+                SET_AND_CALCULATE(1,11,ADDITION,1,11,1,3);
+                break;
+            case 2:
+                // A + B = C
+                // MATH->EASY->LEVEL2 [1,21]
+                SET_AND_CALCULATE(1, 21, ADDITION, 1, 21, 1, 2);
+                break;
+            //////////////////////////////////////////ADDITION\SUBSTRACTION////////////////////////////////////
+            case 3:
+                // A +- B = +-C
+                // MATH->EASY->LEVEL3 [1,21]
+                SET_AND_CALCULATE(1, 21, RANDOM_OPERATION(ADDITION, SUBSTRACTION), 1, 21, 1, 2);
+                break;
+            case 4:
+                // A +- B = +-C
+                // MATH->EASY->LEVEL4 [-51,50]
+                SET_AND_CALCULATE(-51, 51, RANDOM_OPERATION(ADDITION, SUBSTRACTION), -51, 51, 1, 2);
+                break;
+            case 5:
+                // A +- B = +-C
+                // MATH->EASY->LEVEL5 [-101,101]
+                SET_AND_CALCULATE(-101, 100, RANDOM_OPERATION(ADDITION, SUBSTRACTION), -101, 101, 1, 2);
+                break;
+            //////////////////////////////////////////MULTIPLICATION////////////////////////////////////
+            case 6:
+                // A * B = C
+                // MATH->EASY->LEVEL6 [0,5]
+                SET_AND_CALCULATE(0, 5, MULTIPLICATION, 0, 5, 1, 2);
+                break;
+            case 7:
+                // A * B = C
+                // MATH->EASY->LEVEL7 [1,10]
+                SET_AND_CALCULATE(1, 10, MULTIPLICATION, 1, 10, 1, 3);
+                break;
 
-        //        SET_TEXT_ELEMENTS(equation, C, D, E);
-        //    }
+            case 8:
+                // A * B = +-C
+                // MATH->EASY->LEVEL8 [-10,10]
+                SET_AND_CALCULATE(-10, 10, MULTIPLICATION, -10, 10, 1, 3);
+                break;
+            //////////////////////////////////////////DIVISION/////////////////////////////////////////////////
+            case 9:
+                // A / B = C
+                // MATH->EASY->LEVEL9 [0,10]
+                SET_AND_CALCULATE(0, 10, DIVISION, 0, 10, 1, 2);
+                break;
+            //////////////////////////////////////////MULTIPLICATION\DIVISION////////////////////////////////////
+            case 10:
+                // A */ B = C
+                // MATH->EASY->LEVEL10 [10,20]
+                SET_AND_CALCULATE(10, 20, RANDOM_OPERATION(MULTIPLICATION, DIVISION), 10, 20, 1, 2);
+                break;
+        }
+    }
 
-        //    if (level == 2)
-        //    {
-        //        // A + B = C
-        //        // MATH->EASY->LEVEL1
-        //        string operation = ADDITION;
-        //        int A = Random.Range(1, 11);
-        //        int B = Random.Range(1, 11);
-        //        int C = GET_RESULT(A, B, operation);
+    private void MATH_MEDIUM(int lvl)
+    {
+        switch (lvl)
+        {
+            ////////////////////////////////////////////////ADDITION//////////////////////////////////////////
+            case 1:
+                // A + B = C
+                // MATH->MEDIUM->LEVEL1 [5,21]
+                SET_AND_CALCULATE(5, 21, ADDITION, 5, 21, 1, 3);
+                break;
+            //////////////////////////////////////////ADDITION\SUBSTRACTION////////////////////////////////////
+            case 2:
+                // A +- B = +-C
+                // MATH->MEDIUM->LEVEL2 [-20,30]
+                SET_AND_CALCULATE(-20, 30, RANDOM_OPERATION(ADDITION, SUBSTRACTION), -20, 30, 1, 2);
+                break;
+            case 3:
+                // A +- B = +-C
+                // MATH->MEDIUM->LEVEL3 [-40,50]
+                SET_AND_CALCULATE(-40, 50, RANDOM_OPERATION(ADDITION, SUBSTRACTION), -40, 50, 1, 2);
+                break;
+            case 4:
+                // A +- B = +-C
+                // MATH->MEDIUM->LEVEL4 [-101,101]
+                SET_AND_CALCULATE(-101, 101, RANDOM_OPERATION(ADDITION, SUBSTRACTION), -101, 101, 1, 2);
+                break;
+            //////////////////////////////////////////MULTIPLICATION////////////////////////////////////
+            case 5:
+                // A * B = C
+                // MATH->MEDIUM->LEVEL5 [3,11]
+                SET_AND_CALCULATE(3, 11, RANDOM_OPERATION(ADDITION, SUBSTRACTION), 3, 11, 1, 2);
+                break;
+            case 6:
+                // A * B = C
+                // MATH->MEDIUM->LEVEL6 [4,12]
+                SET_AND_CALCULATE(4, 12, MULTIPLICATION, 4, 12, 1, 2);
+                break;
+            //////////////////////////////////////////DIVISION/////////////////////////////////////////////////
+            case 7:
+                // A / B = C
+                // MATH->MEDIUM->LEVEL7 [0,20]
+                SET_AND_CALCULATE(0, 20, DIVISION, 0, 20, 1, 2);
+                break;
+            //////////////////////////////////////////MULTIPLICATION\DIVISION////////////////////////////////////
+            case 8:
+                // A */ B = C
+                // MATH->MEDIUM->LEVEL8 [10,15]
+                SET_AND_CALCULATE(10, 15, RANDOM_OPERATION(MULTIPLICATION, DIVISION), 10, 15, 1, 2);
+                break;
+            case 9:
+                // A² = C
+                // MATH->MEDIUM->LEVEL9 [1,6]
+                SET_AND_CALCULATE(1, 6, SQUARED);
+                break;
+            case 10:
+                // A² = C
+                // MATH->MEDIUM->LEVEL10 [1,8]
+                SET_AND_CALCULATE(1,8, SQUARED);
+                break;
+        }
+    }
 
-        //        string equation = A.ToString() + " " + operation + " " + B.ToString();
-        //        currentEquation = equation;
+    private void MATH_HARD(int lvl)
+    {
+        switch (lvl)
+        {
+            ////////////////////////////////////////ADDITION\SUBSTRACTION//////////////////////////////////////
 
-        //        int D = C - (int)Random.Range(1, 2);
-        //        int E = C + (int)Random.Range(1, 2);
+            case 1:
+                // A +- B = +-C
+                // MATH->HARD->LEVEL1 [-50,50]
+                SET_AND_CALCULATE(-50, 50, RANDOM_OPERATION(ADDITION, SUBSTRACTION), -50, 50, 1, 2);
+                break;
+            case 2:
+                // A +- B = +-C
+                // MATH->HARD->LEVEL2 [-100,100]
+                SET_AND_CALCULATE(-100, 100, RANDOM_OPERATION(ADDITION, SUBSTRACTION), -100, 100, 1, 2);
+                break;
 
-        //        SET_TEXT_ELEMENTS(equation, C, D, E);
-        //    }
-        //}
+            ////////////////////////////////////////MULTIPLICATION//////////////////////////////////////
+
+            case 3:
+                // A * B = C
+                // MATH->HARD->LEVEL3 [10,30]
+                SET_AND_CALCULATE(10, 30, MULTIPLICATION, 10, 30, 1, 2);
+                break;
+            case 4:
+                // A * B = C                
+                // MATH->HARD->LEVEL4 [-20,50]
+                SET_AND_CALCULATE(-20, 50, MULTIPLICATION, -20, 50, 1, 2);
+                break;
+            
+            //////////////////////////////////////////DIVISION//////////////////////////////////////////
+
+            case 5:
+                // A / B = C
+                // MATH->HARD->LEVEL5 [5,50]
+                SET_AND_CALCULATE(5, 50, DIVISION, 5, 50, 1, 2);
+                break;
+
+            //////////////////////////////////////////SQUARED²//////////////////////////////////////////
+
+            case 6:
+                // A² = C
+                // MATH->HARD->LEVEL6 [6,15]
+                SET_AND_CALCULATE(6, 15, SQUARED);
+                break;
+            case 7:
+                // A² = C
+                // MATH->HARD->LEVEL7 [4,25]
+                SET_AND_CALCULATE(4, 25, SQUARED);
+                break;
+
+            //////////////////////////////////////////√SQUARE-ROOT//////////////////////////////////////////
+
+            case 8:
+                // √A = C
+                // MATH->HARD->LEVEL8 [2,50]
+                SET_AND_CALCULATE(2, 50, SQUAREROOT);
+                break;
+            case 9:
+                // √A = C
+                // MATH->HARD->LEVEL9 [50,150]
+                SET_AND_CALCULATE(50, 150, SQUAREROOT);
+                break;
+            //////////////////////////////////////////√SQUARE-ROOT\SQUARED²//////////////////////////////////////////
+
+            case 10:
+                // A² = C
+                // MATH->HARD->LEVEL10 [1,8]
+                SET_AND_CALCULATE(50, 350, RANDOM_OPERATION(SQUARED, SQUAREROOT));
+                break;
+        }
+    }
+
+    private void MATH_GENIOUS(int lvl)
+    {
+        switch (lvl)
+        {
+            ////////////////////////////////////////BINOMINALS//////////////////////////////////////
+
+            case 1:
+                // X + A = C
+                // MATH->HARD->LEVEL1 [-50,50]
+                SET_AND_CALCULATE(-50, 50, RANDOM_OPERATION(ADDITION, SUBSTRACTION), -50, 50, 1, 2);
+                break;
+            case 2:
+                // A +- B = +-C
+                // MATH->HARD->LEVEL2 [-100,100]
+                SET_AND_CALCULATE(-100, 100, RANDOM_OPERATION(ADDITION, SUBSTRACTION), -100, 100, 1, 2);
+                break;
+
+            case 3:
+                // A * B = C
+                // MATH->HARD->LEVEL3 [10,30]
+                SET_AND_CALCULATE(10, 30, MULTIPLICATION, 10, 30, 1, 2);
+                break;
+            case 4:
+                // A * B = C                
+                // MATH->HARD->LEVEL4 [-20,50]
+                SET_AND_CALCULATE(-20, 50, MULTIPLICATION, -20, 50, 1, 2);
+                break;
+
+            case 5:
+                // A / B = C
+                // MATH->HARD->LEVEL5 [5,50]
+                SET_AND_CALCULATE(5, 50, DIVISION, 5, 50, 1, 2);
+                break;
+
+            case 6:
+                // A² = C
+                // MATH->HARD->LEVEL6 [6,15]
+                SET_AND_CALCULATE(6, 15, SQUARED);
+                break;
+            case 7:
+                // A² = C
+                // MATH->HARD->LEVEL7 [4,25]
+                SET_AND_CALCULATE(4, 25, SQUARED);
+                break;
+
+            case 8:
+                // √A = C
+                // MATH->HARD->LEVEL8 [2,50]
+                SET_AND_CALCULATE(2, 50, SQUAREROOT);
+                break;
+            case 9:
+                // √A = C
+                // MATH->HARD->LEVEL9 [50,150]
+                SET_AND_CALCULATE(50, 150, SQUAREROOT);
+                break;
+
+            case 10:
+                // A² = C
+                // MATH->HARD->LEVEL10 [1,8]
+                SET_AND_CALCULATE(50, 350, RANDOM_OPERATION(SQUARED, SQUAREROOT));
+                break;
+        }
+    }
+
+    private void SET_AND_CALCULATE(int aMin, int aMax, string operation, int bMin=0, int bMax = 0, int deMin = 0, int deMax = 0)
+    {
+        int temp = 0;
+
+        int A = Random.Range(aMin, aMax);
+        int B = Random.Range(bMin, bMax);
+
+        if(operation == DIVISION)
+        {
+            //DIVISION EXCEPTION -> TO GET PRETTY NUMBERS
+            if (A < B)
+            {
+                temp = A;
+                A = B;
+                B = temp;
+            }
+
+            if (A % B != 0)
+            {
+                SET_AND_CALCULATE(aMin, aMax, operation);
+            }
+        }else if (operation == SQUAREROOT)
+        {
+            float sqrRootOfA = Mathf.Sqrt(A);
+            int gg = (int)Mathf.Round(sqrRootOfA);
+            bool bb = (sqrRootOfA % gg) == 0 ? true : false; 
+            if (!bb) { Debug.Log("Bad Number for rooting! <color=red>:</color><color=yellow>)</color");
+                SET_AND_CALCULATE(aMin, aMax, operation);
+            }
+        }
+        
+        int C = GET_RESULT(A, B, operation);
+
+        string equation = "";
+
+        int D;
+        int E; 
+
+        if (operation == SQUARED || operation == SQUAREROOT)
+        {
+            equation = A.ToString() + operation;
+            D = C - 2;
+            E = C + 2;
+        }
+        else
+        {
+            equation = A.ToString() + " " + operation + " " + B.ToString();
+            D = C - (int)Random.Range(deMin, deMax);
+            E = C + (int)Random.Range(deMin, deMax);
+
+        }
+        currentEquation = equation;
+        
+        SET_TEXT_ELEMENTS(equation, C, D, E);
+    }
+
+    private string RANDOM_OPERATION(string operation1, string operation2)
+    {
+        string operation = "";
+
+        int kkout = Random.Range(0, 11);
+        operation = kkout <= 5 ? operation1 : operation2;
+        return operation;
     }
 }
 
