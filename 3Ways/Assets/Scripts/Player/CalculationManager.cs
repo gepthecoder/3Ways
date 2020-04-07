@@ -182,9 +182,9 @@ public class CalculationManager : MonoBehaviour
                 MATH_HARD(p_level);
                 break;
             case (int)DIFFICULTIES.GENIOUS:
-
+                NotifyForException(p_level);
+                MATH_GENIOUS(p_level);
                 break;
-
         }
     }
 
@@ -389,64 +389,61 @@ public class CalculationManager : MonoBehaviour
     private void MATH_GENIOUS(int lvl)
     {
         switch (lvl)
-        {
+        {// X +- A = B      -> operation == ADDITION        ? X=B-A     : X=B+A
+         // AX = B          -> operation == MULTIPLICATION  ? X=B/A     : X=B*A
+         // √X² +- A = B    -> operation == SQUARED         ? X=√(B+-A) : X=(B+-A)²
+
             ////////////////////////////////////////BINOMINALS//////////////////////////////////////
 
+            ///////////////////////////////////ADDITION\SUBSTRACTION////////////////////////////////
+
             case 1:
-                // X + A = C
-                // MATH->HARD->LEVEL1 [-50,50]
-                SET_AND_CALCULATE(-50, 50, RANDOM_OPERATION(ADDITION, SUBSTRACTION), -50, 50, 1, 2);
+                // MATH->GENIOUS->LEVEL1 [-50,50]
+                SET_AND_MANAGE_BINOMINALS(-50, 50, -50, 50);
                 break;
             case 2:
-                // A +- B = +-C
-                // MATH->HARD->LEVEL2 [-100,100]
-                SET_AND_CALCULATE(-100, 100, RANDOM_OPERATION(ADDITION, SUBSTRACTION), -100, 100, 1, 2);
+                // MATH->GENIOUS->LEVEL2 [-100,100]
+                SET_AND_MANAGE_BINOMINALS(-100, 100, -100, 100);
                 break;
-
             case 3:
-                // A * B = C
-                // MATH->HARD->LEVEL3 [10,30]
-                SET_AND_CALCULATE(10, 30, MULTIPLICATION, 10, 30, 1, 2);
+                // MATH->GENIOUS->LEVEL3 [-250, 250]
+                SET_AND_MANAGE_BINOMINALS(-250, 250, -250, 250);
                 break;
             case 4:
-                // A * B = C                
-                // MATH->HARD->LEVEL4 [-20,50]
-                SET_AND_CALCULATE(-20, 50, MULTIPLICATION, -20, 50, 1, 2);
+                // MATH->GENIOUS->LEVEL4 [-500, 500]
+                SET_AND_MANAGE_BINOMINALS(-500, 500, -500, 500);
+                break;
+            case 5:
+                // MATH->GENIOUS->LEVEL5 [-1000, 1000]
+                SET_AND_MANAGE_BINOMINALS(-1000, 1000, -1000, 1000);
                 break;
 
-            case 5:
-                // A / B = C
-                // MATH->HARD->LEVEL5 [5,50]
-                SET_AND_CALCULATE(5, 50, DIVISION, 5, 50, 1, 2);
-                break;
+            ///////////////////////////////////MULTIPLICATION\DIVISION////////////////////////////////
 
             case 6:
-                // A² = C
-                // MATH->HARD->LEVEL6 [6,15]
-                SET_AND_CALCULATE(6, 15, SQUARED);
+                // MATH->GENIOUS->LEVEL6 [-50, 50]
+                SET_AND_MANAGE_BINOMINALS(-50, 50, -50, 50, false, true, false);
                 break;
             case 7:
-                // A² = C
-                // MATH->HARD->LEVEL7 [4,25]
-                SET_AND_CALCULATE(4, 25, SQUARED);
+                // MATH->GENIOUS->LEVEL7 [-100, 100]
+                SET_AND_MANAGE_BINOMINALS(-100, 100, -100, 100, false, true, false);
                 break;
-
             case 8:
-                // √A = C
-                // MATH->HARD->LEVEL8 [2,50]
-                SET_AND_CALCULATE(2, 50, SQUAREROOT);
-                break;
-            case 9:
-                // √A = C
-                // MATH->HARD->LEVEL9 [50,150]
-                SET_AND_CALCULATE(50, 150, SQUAREROOT);
+                // MATH->GENIOUS->LEVEL8 [-200, 200]
+                SET_AND_MANAGE_BINOMINALS(-200, 200, -200, 200, false, true, false);
                 break;
 
-            case 10:
-                // A² = C
-                // MATH->HARD->LEVEL10 [1,8]
-                SET_AND_CALCULATE(50, 350, RANDOM_OPERATION(SQUARED, SQUAREROOT));
+            ///////////////////////////////////√SQUARE-ROOT\SQUARED²////////////////////////////////
+
+            case 9:
+                // MATH->GENIOUS->LEVEL9 [-1000, 1000]
+                SET_AND_MANAGE_BINOMINALS(-600, 600, -600, 600, false, false, true);
                 break;
+            case 10:
+                // MATH->GENIOUS->LEVEL10 [-1000, 1000]
+                SET_AND_MANAGE_BINOMINALS(-1000, 1000, -1000, 1000, false, false, true);
+                break;
+
         }
     }
 
@@ -506,6 +503,93 @@ public class CalculationManager : MonoBehaviour
         SET_TEXT_ELEMENTS(equation, C, D, E);
     }
 
+    private void SET_AND_MANAGE_BINOMINALS(int aMin, int aMax, int bMin, int bMax, bool hard=true, bool veryHard=false, bool ultraHard=false)
+    {
+        int A = Random.Range(aMin, aMax);
+        int B = Random.Range(bMin, bMax);
+
+        int iTemp = Random.Range(0, 10);
+        bool bChooseLeftSide = iTemp <= 5 ? true : false;
+
+        bool bHard_Normal   = hard      && !veryHard    && !ultraHard;
+        bool bHard_Harsh    = veryHard  && !ultraHard   && !hard;
+        bool bHard_Mega     = ultraHard && !veryHard    && !hard;
+
+        string sOperationChoose = "";
+        string binominal = "";
+
+        int result = 0; ;
+
+        int D;
+        int E;
+
+        if (bChooseLeftSide)
+        {
+            if (bHard_Normal)
+            {
+                sOperationChoose = RANDOM_OPERATION(ADDITION, SUBSTRACTION);
+
+                result = GET_NORMAL_BINOMINAL_RESULT_LX(sOperationChoose, A, B);
+                binominal = GET_NORMAL_BINOMINAL_EQUATION_LX(sOperationChoose, A, B);
+            }
+            else if (bHard_Harsh)
+            {
+                sOperationChoose = RANDOM_OPERATION(MULTIPLICATION, DIVISION);
+
+                result = GET_HARSH_BINOMINAL_RESULT_LX(sOperationChoose, A, B);
+                binominal = GET_HARSH_BINOMINAL_EQUATION_LX(sOperationChoose, A, B);
+            }
+            else if (bHard_Mega)
+            {
+                sOperationChoose = RANDOM_OPERATION(SQUARED, SQUAREROOT);
+                string sOperationChoose2 = RANDOM_OPERATION(ADDITION, SUBSTRACTION);
+
+                result = GET_MEGA_BINOMINAL_RESULT_LX(sOperationChoose, sOperationChoose2, A, B, aMin, aMax, bMin, bMax, hard, veryHard, ultraHard);
+                binominal = GET_MEGA_BINOMINAL_EQUATION_LX(sOperationChoose, A, B, sOperationChoose2);
+            }
+            else
+            {
+                Debug.LogWarning("Hey dude! Seems like somethings wrong with <color=green>parameter</color> entry in CalculationManager.cs...");
+            }
+
+        }
+        else
+        {
+            if (bHard_Normal)
+            {
+                sOperationChoose = RANDOM_OPERATION(ADDITION, SUBSTRACTION);
+
+                result = GET_NORMAL_BINOMINAL_RESULT_RX(sOperationChoose, A, B);
+                binominal = GET_NORMAL_BINOMINAL_EQUATION_RX(sOperationChoose, A, B);
+            }
+            else if (bHard_Harsh)
+            {
+                sOperationChoose = RANDOM_OPERATION(MULTIPLICATION, DIVISION);
+
+                result = GET_HARSH_BINOMINAL_RESULT_RX(sOperationChoose, A, B);
+                binominal = GET_HARSH_BINOMINAL_EQUATION_RX(sOperationChoose, A, B);
+            }
+            else if (bHard_Mega)
+            {
+                sOperationChoose = RANDOM_OPERATION(SQUARED, SQUAREROOT);
+                string sOperationChoose2 = RANDOM_OPERATION(ADDITION, SUBSTRACTION);
+
+                result = GET_MEGA_BINOMINAL_RESULT_RX(sOperationChoose, sOperationChoose2, A, B, aMin, aMax, bMin, bMax, hard, veryHard, ultraHard);
+                binominal = GET_MEGA_BINOMINAL_EQUATION_RX(sOperationChoose, A, B, sOperationChoose2);
+            }
+            else
+            {
+                Debug.LogWarning("Hey dude! Seems like something wrong with <color=green>parameter</color> entry in CalculationManager.cs...");
+            }
+        }
+
+        D = result - (int)Random.Range(1, 2);
+        E = result + (int)Random.Range(1, 2);
+
+        SET_TEXT_ELEMENTS(binominal, result, D, E);
+    }
+
+
     private string RANDOM_OPERATION(string operation1, string operation2)
     {
         string operation = "";
@@ -514,27 +598,182 @@ public class CalculationManager : MonoBehaviour
         operation = kkout <= 5 ? operation1 : operation2;
         return operation;
     }
+
+    #region X +- A = B -> FUNCTIONS
+    private string GET_NORMAL_BINOMINAL_EQUATION_LX(string sOperationChoose, int A, int B)
+    {
+        return "x" + " " + sOperationChoose + " " + A + " " + "=" + " " + B;
+    }
+
+    private int GET_NORMAL_BINOMINAL_RESULT_LX(string sOperationChoose, int A, int B)
+    {
+        //if A on left side of equation -> X+-A = B (B+-A)
+        if (sOperationChoose == ADDITION)
+        {
+            //left side operation => + 
+            return B - A;
+        }
+        else
+        {
+            //right side operation => -
+            return B + A;
+        }
+    }
+
+    private int GET_HARSH_BINOMINAL_RESULT_LX(string sOperationChoose, int A, int B)
+    {
+        //if A on left side of equation 
+        if (sOperationChoose == MULTIPLICATION)
+        {
+            //left side operation => / 
+            return B / A;
+        }
+        else
+        {
+            //right side operation => *
+            return B * A;
+        }
+    }
+
+    private string GET_HARSH_BINOMINAL_EQUATION_LX(string sOperationChoose, int A, int B)
+    {
+        return "x" + " " + sOperationChoose + " " + A + " " + "=" + " " + B;
+    }
+
+    private int GET_MEGA_BINOMINAL_RESULT_LX(string sOperationChoose,string sOperationChoose2, int A, int B, int aMin, int aMax, int bMin, int bMax, bool hard, bool veryHard, bool ultraHard)
+    {
+        //if A on left side of equation 
+        if (sOperationChoose == SQUARED)
+        {
+            //left side operation
+            int temp = sOperationChoose2 == ADDITION ? B - A : B + A;
+
+            float sqrRootOfTemp = Mathf.Sqrt(temp);
+            int gg = (int)Mathf.Round(sqrRootOfTemp);
+            bool bb = (sqrRootOfTemp % gg) == 0 ? true : false;
+            if (!bb)
+            {
+                Debug.Log("<color=red>Number not valid for operation: √x</color>");
+                SET_AND_MANAGE_BINOMINALS(aMin, aMax, bMin, bMax, hard, veryHard, ultraHard);
+            }
+
+            int result = (int)Mathf.Sqrt(temp);
+            return result;
+        }
+        else
+        {
+            //right side operation => ^^
+            int temp = (sOperationChoose2 == ADDITION) ? (B - A) : (B + A);
+            int result = (int)Mathf.Pow(temp, 2);
+            return result;
+        }
+    }
+
+    private string GET_MEGA_BINOMINAL_EQUATION_LX(string sOperationChoose, int A, int B, string sOperationChoose2)
+    {
+        if (sOperationChoose == SQUARED)
+        {
+            return "x" + sOperationChoose + " " + sOperationChoose2 + " " + A + " " + "=" + " " + B;
+        }
+        else
+        {
+            return sOperationChoose + "x" + " " + sOperationChoose2 + " " + A + " " + "=" + " " + B;
+        }
+    }
+    #endregion
+
+    #region A = X +- B -> FUNCTIONS
+    private string GET_NORMAL_BINOMINAL_EQUATION_RX(string sOperationChoose, int A, int B)
+    {
+        return A + " " + "=" + " " + "x" + " " + sOperationChoose + " " + B;
+    }
+
+    private int GET_NORMAL_BINOMINAL_RESULT_RX(string sOperationChoose, int A, int B)
+    {
+        //if A on left side of equation -> X+-A = B (B+-A)
+        if (sOperationChoose == ADDITION)
+        {
+            //left side operation => + 
+            return A - B;
+        }
+        else
+        {
+            //right side operation => -
+            return A + B;
+        }
+    }
+
+    private int GET_HARSH_BINOMINAL_RESULT_RX(string sOperationChoose, int A, int B)
+    {
+        //if A on left side of equation 
+        if (sOperationChoose == MULTIPLICATION)
+        {
+            //left side operation => / 
+            return A / B;
+        }
+        else
+        {
+            //right side operation => *
+            return A * B;
+        }
+    }
+
+    private string GET_HARSH_BINOMINAL_EQUATION_RX(string sOperationChoose, int A, int B)
+    {
+        string equation = A + " " + "=" + " " + "x" + " " + sOperationChoose + " " + B;
+        return equation;
+    }
+
+    private int GET_MEGA_BINOMINAL_RESULT_RX(string sOperationChoose, string sOperationChoose2, int A, int B, int aMin, int aMax, int bMin, int bMax, bool hard, bool veryHard, bool ultraHard)
+    {
+        //if X on RIGHT side of equation 
+        if (sOperationChoose == SQUARED)
+        {
+            //left side operation
+            int temp = sOperationChoose2 == ADDITION ? A - B : A + B;
+
+            float sqrRootOfTemp = Mathf.Sqrt(temp);
+            int gg = (int)Mathf.Round(sqrRootOfTemp);
+            bool bb = (sqrRootOfTemp % gg) == 0 ? true : false;
+            if (!bb)
+            {
+                Debug.Log("<color=red>Number not valid for operation: √x</color>");
+                SET_AND_MANAGE_BINOMINALS(aMin, aMax, bMin, bMax, hard, veryHard, ultraHard);
+            }
+
+            int result = (int)Mathf.Sqrt(temp);
+            return result;
+        }
+        else
+        {
+            //right side operation => ^^
+            int temp = (sOperationChoose2 == ADDITION) ? A - B : A + B;
+            int result = (int)Mathf.Pow(temp, 2);
+            return result;
+        }
+    }
+
+    private string GET_MEGA_BINOMINAL_EQUATION_RX(string sOperationChoose, int A, int B, string sOperationChoose2)
+    {
+        if (sOperationChoose == SQUARED)
+        {
+            string equation = A + " " + "=" + " " + "x" + sOperationChoose + " " + sOperationChoose2 + " " + B;
+            return equation;
+        }
+        else
+        {
+            string equation = A + " " + "=" + " " + sOperationChoose + "x" + " " + sOperationChoose2 + " " + B;
+            return equation;
+        }
+    }
+
+    #endregion
 }
 
-
-// A (operation) B = C
-// "A" + "+(operation)+" + "B" -> equationText
-// "C" -> Random.Range(result0Text,result2Text) -> set door!!
 
 // DIFFICULTY
 
 // EASY -> 5 SECTIONS
-//LEVEL 1   OPERATION +   (0,10)
-//LEVEL 2   OPERATION +   (0,20)
-//LEVEL 3   OPERATION +-  (0,20)
-//LEVEL 4   OPERATION +-  (-50,50)
-//LEVEL 5   OPERATION +-  (-100,100)
-
-//LEVEL 6   OPERATION *   (0,5)
-//LEVEL 7   OPERATION *   (0,10)
-//LEVEL 8   OPERATION *   (-10,10)
-//LEVEL 9   OPERATION */  (0,10)
-//LEVEL 10  OPERATION */  (10,20) .......
 
 // MEDIUM -> 8 SECTIONS
 
