@@ -42,17 +42,17 @@ public class LevelManager : MonoBehaviour
 
             if (bCanCreate)
             {
+                Debug.Log("create new section..");
                 if (bIs2ndSection)
                 {
                     StartCoroutine(DestroyFirstSection());
                     StartCoroutine(CreateNewSection(true));
-                    CageScript.enemiesSpawned = false;
+
                 }
                 else
                 {
                     StartCoroutine(DestroySecondSection());
                     StartCoroutine(CreateNewSection(false));
-                    CageScript.enemiesSpawned = false;
                 }
             }
 
@@ -125,7 +125,7 @@ public class LevelManager : MonoBehaviour
         //cage.GetValues(section0);
 
 
-        addNewSection = true;
+        //addNewSection = true; ///////////////////////////////////////////        SPREMNEU GLIH KR
     }
 
     IEnumerator DestroyFirstSection()

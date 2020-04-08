@@ -32,8 +32,11 @@ public class CageScript : MonoBehaviour
     {
         if (!enemiesSpawned)
         {
-            if(calculations.currentCorrectDoor == (int)ChooseDoor.Doors.DOOR0)
+            Debug.Log("PERSA FROM THE MAHALA");
+
+            if (calculations.currentCorrectDoor == (int)ChooseDoor.Doors.DOOR0)
             {
+                Debug.Log("spawn enemies -> CAAGE");
                 Instantiate(enemy, cage1pos);
                 Instantiate(enemy, cage2pos);
                 enemiesSpawned = true;
@@ -41,6 +44,8 @@ public class CageScript : MonoBehaviour
             }
             else if (calculations.currentCorrectDoor == (int)ChooseDoor.Doors.DOOR1)
             {
+                Debug.Log("spawn enemies -> CAAGE");
+
                 Instantiate(enemy, cage0pos);
                 Instantiate(enemy, cage2pos);
                 enemiesSpawned = true;
@@ -48,6 +53,8 @@ public class CageScript : MonoBehaviour
             }
             else if (calculations.currentCorrectDoor == (int)ChooseDoor.Doors.DOOR2)
             {
+                Debug.Log("spawn enemies -> CAAGE");
+
                 Instantiate(enemy, cage0pos);
                 Instantiate(enemy, cage1pos);
                 enemiesSpawned = true;

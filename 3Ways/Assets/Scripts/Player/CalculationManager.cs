@@ -26,6 +26,28 @@ public class CalculationManager : MonoBehaviour
 
     string currentEquation;
 
+   
+    void Awake()
+    {
+        GetValues(1);
+    }
+    void Start()
+    {
+        SET_DIFFICULTY((int)DIFFICULTIES.GENIOUS);
+        CreateEquation(currentDifficulty, /*LevelManager.currentLevel*/9);
+    }
+
+    void Update()
+    {
+        if (LevelManager.addNewSection)
+        {
+            Debug.Log("add new section-> lvl manager");
+            CreateEquation((int)DIFFICULTIES.EASY, LevelManager.currentLevel);
+            CageScript.enemiesSpawned = false;
+            LevelManager.addNewSection = false;
+        }
+    }
+
     public void GetValues(int section)
     {
         switch (section)
@@ -59,24 +81,6 @@ public class CalculationManager : MonoBehaviour
         result1Text = GameObject.FindGameObjectWithTag("result1_1").GetComponent<TextMesh>();
     }
 
-    void Awake()
-    {
-        GetValues(1);
-    }
-    void Start()
-    {
-        SET_DIFFICULTY((int)DIFFICULTIES.EASY);
-        CreateEquation(currentDifficulty, LevelManager.currentLevel);
-    }
-
-    void Update()
-    {
-        if (LevelManager.addNewSection)
-        {
-            CreateEquation((int)DIFFICULTIES.EASY, LevelManager.currentLevel);
-            LevelManager.addNewSection = false;
-        }
-    }
 
     public void SET_DIFFICULTY(int difficulty)
     {
@@ -167,6 +171,7 @@ public class CalculationManager : MonoBehaviour
 
     public void CreateEquation(int p_difficulty, int p_level)
     {
+        Debug.Log("<color=blue>CREATE EQUATION</color>");
         switch (p_difficulty)
         {
             case (int)DIFFICULTIES.EASY:

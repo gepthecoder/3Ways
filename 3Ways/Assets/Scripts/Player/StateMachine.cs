@@ -24,8 +24,7 @@ public class StateMachine : MonoBehaviour
                                             ENTERING,
                                                     PASS,
                                                         REPEAT,
-                                                            TRANSITION,
-                                                                
+                                                            TRANSITION,                                                            
     }
 
     void Update()
@@ -93,6 +92,11 @@ public class StateMachine : MonoBehaviour
                 {
                     Debug.Log("Spawn!");
                     LevelManager.spawnNewSection = true;
+                    StartCoroutine(TransitionToNextLevel());
+                }else if(LevelManager.currentSectionCount == 1)
+                {
+                    //just values no new section
+                    StartCoroutine(TransitionToNextLevel());
                 }
                 PlayerControl.doorAnimeOpened = false;
             }
@@ -120,6 +124,15 @@ public class StateMachine : MonoBehaviour
         yield return new WaitForSeconds(3f);
         playerControl.transform.LookAt(playerControl.centerDoorLookPos);
         PlayerControl.canChooseDoor = true;
+    }
+
+    IEnumerator TransitionToNextLevel()
+    {
+        yield return new WaitForSeconds(2f);
+        playerControl.HandleValues();
+        calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);
+        CageScript.enemiesSpawned = false;
+
     }
 
 

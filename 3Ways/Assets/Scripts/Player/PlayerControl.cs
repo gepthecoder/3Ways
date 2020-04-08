@@ -374,8 +374,9 @@ public class PlayerControl : MonoBehaviour
         if (changeData)
         {
             Debug.Log("<color=red>curent level = </color>: " + LevelManager.currentLevel);
-
-            StartCoroutine(HandleValues());
+            HandleValues();
+            /*StartCoroutine(*//*)*/
+            ;
             changeData = false;
         }
       
@@ -383,7 +384,7 @@ public class PlayerControl : MonoBehaviour
         StateMachine.iCurrentState = (int)StateMachine.PlayerStates.RUNNING;
     }
 
-    private IEnumerator HandleValues()
+    public void HandleValues()
     {
         if (LevelManager.currentSectionCount % 2 == 0 && LevelManager.currentSectionCount != 0)
         {
@@ -392,8 +393,8 @@ public class PlayerControl : MonoBehaviour
             GetValues(1);
             calcucaltions.GetValues(1);
             cage.GetValues(1);
-            yield return new WaitForSeconds(.75f);
-            calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);
+            //yield return new WaitForSeconds(.75f);
+            //calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);
         }
         else
         {
@@ -402,8 +403,8 @@ public class PlayerControl : MonoBehaviour
             GetValues(2);
             calcucaltions.GetValues(2);
             cage.GetValues(2);
-            yield return new WaitForSeconds(.75f);
-            calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);
+            //yield return new WaitForSeconds(.75f);
+            //calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);
         }
     }
 
