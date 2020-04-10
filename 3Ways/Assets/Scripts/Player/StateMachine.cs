@@ -24,7 +24,8 @@ public class StateMachine : MonoBehaviour
                                             ENTERING,
                                                     PASS,
                                                         REPEAT,
-                                                            TRANSITION,                                                            
+                                                            TRANSITION,
+                                                                    WIN,                                                       
     }
 
     void Update()
@@ -131,7 +132,7 @@ public class StateMachine : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         playerControl.HandleValues();
-        calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.HARD, LevelManager.currentLevel);
+        calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);
         CageScript.enemiesSpawned = false;
 
     }

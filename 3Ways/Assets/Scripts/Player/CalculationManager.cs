@@ -33,7 +33,7 @@ public class CalculationManager : MonoBehaviour
     }
     void Start()
     {
-        SET_DIFFICULTY((int)DIFFICULTIES.HARD);
+        SET_DIFFICULTY((int)DIFFICULTIES.EASY);
         CreateEquation(currentDifficulty, LevelManager.currentLevel);
     }
 
