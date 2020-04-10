@@ -33,8 +33,8 @@ public class CalculationManager : MonoBehaviour
     }
     void Start()
     {
-        SET_DIFFICULTY((int)DIFFICULTIES.GENIOUS);
-        CreateEquation(currentDifficulty, /*LevelManager.currentLevel*/9);
+        SET_DIFFICULTY((int)DIFFICULTIES.HARD);
+        CreateEquation(currentDifficulty, LevelManager.currentLevel);
     }
 
     void Update()
@@ -227,7 +227,6 @@ public class CalculationManager : MonoBehaviour
             //////////////////////////////////////////MULTIPLICATION////////////////////////////////////
             case 6:
                 // A * B = C
-                // MATH->EASY->LEVEL6 [0,5]
                 SET_AND_CALCULATE(0, 5, MULTIPLICATION, 0, 5, 1, 2);
                 break;
             case 7:
@@ -286,34 +285,34 @@ public class CalculationManager : MonoBehaviour
             case 5:
                 // A * B = C
                 // MATH->MEDIUM->LEVEL5 [3,11]
-                SET_AND_CALCULATE(3, 11, RANDOM_OPERATION(ADDITION, SUBSTRACTION), 3, 11, 1, 2);
+                SET_AND_CALCULATE(3, 11, MULTIPLICATION, 3, 11, 1, 2);
                 break;
             case 6:
                 // A * B = C
                 // MATH->MEDIUM->LEVEL6 [4,12]
-                SET_AND_CALCULATE(4, 12, MULTIPLICATION, 4, 12, 1, 2);
+                SET_AND_CALCULATE(4, 18, MULTIPLICATION, 4, 18, 1, 2);
                 break;
             //////////////////////////////////////////DIVISION/////////////////////////////////////////////////
             case 7:
                 // A / B = C
                 // MATH->MEDIUM->LEVEL7 [0,20]
-                SET_AND_CALCULATE(0, 20, DIVISION, 0, 20, 1, 2);
+                SET_AND_CALCULATE(2, 30, DIVISION, 2, 30, 1, 2);
                 break;
             //////////////////////////////////////////MULTIPLICATION\DIVISION////////////////////////////////////
             case 8:
                 // A */ B = C
                 // MATH->MEDIUM->LEVEL8 [10,15]
-                SET_AND_CALCULATE(10, 15, RANDOM_OPERATION(MULTIPLICATION, DIVISION), 10, 15, 1, 2);
+                SET_AND_CALCULATE(5, 30, RANDOM_OPERATION(MULTIPLICATION, DIVISION), 5, 30, 1, 2);
                 break;
             case 9:
                 // A² = C
-                // MATH->MEDIUM->LEVEL9 [1,6]
-                SET_AND_CALCULATE(1, 6, SQUARED);
+                // MATH->MEDIUM->LEVEL9 [2,8]
+                SET_AND_CALCULATE(2, 8, SQUARED);
                 break;
             case 10:
                 // A² = C
-                // MATH->MEDIUM->LEVEL10 [1,8]
-                SET_AND_CALCULATE(1,8, SQUARED);
+                // MATH->MEDIUM->LEVEL10 [4,12]
+                SET_AND_CALCULATE(4,12, SQUARED);
                 break;
         }
     }
@@ -442,14 +441,20 @@ public class CalculationManager : MonoBehaviour
 
             case 9:
                 // MATH->GENIOUS->LEVEL9 [-1000, 1000]
-                SET_AND_MANAGE_BINOMINALS(-600, 600, -600, 600, false, false, true);
+                SET_AND_MANAGE_BINOMINALS(-300, 300, -300, 300, false, false, true);
                 break;
             case 10:
                 // MATH->GENIOUS->LEVEL10 [-1000, 1000]
-                SET_AND_MANAGE_BINOMINALS(-1000, 1000, -1000, 1000, false, false, true);
+                SET_AND_MANAGE_BINOMINALS(-300, 300, -300, 300, false, false, true);
                 break;
 
         }
+    }
+
+    private int GET_RANDOM_INT_BETWEEN(int Xx, int Yy)
+    {
+        int randomNum = Random.Range(Xx, Yy);
+        return randomNum;
     }
 
     private void SET_AND_CALCULATE(int aMin, int aMax, string operation, int bMin=0, int bMax = 0, int deMin = 0, int deMax = 0)
@@ -459,16 +464,23 @@ public class CalculationManager : MonoBehaviour
         int A = Random.Range(aMin, aMax);
         int B = Random.Range(bMin, bMax);
 
-        if(operation == DIVISION)
+        if(A == 0 || B == 0)
+        {
+            Debug.Log("Exception found.. try again (:");
+            SET_AND_CALCULATE(aMin, aMax, operation);
+        }
+
+        if (operation == DIVISION)
         {
             //DIVISION EXCEPTION -> TO GET PRETTY NUMBERS
+
             if (A < B)
             {
                 temp = A;
                 A = B;
                 B = temp;
             }
-
+            Debug.Log("<color=red>A: </color>" + A + "<color=green>B: </color>" + B);
             if (A % B != 0)
             {
                 SET_AND_CALCULATE(aMin, aMax, operation);
@@ -512,6 +524,11 @@ public class CalculationManager : MonoBehaviour
     {
         int A = Random.Range(aMin, aMax);
         int B = Random.Range(bMin, bMax);
+
+        if(A == 0 || B == 0)
+        {
+            if (veryHard) { SET_AND_MANAGE_BINOMINALS(aMin, aMax, bMin, bMax, hard, veryHard, ultraHard); }
+        }
 
         int iTemp = Random.Range(0, 10);
         bool bChooseLeftSide = iTemp <= 5 ? true : false;

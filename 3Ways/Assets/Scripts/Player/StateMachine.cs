@@ -86,7 +86,7 @@ public class StateMachine : MonoBehaviour
                 LevelManager.currentSectionCount++;
                 Debug.Log("<color=blue>CURRENT SECTION = </color>" + LevelManager.currentSectionCount);
                 LevelManager.currentLevel++;
-                PlayerControl.changeData = true;
+                //PlayerControl.changeData = true;
 
                 if (LevelManager.currentSectionCount >= 2)
                 {
@@ -121,16 +121,17 @@ public class StateMachine : MonoBehaviour
 
     IEnumerator LookStraight()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.6f);
         playerControl.transform.LookAt(playerControl.centerDoorLookPos);
-        PlayerControl.canChooseDoor = true;
+        Debug.Log("<color=red>LOOK STRAIGHT</color>");
+        //PlayerControl.canChooseDoor = true;
     }
 
     IEnumerator TransitionToNextLevel()
     {
         yield return new WaitForSeconds(2f);
         playerControl.HandleValues();
-        calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);
+        calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.HARD, LevelManager.currentLevel);
         CageScript.enemiesSpawned = false;
 
     }

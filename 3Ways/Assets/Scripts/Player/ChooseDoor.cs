@@ -8,6 +8,8 @@ public class ChooseDoor : MonoBehaviour
     public static bool doorPressed;
     public static bool doorChoosen;
 
+    protected float chooseDoorTimer;
+
     public enum Doors
     {
         DOOR0 = 0, DOOR1, DOOR2,
@@ -15,8 +17,12 @@ public class ChooseDoor : MonoBehaviour
 
     void Update()
     {
-        if (StateMachine.iCurrentState == (int)StateMachine.PlayerStates.THINKING && PlayerControl.canChooseDoor)
+        chooseDoorTimer += Time.deltaTime;
+
+
+        if (StateMachine.iCurrentState == (int)StateMachine.PlayerStates.THINKING && PlayerControl.canChooseDoor && chooseDoorTimer > 7f)
         {
+            Debug.Log("<color=red>CAAAN CHOOSE DOOR</color>");
             if (Input.GetMouseButtonDown(0))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -34,21 +40,27 @@ public class ChooseDoor : MonoBehaviour
                             // player chose DOOR 0
                             Debug.Log("door 0 choosen!");
                             selectedDoor = (int)Doors.DOOR0;
+                            PlayerControl.canChooseDoor = false;
+                            chooseDoorTimer = 0;
                         }
                         else if (hit.transform.name == "Door1")
                         {
                             // player chose DOOR 1
                             Debug.Log("door 1 choosen!");
                             selectedDoor = (int)Doors.DOOR1;
+                            PlayerControl.canChooseDoor = false;
+                            chooseDoorTimer = 0;
                         }
                         else if (hit.transform.name == "Door2")
                         {
                             // player chose DOOR 2
                             Debug.Log("door 2 choosen!");
                             selectedDoor = (int)Doors.DOOR2;
+                            PlayerControl.canChooseDoor = false;
+                            chooseDoorTimer = 0;
                         }
 
-                        PlayerControl.canChooseDoor = false;
+               
 
                     }
 

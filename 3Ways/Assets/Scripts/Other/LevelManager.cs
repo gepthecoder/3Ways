@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour
 
     private int iSectionToAdd;
    
-    private int iEASY_SECTIONS = 5;
+    private int iEASY_SECTIONS = 10;
     private int iMEDIUM_SECTIONS = 8;
     private int iHARD_SECTIONS = 10;
     private int iGENIOUS_SECTIONS = 15;

@@ -48,8 +48,7 @@ public class PlayerControl : MonoBehaviour
 
     private CalculationManager calcucaltions;
     private CageScript cage;
-
-
+    
     void Awake()
     {
         GetValues(1);
@@ -118,7 +117,7 @@ public class PlayerControl : MonoBehaviour
             PLAY_ANIMATION_RUN(false);
             PLAY_ANIMATION_THINK(true);
 
-            canChooseDoor = true;
+            //canChooseDoor = true;
 
         }
         // ENTERING
@@ -326,6 +325,8 @@ public class PlayerControl : MonoBehaviour
             doorAnime.SetBool("openDoor0" + ChooseDoor.selectedDoor, false);
             doorAnime.SetBool("closeDoor0" + ChooseDoor.selectedDoor, true);
         }
+        yield return new WaitForSeconds(2.5f);
+        canChooseDoor = true;
     }
 
     IEnumerator Continue()
@@ -339,6 +340,7 @@ public class PlayerControl : MonoBehaviour
         PLAY_ANIMATION_PASS(false);
         yield return new WaitForSeconds(.3f);
         //MoveOn();
+        canChooseDoor = true;
         transition = true;
     }
 
@@ -371,14 +373,12 @@ public class PlayerControl : MonoBehaviour
         yield return new WaitForSeconds(.4f);
         //////////////////////////////////////////////////////////////////////
         //DestroyPreviousSection(LevelManager.currentLevel);
-        if (changeData)
-        {
-            Debug.Log("<color=red>curent level = </color>: " + LevelManager.currentLevel);
-            HandleValues();
-            /*StartCoroutine(*//*)*/
-            ;
-            changeData = false;
-        }
+        //if (changeData)
+        //{
+        //    Debug.Log("<color=red>curent level = </color>: " + LevelManager.currentLevel);
+        //    HandleValues();
+        //    changeData = false;
+        //}
       
         transform.LookAt(centerDoorLookPos);
         StateMachine.iCurrentState = (int)StateMachine.PlayerStates.RUNNING;
