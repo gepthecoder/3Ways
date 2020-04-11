@@ -10,9 +10,11 @@ public class StateMachine : MonoBehaviour
     //OBJECTS
     private CalculationManager calcucaltions;
     private PlayerControl playerControl;
+    private LevelManager levelManager;
 
-    void Start() {  calcucaltions = GetComponent<CalculationManager>();
-                    playerControl = GetComponent<PlayerControl>();
+    void Start() {  calcucaltions   = GetComponent<CalculationManager>();
+                    playerControl   = GetComponent<PlayerControl>();
+                    levelManager    = GetComponent<LevelManager>();
                  }
 
     public enum PlayerStates
@@ -88,8 +90,12 @@ public class StateMachine : MonoBehaviour
                 Debug.Log("<color=blue>CURRENT SECTION = </color>" + LevelManager.currentSectionCount);
                 LevelManager.currentLevel++;
                 //PlayerControl.changeData = true;
-
-                if (LevelManager.currentSectionCount >= 2)
+                if (LevelManager.currentSectionCount == levelManager.GetNumberOfSections((int)CalculationManager.DIFFICULTIES.EASY))
+                {
+                    LevelManager.spawnWinSection = true;
+                    return true;
+                }
+                else if (LevelManager.currentSectionCount >= 2)
                 {
                     Debug.Log("Spawn!");
                     LevelManager.spawnNewSection = true;

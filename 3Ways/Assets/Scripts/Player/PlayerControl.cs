@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour
     public static bool canChooseDoor;
     public static bool transition;
     public static bool changeData;
+    public static bool isWinningSection;
 
     [SerializeField]
     private float moveSpeed = 10f;
@@ -38,6 +39,7 @@ public class PlayerControl : MonoBehaviour
 
     // PASS POSITION
     private Transform passCagePos;
+    private Transform passWinPos;
 
     //public Transform[] passCagePositions;
     private Transform cageDoor0Pos;
@@ -159,8 +161,8 @@ public class PlayerControl : MonoBehaviour
             }
 
             float step = passSpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, passCagePos.position, step);
 
+            transform.position = Vector3.MoveTowards(transform.position, passCagePos.position, step);
         }
     }
 
@@ -379,8 +381,13 @@ public class PlayerControl : MonoBehaviour
         //    HandleValues();
         //    changeData = false;
         //}
-      
-        transform.LookAt(centerDoorLookPos);
+        Transform goToPos = null;
+        if (isWinningSection)
+        {
+            goToPos = passWinPos;
+        }
+        else { goToPos = centerDoorLookPos; }
+        transform.LookAt(goToPos);
         StateMachine.iCurrentState = (int)StateMachine.PlayerStates.RUNNING;
     }
 
@@ -452,8 +459,14 @@ public class PlayerControl : MonoBehaviour
         GetOtherPositions2();
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // WIN SECTION
+    private void GetWinPosition()
+    {
+        passWinPos = GameObject.FindGameObjectWithTag("winningPos").GetComponent<Transform>();
+    }
 
-    // SECTION 1 //////////////////////////////////////////////////////////////////////
+    // SECTION 1 
     private void GetDoorPositions1()
     {
         door0Pos = GameObject.FindGameObjectWithTag("door0Pos").GetComponent<Transform>();

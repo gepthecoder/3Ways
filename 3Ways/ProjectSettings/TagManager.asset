@@ -37,6 +37,7 @@ TagManager:
   - playerThinkPos1
   - thinkPosLooking1
   - Section1P1
+  - winningPos
   layers:
   - Default
   - TransparentFX

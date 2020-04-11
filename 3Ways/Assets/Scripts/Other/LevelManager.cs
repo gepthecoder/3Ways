@@ -8,16 +8,16 @@ public class LevelManager : MonoBehaviour
  
     public static int currentSectionCount;
     public static bool spawnNewSection = false;
-    
+    public static bool spawnWinSection = false;
+
     public GameObject SECTION1;
     public GameObject SECTION2;
     public GameObject WINNING_SECTION;
 
     public static bool addNewSection;
-
     private int iSectionToAdd;
    
-    private int iEASY_SECTIONS = 5;
+    private int iEASY_SECTIONS = 3;
     private int iMEDIUM_SECTIONS = 8;
     private int iHARD_SECTIONS = 10;
     private int iGENIOUS_SECTIONS = 15;
@@ -35,6 +35,34 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
+        if (spawnWinSection)
+        {
+            bool bIs2ndSection = (currentSectionCount % 2 == 0);
+            // spawn wining presentation ;)
+            int winningSectionOffsetZ = -9;
+            int winningSectionOffsetX = 5;
+            float winningSectionOffsetY = .05f;
+
+            Debug.Log("<color=green>Winning section spawned!!</color>");
+            if (bIs2ndSection)
+            {
+                //offset from second section
+                Transform section2pos = GameObject.FindGameObjectWithTag("Section1P1").GetComponent<Transform>();
+                Vector3 spawnPos = new Vector3(section2pos.position.x + winningSectionOffsetX, section2pos.position.y + winningSectionOffsetY, section2pos.position.z + winningSectionOffsetZ);
+                Instantiate(WINNING_SECTION, spawnPos, WINNING_SECTION.transform.rotation);
+            }
+            else
+            {
+                //offset from first section
+                Transform section1pos = GameObject.FindGameObjectWithTag("SectionP1").GetComponent<Transform>();
+                Vector3 spawnPos = new Vector3(section1pos.position.x + winningSectionOffsetX, section1pos.position.y + winningSectionOffsetY, section1pos.position.z + winningSectionOffsetZ);
+                Instantiate(WINNING_SECTION, spawnPos, WINNING_SECTION.transform.rotation);
+            }
+
+            spawnWinSection = false;
+            PlayerControl.isWinningSection = true;
+        }
+
         if (spawnNewSection)
         {
             bool bIs2ndSection = (currentSectionCount % 2 == 0);
@@ -60,7 +88,7 @@ public class LevelManager : MonoBehaviour
         }
     }
     // returns total number of sections for each difficulty
-    private int GetNumberOfSections(int difficulty)
+    public int GetNumberOfSections(int difficulty)
     {
         int numOfSections = 0;
 
@@ -88,30 +116,6 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator CreateNewSection(bool is2nd)
     {
-        if (currentSectionCount == GetNumberOfSections((int)CalculationManager.DIFFICULTIES.EASY))
-        {
-            // spawn wining presentation ;)
-            int winningSectionOffsetZ = 5;
-            int winningSectionOffsetX = 3;
-
-            Debug.Log("Player won!!");
-            if (is2nd)
-            {
-                //offset from second section
-                Transform section2pos = GameObject.FindGameObjectWithTag("Section1P1").GetComponent<Transform>();
-                Vector3 spawnPos = new Vector3(section2pos.position.x, section2pos.position.y, section2pos.position.z + winningSectionOffsetZ);
-                Instantiate(WINNING_SECTION, spawnPos, WINNING_SECTION.transform.rotation);
-            }
-            else {
-                //offset from first section
-                Transform section1pos = GameObject.FindGameObjectWithTag("SectionP1").GetComponent<Transform>();
-                Vector3 spawnPos = new Vector3(section1pos.position.x, section1pos.position.y, section1pos.position.z + winningSectionOffsetZ);
-                Instantiate(WINNING_SECTION, spawnPos, WINNING_SECTION.transform.rotation);
-            }
-
-            yield break;
-        }
-
         int offsetZ = 56;
 
         if (is2nd)
