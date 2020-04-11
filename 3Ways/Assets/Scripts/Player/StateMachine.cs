@@ -37,6 +37,12 @@ public class StateMachine : MonoBehaviour
 
     protected bool HandlePlayerStates()
     {
+        if (PlayerWinCollider.PlayerWon && iCurrentState == (int)PlayerStates.RUNNING)
+        {
+            Debug.Log("<color=red>STOJ PAJOOO PROSM DA GREM LOH NAPREJ DELAT</color>");
+            iCurrentState = (int)PlayerStates.WIN;
+            PlayerWinCollider.PlayerWon = false;
+        }
         // MOVE TO NEXT LEVEL
         if (PlayerControl.transition)
         {
@@ -142,7 +148,5 @@ public class StateMachine : MonoBehaviour
         CageScript.enemiesSpawned = false;
 
     }
-
-
 }
           

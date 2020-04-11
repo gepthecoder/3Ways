@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour
             bool bIs2ndSection = (currentSectionCount % 2 == 0);
             // spawn wining presentation ;)
             int winningSectionOffsetZ = -9;
-            int winningSectionOffsetX = 5;
+            float winningSectionOffsetX = 6.38f;
             float winningSectionOffsetY = .05f;
 
             Debug.Log("<color=green>Winning section spawned!!</color>");
@@ -60,6 +60,7 @@ public class LevelManager : MonoBehaviour
             }
 
             spawnWinSection = false;
+            StartCoroutine(JustWaitASec(2.5f));
             PlayerControl.isWinningSection = true;
         }
 
@@ -164,5 +165,10 @@ public class LevelManager : MonoBehaviour
         Destroy(secondSection);
         Debug.Log("SecondSectionDestroyed");
         yield return new WaitForSeconds(1.5f);
+    }
+
+    IEnumerator JustWaitASec(float timeToWait)
+    {
+        yield return new WaitForSeconds(timeToWait);
     }
 }

@@ -14,6 +14,7 @@ public class PlayerWinCollider : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
+            Debug.Log("<color=red>PLAYER YOU WON... STOP AND DANCE!</color>");
             //stop the player and celebrate if won.. single player -> won always | multiplayer -> won anime only for winning player
             PlayerWon = true;
         }

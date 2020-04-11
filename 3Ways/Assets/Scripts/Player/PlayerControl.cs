@@ -12,6 +12,8 @@ public class PlayerControl : MonoBehaviour
     public static bool changeData;
     public static bool isWinningSection;
 
+    protected bool endOfGame = false;
+
     [SerializeField]
     private float moveSpeed = 10f;
     [SerializeField]
@@ -40,6 +42,8 @@ public class PlayerControl : MonoBehaviour
     // PASS POSITION
     private Transform passCagePos;
     private Transform passWinPos;
+    // WIN LOOK AT TARGET
+    private Transform passWinLookAt;
 
     //public Transform[] passCagePositions;
     private Transform cageDoor0Pos;
@@ -92,19 +96,12 @@ public class PlayerControl : MonoBehaviour
             else { PLAY_ANIMATION_RUN(false); }
 
             PLAY_ANIMATION_THINK(false);
-
-            float step = moveSpeed * Time.deltaTime;
-            Transform goToPos = null;
-            if (isWinningSection)
-            {
-                GetWinPosition();
-                goToPos = passWinPos;
-            }
-            else { goToPos = centerPlayerPos; }
-            transform.position = Vector3.MoveTowards(transform.position, goToPos.position, step);
+            if (endOfGame) { GetWinPosition(); }
+            float       step    = endOfGame ? 6f * Time.deltaTime   : moveSpeed * Time.deltaTime;
+            Transform   GoToPos = endOfGame ? passWinPos            : centerPlayerPos;
+            transform.position = Vector3.MoveTowards(transform.position, GoToPos.position, step);
             //controller.Move(Vector3.forward * moveSpeed * Time.deltaTime);
-            //Debug.Log("<color=green>RUNNING</color>");
-
+            Debug.Log("<color=green>RUNNING</color>");
         }
         // UNLOCKING
         else if (StateMachine.iCurrentState == (int)StateMachine.PlayerStates.UNLOCKING)
@@ -127,7 +124,6 @@ public class PlayerControl : MonoBehaviour
             PLAY_ANIMATION_THINK(true);
 
             //canChooseDoor = true;
-
         }
         // ENTERING
         else if(StateMachine.iCurrentState == (int)StateMachine.PlayerStates.ENTERING)
@@ -140,7 +136,6 @@ public class PlayerControl : MonoBehaviour
         {
             //Debug.Log("<color=blue>PASS</color>");
             StartCoroutine(Continue());
-
         }
         // REPEAT
         else if (StateMachine.iCurrentState == (int)StateMachine.PlayerStates.REPEAT)
@@ -156,20 +151,33 @@ public class PlayerControl : MonoBehaviour
         // TRANSITION
         else if (StateMachine.iCurrentState == (int)StateMachine.PlayerStates.TRANSITION)
         {
+            Debug.Log("<color=yellow>DOOR SLIDE IS: </color" + door.slide);
             if (!door.slide)
             {
+                Debug.Log("DOOR SLIDE IS FALSE SO THE PLAYER SHOULD PREFORM RUN ANIME");
                 MoveOn();
             }
             else
             { // SLIDE
                 PLAY_ANIMATION_RUN(false);
-
+                Debug.Log("PLAYER SHOULD SLIDE NOW HH");
                 Slide();
             }
-
             float step = passSpeed * Time.deltaTime;
-
             transform.position = Vector3.MoveTowards(transform.position, passCagePos.position, step);
+        }
+        // WIN
+        else if(StateMachine.iCurrentState == (int)StateMachine.PlayerStates.WIN)
+        {
+            PLAY_ANIMATION_FALL_BACK(false);
+            PLAY_ANIMATION_RUN(false);
+            PLAY_ANIMATION_THINK(true);
+
+
+            Debug.Log("<color=yellow>You just won mate and you are surly on position you need to be! :)</color>");
+            //GetWinPosition();
+            //float step = fallBackSpeed * Time.deltaTime;
+            //transform.position = Vector3.MoveTowards(transform.position, passWinPos.position, step);
         }
     }
 
@@ -347,7 +355,7 @@ public class PlayerControl : MonoBehaviour
         transform.LookAt(passCagePos);
         yield return new WaitForSeconds(1f);
         PLAY_ANIMATION_PASS(false);
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.5f);
         //MoveOn();
         canChooseDoor = true;
         transition = true;
@@ -364,8 +372,6 @@ public class PlayerControl : MonoBehaviour
             timer_runAnime = 0;
         }
         else { PLAY_ANIMATION_RUN(false); }
-        
-
     }
 
     private void Slide()
@@ -388,15 +394,26 @@ public class PlayerControl : MonoBehaviour
         //    HandleValues();
         //    changeData = false;
         //}
-        Transform goToPos = null;
         if (isWinningSection)
         {
-            GetWinPosition();
-            goToPos = passWinPos;
+            GetWinLookAtTarget();
+            transform.LookAt(passWinLookAt);
+            endOfGame = true;
+            StateMachine.iCurrentState = (int)StateMachine.PlayerStates.WIN;
         }
-        else { goToPos = centerDoorLookPos; }
-        transform.LookAt(goToPos);
-        StateMachine.iCurrentState = (int)StateMachine.PlayerStates.RUNNING;
+        else
+        {
+            transform.LookAt(centerDoorLookPos);
+            StateMachine.iCurrentState = (int)StateMachine.PlayerStates.RUNNING;
+        }
+
+
+    }
+
+    private IEnumerator GoToEndPosition()
+    {
+        yield return new WaitForSeconds(.5f);
+
     }
 
     public void HandleValues()
@@ -472,6 +489,11 @@ public class PlayerControl : MonoBehaviour
     private void GetWinPosition()
     {
         passWinPos = GameObject.FindGameObjectWithTag("winningPos").GetComponent<Transform>();
+    }
+
+    private void GetWinLookAtTarget()
+    {
+        passWinLookAt = GameObject.FindGameObjectWithTag("lookAtTheEnd").GetComponent<Transform>();
     }
 
     // SECTION 1 

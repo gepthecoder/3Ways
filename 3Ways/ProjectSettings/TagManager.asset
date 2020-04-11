@@ -38,6 +38,7 @@ TagManager:
   - thinkPosLooking1
   - Section1P1
   - winningPos
+  - lookAtTheEnd
   layers:
   - Default
   - TransparentFX
