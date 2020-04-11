@@ -94,7 +94,14 @@ public class PlayerControl : MonoBehaviour
             PLAY_ANIMATION_THINK(false);
 
             float step = moveSpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, centerPlayerPos.position, step);
+            Transform goToPos = null;
+            if (isWinningSection)
+            {
+                GetWinPosition();
+                goToPos = passWinPos;
+            }
+            else { goToPos = centerPlayerPos; }
+            transform.position = Vector3.MoveTowards(transform.position, goToPos.position, step);
             //controller.Move(Vector3.forward * moveSpeed * Time.deltaTime);
             //Debug.Log("<color=green>RUNNING</color>");
 
@@ -384,6 +391,7 @@ public class PlayerControl : MonoBehaviour
         Transform goToPos = null;
         if (isWinningSection)
         {
+            GetWinPosition();
             goToPos = passWinPos;
         }
         else { goToPos = centerDoorLookPos; }
