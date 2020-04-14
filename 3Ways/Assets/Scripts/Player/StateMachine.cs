@@ -5,6 +5,7 @@ using UnityEngine;
 public class StateMachine : MonoBehaviour
 {
     public static int iCurrentState;
+    public static int iTempState;
     public static bool bIsWaiting = true;
 
     //OBJECTS
@@ -30,6 +31,12 @@ public class StateMachine : MonoBehaviour
                                                                     WIN,                                                       
     }
 
+    public enum TempState
+    {
+        OTHER=0 ,
+            NEXT_STOP_WIN_ROOM,
+    }
+
     void Update()
     {
         HandlePlayerStates();
@@ -37,12 +44,7 @@ public class StateMachine : MonoBehaviour
 
     protected bool HandlePlayerStates()
     {
-        if (PlayerWinCollider.PlayerWon && iCurrentState == (int)PlayerStates.RUNNING)
-        {
-            Debug.Log("<color=red>STOJ PAJOOO PROSM DA GREM LOH NAPREJ DELAT</color>");
-            iCurrentState = (int)PlayerStates.WIN;
-            PlayerWinCollider.PlayerWon = false;
-        }
+       
         // MOVE TO NEXT LEVEL
         if (PlayerControl.transition)
         {
@@ -95,9 +97,11 @@ public class StateMachine : MonoBehaviour
                 LevelManager.currentSectionCount++;
                 Debug.Log("<color=blue>CURRENT SECTION = </color>" + LevelManager.currentSectionCount);
                 LevelManager.currentLevel++;
+
                 //PlayerControl.changeData = true;
                 if (LevelManager.currentSectionCount == levelManager.GetNumberOfSections((int)CalculationManager.DIFFICULTIES.EASY))
                 {
+                    iTempState = (int)TempState.NEXT_STOP_WIN_ROOM;
                     LevelManager.spawnWinSection = true;
                     return true;
                 }
@@ -111,6 +115,8 @@ public class StateMachine : MonoBehaviour
                     //just values no new section
                     StartCoroutine(TransitionToNextLevel());
                 }
+
+                iTempState = (int)TempState.OTHER;
                 PlayerControl.doorAnimeOpened = false;
             }
             else if (calcucaltions.currentCorrectDoor != ChooseDoor.selectedDoor && iCurrentState == (int)PlayerStates.ENTERING && PlayerControl.doorAnimeOpened)
@@ -144,9 +150,14 @@ public class StateMachine : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         playerControl.HandleValues();
-        calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);
+        calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.MEDIUM, LevelManager.currentLevel);
         CageScript.enemiesSpawned = false;
 
+    }
+
+    IEnumerator JustWaitASec(float timeToWait)
+    {
+        yield return new WaitForSeconds(timeToWait);
     }
 }
           

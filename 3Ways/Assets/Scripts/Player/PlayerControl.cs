@@ -21,7 +21,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     private float fallBackSpeed = 2.0f;
     [SerializeField]
-    private float passSpeed = 1.0f;
+    private float passSpeed = .8f;
 
     private Animator anime;
 
@@ -44,6 +44,8 @@ public class PlayerControl : MonoBehaviour
     private Transform passWinPos;
     // WIN LOOK AT TARGET
     private Transform passWinLookAt;
+    // WIN DANCE POSITION
+    private Transform dancePos;
 
     //public Transform[] passCagePositions;
     private Transform cageDoor0Pos;
@@ -54,6 +56,8 @@ public class PlayerControl : MonoBehaviour
 
     private CalculationManager calcucaltions;
     private CageScript cage;
+
+    public int slideOnce = 0;
     
     void Awake()
     {
@@ -151,30 +155,24 @@ public class PlayerControl : MonoBehaviour
         // TRANSITION
         else if (StateMachine.iCurrentState == (int)StateMachine.PlayerStates.TRANSITION)
         {
-            Debug.Log("<color=yellow>DOOR SLIDE IS: </color" + door.slide);
             if (!door.slide)
             {
-                Debug.Log("DOOR SLIDE IS FALSE SO THE PLAYER SHOULD PREFORM RUN ANIME");
                 MoveOn();
             }
             else
             { // SLIDE
                 PLAY_ANIMATION_RUN(false);
-                Debug.Log("PLAYER SHOULD SLIDE NOW HH");
                 Slide();
             }
             float step = passSpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, passCagePos.position, step);
+            
+            transform.position = Vector3.MoveTowards(transform.position, passCagePos.position, step);      
         }
         // WIN
         else if(StateMachine.iCurrentState == (int)StateMachine.PlayerStates.WIN)
         {
-            PLAY_ANIMATION_FALL_BACK(false);
-            PLAY_ANIMATION_RUN(false);
-            PLAY_ANIMATION_THINK(true);
-
-
-            Debug.Log("<color=yellow>You just won mate and you are surly on position you need to be! :)</color>");
+            Debug.Log("WININI PANINI");
+            GoToEndPosition();
             //GetWinPosition();
             //float step = fallBackSpeed * Time.deltaTime;
             //transform.position = Vector3.MoveTowards(transform.position, passWinPos.position, step);
@@ -353,9 +351,9 @@ public class PlayerControl : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         passCagePos = GetSelectedCageDoorTransform(ChooseDoor.selectedDoor);
         transform.LookAt(passCagePos);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         PLAY_ANIMATION_PASS(false);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.45f);
         //MoveOn();
         canChooseDoor = true;
         transition = true;
@@ -380,12 +378,14 @@ public class PlayerControl : MonoBehaviour
     }
 
     private IEnumerator SlideMotion()
-    {        
+    {
+        Debug.Log("SLIDE 1");
         PLAY_ANIMATION_SLIDE(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.15f);
         PLAY_ANIMATION_SLIDE(false);
+        Debug.Log("SLIDE 0");
+
         //transform.LookAt(centerDoorLookPos);
-        yield return new WaitForSeconds(.4f);
         //////////////////////////////////////////////////////////////////////
         //DestroyPreviousSection(LevelManager.currentLevel);
         //if (changeData)
@@ -396,23 +396,47 @@ public class PlayerControl : MonoBehaviour
         //}
         if (isWinningSection)
         {
-            GetWinLookAtTarget();
-            transform.LookAt(passWinLookAt);
-            endOfGame = true;
+            //GetWinPosition();
+            //transform.LookAt(passWinPos);
+            //endOfGame = true; 
+            Debug.Log("GO TO WIN");
+
             StateMachine.iCurrentState = (int)StateMachine.PlayerStates.WIN;
         }
         else
         {
             transform.LookAt(centerDoorLookPos);
+            door.slide = false;
             StateMachine.iCurrentState = (int)StateMachine.PlayerStates.RUNNING;
         }
 
 
     }
 
-    private IEnumerator GoToEndPosition()
+    private void GoToEndPosition()
     {
-        yield return new WaitForSeconds(.5f);
+
+        GetWinPosition();
+        GetWinLookAtTarget();
+        GetDancePosition();
+        float step = 5 * Time.deltaTime;
+
+        //if (PlayerWinCollider.PlayerWon)
+        //{
+            //JUMP
+            transform.LookAt(passWinLookAt);
+
+        //WE HAVE A WINNER
+        anime.SetTrigger("win");
+
+        transform.position = Vector3.MoveTowards(transform.position, dancePos.position, step);
+            
+        //}
+        //else
+        //{
+        //    transform.position = Vector3.MoveTowards(transform.position, passWinPos.position, step);
+        //}
+      
 
     }
 
@@ -494,6 +518,11 @@ public class PlayerControl : MonoBehaviour
     private void GetWinLookAtTarget()
     {
         passWinLookAt = GameObject.FindGameObjectWithTag("lookAtTheEnd").GetComponent<Transform>();
+    }
+
+    private void GetDancePosition()
+    {
+        dancePos = GameObject.FindGameObjectWithTag("dancePos").GetComponent<Transform>();
     }
 
     // SECTION 1 

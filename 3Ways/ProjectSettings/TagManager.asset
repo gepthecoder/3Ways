@@ -39,6 +39,7 @@ TagManager:
   - Section1P1
   - winningPos
   - lookAtTheEnd
+  - dancePos
   layers:
   - Default
   - TransparentFX

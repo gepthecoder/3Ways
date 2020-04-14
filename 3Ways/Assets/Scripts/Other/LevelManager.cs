@@ -60,7 +60,6 @@ public class LevelManager : MonoBehaviour
             }
 
             spawnWinSection = false;
-            StartCoroutine(JustWaitASec(2.5f));
             PlayerControl.isWinningSection = true;
         }
 
@@ -167,8 +166,5 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
     }
 
-    IEnumerator JustWaitASec(float timeToWait)
-    {
-        yield return new WaitForSeconds(timeToWait);
-    }
+    
 }
