@@ -51,50 +51,17 @@ public class LevelBar : MonoBehaviour
         HandleUI_Levels(sLevelBar.value);
     }
 
-   void ReplaceLevelImage(int lvl)
+    private void ReplaceSprites(int lvl)
     {
-        Sprite lvlSprite = null;
-        
-        switch (lvl)
-        {
-            case 1:
-                lvlSprite = lvlUIs[0].GetComponent<Image>().sprite;
-                break;
-            case 2:
-                lvlSprite = lvlUIs[1].GetComponent<Image>().sprite;
-                break;
-            case 3:
-                lvlSprite = lvlUIs[2].GetComponent<Image>().sprite;
-                break;
-            case 4:
-                lvlSprite = lvlUIs[3].GetComponent<Image>().sprite;
-                break;
-            case 5:
-                lvlSprite = lvlUIs[4].GetComponent<Image>().sprite;
-                break;
-            case 6:
-                lvlSprite = lvlUIs[5].GetComponent<Image>().sprite;
-                break;
-            case 7:
-                lvlSprite = lvlUIs[6].GetComponent<Image>().sprite;
-                break;
-            case 8:
-                lvlSprite = lvlUIs[7].GetComponent<Image>().sprite;
-                break;
-            case 9:
-                lvlSprite = lvlUIs[8].GetComponent<Image>().sprite;
-                break;
-            case 10:
-                lvlSprite = lvlUIs[9].GetComponent<Image>().sprite;
-                break;
-            default:
-                Debug.LogWarning("Dude the parameter lvl is out of range.. Check LevelBar.cs line 54");
-                Debug.Log("Choosing first lvl image..");
-                lvlSprite = lvlUIs[0].GetComponent<Image>().sprite;
-                break;
-        }
+        Image img = lvlUIs[lvl].GetComponent<Image>();
+        img.sprite = levelDoneSprite;
+        DisableChild(lvl);
+    }
 
-        lvlSprite = levelDoneSprite;
+    private void DisableChild(int lvl)
+    {
+        Text txt = lvlUIs[lvl].GetComponentInChildren<Text>();
+        txt.enabled = false;
     }
 
     private void HandleUI_Levels(float barValue)
@@ -114,43 +81,50 @@ public class LevelBar : MonoBehaviour
 
         if(barValue > 55.25 && barValue < 56)
         {
-            ReplaceLevelImage(1);
+            ReplaceSprites(0);
         }
         else if(barValue > 111.25 && barValue < 112)
         {
-            ReplaceLevelImage(2);
+            ReplaceSprites(1);
+
         }
         else if (barValue > 167.25 && barValue < 168)
         {
-            ReplaceLevelImage(3);
+            ReplaceSprites(2);
+
         }
         else if (barValue > 223.25 && barValue < 224)
         {
-            ReplaceLevelImage(4);
+            ReplaceSprites(3);
+
         }
         else if (barValue > 279.25 && barValue < 280)
         {
-            ReplaceLevelImage(5);
+            ReplaceSprites(4);
+
         }
         else if (barValue > 335.25 && barValue < 336)
         {
-            ReplaceLevelImage(6);
+            ReplaceSprites(5);
+
         }
         else if (barValue > 391.25 && barValue < 392)
         {
-            ReplaceLevelImage(7);
+            ReplaceSprites(6);
+
         }
         else if (barValue > 443.25 && barValue < 444)
         {
-            ReplaceLevelImage(8);
+            ReplaceSprites(7);
+
         }
         else if (barValue > 499.25 && barValue < 500)
         {
-            ReplaceLevelImage(9);
+            ReplaceSprites(8);
         }
-        else if (barValue > 55.25 && barValue < 556)
+        else if (barValue > 555.25 && barValue < 556)
         {
-            ReplaceLevelImage(10);
+            ReplaceSprites(9);
         }
     }
 
