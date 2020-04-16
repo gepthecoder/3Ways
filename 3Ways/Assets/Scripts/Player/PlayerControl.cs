@@ -86,10 +86,13 @@ public class PlayerControl : MonoBehaviour
         {
             //Debug.Log("<color=green>SPAWNING</color>");
             PLAY_ANIMATION_THINK(true); // TO:DO -> wait animation
+            GameTimer.timeHasStarted = false;
         }
         // RUNNING
         else if(StateMachine.iCurrentState == (int)StateMachine.PlayerStates.RUNNING)
         {
+            GameTimer.timeHasStarted = true;
+
             timer_runAnime += Time.deltaTime;
 
             if (timer_runAnime >= .19f)
