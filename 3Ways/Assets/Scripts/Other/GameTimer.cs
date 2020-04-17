@@ -8,7 +8,7 @@ public class GameTimer : MonoBehaviour
     public static bool timeHasStarted;
 
     private Text gameTimer;
-    private float time;
+    private float t;
     
     void Start()
     {
@@ -19,14 +19,14 @@ public class GameTimer : MonoBehaviour
     {
         if (timeHasStarted)
         {
-            time += Time.deltaTime;
+            t += Time.deltaTime;
 
-            int seconds = (int)time % 60;
-            int minutes = (int)(time / 60) % 60;
+            string minutes = ((int)t / 60).ToString("00");
+            string seconds = (t % 60).ToString("00");
+            string miliseconds = ((int)(t * 100f) % 100).ToString("00");
 
-            string outputText = string.Format("{0:00}:{1:00}", minutes, seconds);
+            gameTimer.text = minutes + ":" + seconds + ":" + miliseconds;
+        }else { return; }
 
-            gameTimer.text = outputText;
-        }
     }
 }

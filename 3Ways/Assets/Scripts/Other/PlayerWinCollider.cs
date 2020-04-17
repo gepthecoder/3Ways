@@ -28,7 +28,13 @@ public class PlayerWinCollider : MonoBehaviour
             Debug.Log("<color=red>PLAYER YOU WON... STOP AND DANCE!</color>");
             //stop the player and celebrate if won.. single player -> won always | multiplayer -> won anime only for winning player
             jump = true;
+            StartCoroutine(waitAndStopTime());
         }
     }
 
+    IEnumerator waitAndStopTime()
+    {
+        yield return new WaitForSeconds(1f);
+        GameTimer.timeHasStarted = false;
+    }
 }
