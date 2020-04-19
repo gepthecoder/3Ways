@@ -41,6 +41,7 @@ TagManager:
   - lookAtTheEnd
   - dancePos
   - levelImg
+  - PauseTimer
   layers:
   - Default
   - TransparentFX
