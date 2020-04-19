@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class GameTimer : MonoBehaviour
 {
     public static bool timeHasStarted;
-
+    
     private Text gameTimer;
-    private float t;
+    private float gT;
+
     
     void Start()
     {
@@ -19,14 +20,26 @@ public class GameTimer : MonoBehaviour
     {
         if (timeHasStarted)
         {
-            t += Time.deltaTime;
+            gT += Time.deltaTime;
 
-            string minutes = ((int)t / 60).ToString("00");
-            string seconds = (t % 60).ToString("00");
-            string miliseconds = ((int)(t * 100f) % 100).ToString("00");
+            string minutes = ((int)gT / 60).ToString("00");
+            string seconds = (gT % 60).ToString("00");
+            string miliseconds = ((int)(gT * 100f) % 100).ToString("00");
 
             gameTimer.text = minutes + ":" + seconds + ":" + miliseconds;
-        }else { return; }
+        }
+        else { return; }
+    }
 
+
+    public float GetCurrentGameTime()
+    {
+        return gT;
+    }
+
+    public void SetCurrentGameTime(float time)
+    {
+        Debug.Log("Game time set to: " + time);
+        gT = time;
     }
 }
