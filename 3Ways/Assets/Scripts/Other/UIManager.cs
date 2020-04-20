@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     private PauseTimer pauseTimer;
 
     public GameObject timeAddition;
+    public GameObject CountDown;
 
     void Start()
     {
@@ -20,6 +21,16 @@ public class UIManager : MonoBehaviour
         settingsUIanime = settingsUI.GetComponent<Animator>();
         gameTimer = GetComponentInChildren<GameTimer>();
         pauseTimer = GetComponentInChildren<PauseTimer>();
+    }
+
+    void Update()
+    {
+        if (PlayerControl.bStartCountDown)
+        {
+            Animator anime = CountDown.GetComponent<Animator>();
+            anime.SetTrigger("321go");
+            PlayerControl.bStartCountDown = false;
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////

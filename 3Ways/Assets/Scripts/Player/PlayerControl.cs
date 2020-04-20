@@ -11,6 +11,7 @@ public class PlayerControl : MonoBehaviour
     public static bool transition;
     public static bool changeData;
     public static bool isWinningSection;
+    public static bool bStartCountDown;
 
     protected bool endOfGame = false;
 
@@ -257,7 +258,8 @@ public class PlayerControl : MonoBehaviour
 
     private IEnumerator WAIT_ROOM()
     {
-        yield return new WaitForSeconds(3f);
+        bStartCountDown = true;
+        yield return new WaitForSeconds(5f);
         // start running after player 2 connects -> TODO
         StateMachine.bIsWaiting = false;
 
