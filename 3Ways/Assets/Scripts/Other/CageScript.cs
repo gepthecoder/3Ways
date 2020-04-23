@@ -11,6 +11,7 @@ public class CageScript : MonoBehaviour
     private Transform cage2pos;
 
     public GameObject enemy;
+    public GameObject reward;
 
     private CalculationManager calculations;
 
@@ -36,7 +37,7 @@ public class CageScript : MonoBehaviour
 
             if (calculations.currentCorrectDoor == (int)ChooseDoor.Doors.DOOR0)
             {
-                Debug.Log("spawn enemies -> CAAGE");
+                Instantiate(reward, cage0pos);
                 Instantiate(enemy, cage1pos);
                 Instantiate(enemy, cage2pos);
                 enemiesSpawned = true;
@@ -44,8 +45,7 @@ public class CageScript : MonoBehaviour
             }
             else if (calculations.currentCorrectDoor == (int)ChooseDoor.Doors.DOOR1)
             {
-                Debug.Log("spawn enemies -> CAAGE");
-
+                Instantiate(reward, cage1pos);
                 Instantiate(enemy, cage0pos);
                 Instantiate(enemy, cage2pos);
                 enemiesSpawned = true;
@@ -53,8 +53,7 @@ public class CageScript : MonoBehaviour
             }
             else if (calculations.currentCorrectDoor == (int)ChooseDoor.Doors.DOOR2)
             {
-                Debug.Log("spawn enemies -> CAAGE");
-
+                Instantiate(reward, cage2pos);
                 Instantiate(enemy, cage0pos);
                 Instantiate(enemy, cage1pos);
                 enemiesSpawned = true;

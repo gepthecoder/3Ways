@@ -42,6 +42,13 @@ TagManager:
   - dancePos
   - levelImg
   - PauseTimer
+  - 0frame
+  - 1frame
+  - 2frame
+  - 0frame1
+  - 1frame1
+  - 2frame1
+  - reward
   layers:
   - Default
   - TransparentFX

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChooseDoor : MonoBehaviour
 {
+    public static int nTry = 0;
     public static int selectedDoor;
     public static bool doorPressed;
     public static bool doorChoosen;
@@ -35,6 +36,15 @@ public class ChooseDoor : MonoBehaviour
 
                         doorChoosen = true;
                         doorPressed = true;
+                        nTry++;
+
+                        if(nTry > 1)
+                        {
+                            //Destroy reward -> REWARD ONLY SHOWN IF PLAYER SELECTED CORRECT DOOR IN FIRST TRY
+                            GameObject reward = GameObject.FindGameObjectWithTag("reward");
+                            if(reward != null)
+                                Destroy(reward);
+                        }
 
                         if (hit.transform.name == "Door0")
                         {

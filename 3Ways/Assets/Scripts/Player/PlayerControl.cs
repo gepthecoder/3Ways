@@ -59,7 +59,14 @@ public class PlayerControl : MonoBehaviour
     private CageScript cage;
 
     public int slideOnce = 0;
-    
+
+    private MeshRenderer door0_frame;
+    private MeshRenderer door1_frame;
+    private MeshRenderer door2_frame;
+
+    public Material redFrameMat;
+    public Material greenFrameMat;
+
     void Awake()
     {
         GetValues(1);
@@ -334,6 +341,37 @@ public class PlayerControl : MonoBehaviour
 
         doorAnimeOpened = true;
         PLAY_ANIMATION_THINK(false);
+
+        //color door frame
+        MeshRenderer DOOR_FRAME = doorToColor(ChooseDoor.selectedDoor);
+        Material redOrGreen = (ChooseDoor.selectedDoor == calcucaltions.currentCorrectDoor) ? greenFrameMat : redFrameMat;
+        DOOR_FRAME.material = redOrGreen;
+    }
+
+    private MeshRenderer doorToColor(int selectedDoor)
+    {
+        MeshRenderer frame = null;
+
+        switch (selectedDoor)
+        {
+            case 0:
+                frame = door0_frame;
+                break;
+
+            case 1:
+                frame = door1_frame;
+                break;
+
+            case 2:
+                frame = door2_frame;
+                break;
+
+            default:
+                break;
+        }
+
+
+        return frame;
     }
 
     IEnumerator CloseDoor()
@@ -504,6 +542,7 @@ public class PlayerControl : MonoBehaviour
         GetDoorPositions1();
         GetCageDoorPositions1();
         GetOtherPositions1();
+        GetDoorFramesMesh1();
     }
 
     private void GetValuesSection2()
@@ -511,6 +550,7 @@ public class PlayerControl : MonoBehaviour
         GetDoorPositions2();
         GetCageDoorPositions2();
         GetOtherPositions2();
+        GetDoorFramesMesh2();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -551,6 +591,14 @@ public class PlayerControl : MonoBehaviour
         centerPlayerPos = GameObject.FindGameObjectWithTag("playerThinkPos").GetComponent<Transform>();
         centerDoorLookPos = GameObject.FindGameObjectWithTag("thinkPosLooking").GetComponent<Transform>();
     }
+
+    private void GetDoorFramesMesh1()
+    {
+        door0_frame = GameObject.FindGameObjectWithTag("0frame").GetComponent<MeshRenderer>();
+        door1_frame = GameObject.FindGameObjectWithTag("1frame").GetComponent<MeshRenderer>();
+        door2_frame = GameObject.FindGameObjectWithTag("2frame").GetComponent<MeshRenderer>();
+
+    }
     ///////////////////////////////////////////////////////////////////////////////////////
     // SECTION 2
     private void GetDoorPositions2()
@@ -572,6 +620,14 @@ public class PlayerControl : MonoBehaviour
         Debug.Log("other2");
         centerPlayerPos = GameObject.FindGameObjectWithTag("playerThinkPos1").GetComponent<Transform>();
         centerDoorLookPos = GameObject.FindGameObjectWithTag("thinkPosLooking1").GetComponent<Transform>();
+    }
+
+    private void GetDoorFramesMesh2()
+    {
+        door0_frame = GameObject.FindGameObjectWithTag("0frame1").GetComponent<MeshRenderer>();
+        door1_frame = GameObject.FindGameObjectWithTag("1frame1").GetComponent<MeshRenderer>();
+        door2_frame = GameObject.FindGameObjectWithTag("2frame1").GetComponent<MeshRenderer>();
+
     }
     ///////////////////////////////////////////////////////////////////////////////////////
 

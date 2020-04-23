@@ -98,6 +98,7 @@ public class StateMachine : MonoBehaviour
                 Debug.Log("<color=blue>CURRENT SECTION = </color>" + LevelManager.currentSectionCount);
                 LevelManager.currentLevel++;
 
+                ChooseDoor.nTry = 0;
                 //PlayerControl.changeData = true;
                 if (LevelManager.currentSectionCount == levelManager.GetNumberOfSections((int)CalculationManager.DIFFICULTIES.EASY))
                 {
