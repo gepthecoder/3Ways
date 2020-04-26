@@ -467,7 +467,7 @@ public class CalculationManager : MonoBehaviour
         if(A == 0 || B == 0)
         {
             Debug.Log("Exception found.. try again (:");
-            SET_AND_CALCULATE(aMin, aMax, operation);
+            SET_AND_CALCULATE(aMin + 1, aMax + 1, operation);
         }
 
         if (operation == DIVISION)

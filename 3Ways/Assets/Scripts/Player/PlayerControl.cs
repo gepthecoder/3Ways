@@ -248,6 +248,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (ChooseDoor.selectedDoor == (int)ChooseDoor.Doors.DOOR0 && ChooseDoor.doorChoosen)
         {
+
             anime.SetTrigger("unlockingL");
             ChooseDoor.doorChoosen = false;
         }

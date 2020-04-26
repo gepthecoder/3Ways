@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static bool GET_STAR;
+
     private Animator CanvasAnimator;
     private Animator settingsUIanime;
 
@@ -15,12 +17,16 @@ public class UIManager : MonoBehaviour
     public GameObject timeAddition;
     public GameObject CountDown;
 
+    public Animator getStar;
+
     void Start()
     {
         CanvasAnimator = GetComponent<Animator>();
         settingsUIanime = settingsUI.GetComponent<Animator>();
         gameTimer = GetComponentInChildren<GameTimer>();
         pauseTimer = GetComponentInChildren<PauseTimer>();
+
+        GET_STAR = false;
     }
 
     void Update()
@@ -30,6 +36,12 @@ public class UIManager : MonoBehaviour
             Animator anime = CountDown.GetComponent<Animator>();
             anime.SetTrigger("321go");
             PlayerControl.bStartCountDown = false;
+        }
+
+        if (GET_STAR)
+        {
+            getStar.SetTrigger("getStar");
+            GET_STAR = false;
         }
     }
 
