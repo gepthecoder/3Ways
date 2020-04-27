@@ -33,20 +33,20 @@ public class CalculationManager : MonoBehaviour
     }
     void Start()
     {
-        SET_DIFFICULTY((int)DIFFICULTIES.MEDIUM);
+        SET_DIFFICULTY((int)DIFFICULTIES.EASY);
         CreateEquation(currentDifficulty, LevelManager.currentLevel);
     }
 
-    void Update()
-    {
-        if (LevelManager.addNewSection)
-        {
-            Debug.Log("add new section-> lvl manager");
-            CreateEquation((int)DIFFICULTIES.EASY, LevelManager.currentLevel);
-            CageScript.enemiesSpawned = false;
-            LevelManager.addNewSection = false;
-        }
-    }
+    //void Update()
+    //{
+    //    if (LevelManager.addNewSection)
+    //    {
+    //        Debug.Log("add new section-> lvl manager");
+    //        CreateEquation((int)DIFFICULTIES.EASY, LevelManager.currentLevel);
+    //        CageScript.enemiesSpawned = false;
+    //        LevelManager.addNewSection = false;
+    //    }
+    //}
 
     public void GetValues(int section)
     {
@@ -463,11 +463,12 @@ public class CalculationManager : MonoBehaviour
 
         int A = Random.Range(aMin, aMax);
         int B = Random.Range(bMin, bMax);
+        Debug.Log("A: " + A + " B: " + B);
 
-        if(A == 0 || B == 0)
+        if (A == 0 || B == 0)
         {
             Debug.Log("Exception found.. try again (:");
-            SET_AND_CALCULATE(aMin + 1, aMax + 1, operation);
+            SET_AND_CALCULATE(aMin, aMax, operation);
         }
 
         if (operation == DIVISION)

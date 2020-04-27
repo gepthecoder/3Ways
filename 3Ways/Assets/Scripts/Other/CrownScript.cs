@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CrownScript : MonoBehaviour
 {
-    private int numberOfTries;
+    public int numberOfTries;
     public float timeThinking;
 
     private int totalReward;
@@ -19,6 +19,8 @@ public class CrownScript : MonoBehaviour
 
     private int displayOnce;
 
+    public Animator uiCrownCoinAnime;
+
     void Start()
     {
         totalReward = maxReward;
@@ -28,7 +30,6 @@ public class CrownScript : MonoBehaviour
     
     void Update()
     {
-        SetNumberOfTries(ChooseDoor.nTry);
         HandleTimeEffect();
     }
 
@@ -77,20 +78,25 @@ public class CrownScript : MonoBehaviour
 
     private void ResetThinkingTime()
     {
+        if(ChooseDoor.nTry == 0) { Debug.Log("Hey DUDE number of tries is zero WTF"); return; }
+        SetNumberOfTries(ChooseDoor.nTry);
         SET_REWARD(numberOfTries, timeThinking);
         anime.SetBool("makeitrain", true);
         timeThinking = 0;
     }
 
-    private void SET_REWARD(int nTries, float timeElapsed)
+    public void SET_REWARD(int nTries, float timeElapsed)
     {
         if(displayOnce == 0)
         {
             int reward = (int)(totalReward / nTries) - ((int)timeElapsed) * nTries;
-            Debug.Log("<color=yellow>REWARD: </color>" + reward);
-            rewardAmount_txt.text = reward.ToString();
+            if(reward < 0) { reward = 0; }
+            Debug.Log("<color=yellow>REWARD: </color>" + reward + "<color=yellow> nTry: </color>" + nTries);
+            
             CoinManager.CROWNS += reward;
             CoinManager.Save();
+
+            rewardAmount_txt.text = reward.ToString();
 
             displayOnce = 1;
         }

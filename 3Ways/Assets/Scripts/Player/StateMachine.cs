@@ -100,22 +100,28 @@ public class StateMachine : MonoBehaviour
 
                 ChooseDoor.nTry = 0;
                 //PlayerControl.changeData = true;
+
                 if (LevelManager.currentSectionCount == levelManager.GetNumberOfSections((int)CalculationManager.DIFFICULTIES.EASY))
                 {
+                    Debug.LogWarning("Next section is win room!");
                     iTempState = (int)TempState.NEXT_STOP_WIN_ROOM;
                     LevelManager.spawnWinSection = true;
                     return true;
                 }
                 else if (LevelManager.currentSectionCount >= 2)
                 {
-                    Debug.Log("Spawn!");
+                    Debug.LogWarning("Spawn!");
                     LevelManager.spawnNewSection = true;
                     StartCoroutine(TransitionToNextLevel());
-                }else if(LevelManager.currentSectionCount == 1)
+                }
+                else if (LevelManager.currentSectionCount == 1)
                 {
                     //just values no new section
+                    Debug.Log("<color=red>current section is 1</color>");
+
                     StartCoroutine(TransitionToNextLevel());
                 }
+                Debug.Log("<color=red>iTempState Other</color>");
 
                 iTempState = (int)TempState.OTHER;
                 PlayerControl.doorAnimeOpened = false;
@@ -149,9 +155,11 @@ public class StateMachine : MonoBehaviour
 
     IEnumerator TransitionToNextLevel()
     {
+        Debug.Log("<color=red>Waiiiitiiiing to transition</color>");
         yield return new WaitForSeconds(2f);
+        Debug.Log("<color=red>Call create equation</color>");
         playerControl.HandleValues();
-        calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.MEDIUM, LevelManager.currentLevel);
+        calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);
         CageScript.enemiesSpawned = false;
 
     }

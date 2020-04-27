@@ -4881,6 +4881,7 @@ MonoBehaviour:
   slideOnce: 0
   redFrameMat: {fileID: 2100000, guid: d83c53277de967e49b88cde3cbe2b2ca, type: 2}
   greenFrameMat: {fileID: 2100006, guid: 36931c627b1b8a846ab386fb8f0f7937, type: 3}
+  defaultMat: {fileID: 2100000, guid: 7474aa6baee1fc84ea7882a1a652b09c, type: 2}
 --- !u!136 &1312999997
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5009,9 +5010,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ba92beb9d0a6f4ca1d96d499a693e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfTries: 0
   timeThinking: 0
   rewardAmount_txt: {fileID: 953900648}
   anime: {fileID: 1257459035208725962}
+  uiCrownCoinAnime: {fileID: 687559622}
 --- !u!1 &1334631748
 GameObject:
   m_ObjectHideFlags: 0
@@ -9340,6 +9343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3faca8836e9525a41b55c9e0d906ce0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  star_anime: {fileID: 1894690527}
+  coinManager: {fileID: 1313000004}
 --- !u!224 &154097257587201120
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9407,6 +9412,7 @@ GameObject:
   - component: {fileID: 1360376930338913312}
   - component: {fileID: 1360979369931681884}
   - component: {fileID: 1257459035208725962}
+  - component: {fileID: 1163689047044896215}
   m_Layer: 5
   m_Name: Coin_Target_Fly
   m_TagString: Untagged
@@ -9414,6 +9420,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1163689047044896215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163689047044896214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 756d94f8a79a5774e93ef7ab5ef07b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiCrownAnime: {fileID: 687559622}
 --- !u!4 &1166460717135640382
 Transform:
   m_ObjectHideFlags: 0
@@ -23648,6 +23667,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014413841658512555, guid: 2e4f806579076374ea3014cf2031dd57,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e4f806579076374ea3014cf2031dd57, type: 3}

@@ -30,7 +30,9 @@ public class ChooseDoor : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    if(hit.transform.tag == "SF_Door")
+                    Debug.Log("Shooooooot <color=red>raycast</color>");
+
+                    if (hit.transform.tag == "SF_Door")
                     {
                         Debug.Log("touched gameobject name: " + hit.transform.name);
 
@@ -78,34 +80,31 @@ public class ChooseDoor : MonoBehaviour
                             if (hit.transform.parent.transform.name.Contains("0"))
                             {
                                 //door 0
-                                Debug.Log("door 0 choosen!");
+                                Debug.Log("door 0 choosen! - door");
                                 selectedDoor = (int)Doors.DOOR0;
                                 PlayerControl.canChooseDoor = false;
                                 chooseDoorTimer = 0;
                             }
-                            else if (hit.transform.parent.transform.name.Contains("0"))
+                            else if (hit.transform.parent.transform.name.Contains("1"))
                             {
                                 //door 1
                                 // player chose DOOR 1
-                                Debug.Log("door 1 choosen!");
+                                Debug.Log("door 1 choosen! - door");
                                 selectedDoor = (int)Doors.DOOR1;
                                 PlayerControl.canChooseDoor = false;
                                 chooseDoorTimer = 0;
                             }
-                            else if (hit.transform.parent.transform.name.Contains("0"))
+                            else if (hit.transform.parent.transform.name.Contains("2"))
                             {
                                 //door 2
                                 // player chose DOOR 2
-                                Debug.Log("door 2 choosen!");
+                                Debug.Log("door 2 choosen! - door");
                                 selectedDoor = (int)Doors.DOOR2;
                                 PlayerControl.canChooseDoor = false;
                                 chooseDoorTimer = 0;
                             }
                         }
-               
-
                     }
-
                 }
             }
         }

@@ -66,6 +66,7 @@ public class PlayerControl : MonoBehaviour
 
     public Material redFrameMat;
     public Material greenFrameMat;
+    public Material defaultMat;
 
     void Awake()
     {
@@ -384,6 +385,10 @@ public class PlayerControl : MonoBehaviour
             doorAnime.SetBool("openDoor0" + ChooseDoor.selectedDoor, false);
             doorAnime.SetBool("closeDoor0" + ChooseDoor.selectedDoor, true);
         }
+
+        MeshRenderer DOOR_FRAME = doorToColor(ChooseDoor.selectedDoor);
+        DOOR_FRAME.material = defaultMat;
+        
         yield return new WaitForSeconds(2.5f);
         canChooseDoor = true;
     }

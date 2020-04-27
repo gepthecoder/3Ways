@@ -29,15 +29,17 @@ public class CoinManager : MonoBehaviour
         SetTextElements(XP, CROWNS);
     }
 
-    private void Update()
-    {
-        SetTextElements(XP, CROWNS);
-    }
+ 
 
     private void SetTextElements(int xP, int croWns)
     {
         XP_AMOUNT_TXT.text = xP.ToString();
         CROWNS_AMOUNT_TXT.text = croWns.ToString();
+    }
+
+    public void DisplayTextElement(int xP)
+    {
+        XP_AMOUNT_TXT.text = xP.ToString();
     }
 
     public static void Save()

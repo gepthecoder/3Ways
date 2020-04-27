@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour
     public static bool addNewSection;
     private int iSectionToAdd;
    
-    private int iEASY_SECTIONS = 3;
+    private int iEASY_SECTIONS = 10;
     private int iMEDIUM_SECTIONS = 8;
     private int iHARD_SECTIONS = 10;
     private int iGENIOUS_SECTIONS = 15;
@@ -66,22 +66,21 @@ public class LevelManager : MonoBehaviour
         if (spawnNewSection)
         {
             bool bIs2ndSection = (currentSectionCount % 2 == 0);
-            bool bCanCreate = currentSectionCount >= 2;
-
-            if (bCanCreate)
+            Debug.Log("create new section..");
+            if (bIs2ndSection)
             {
-                Debug.Log("create new section..");
-                if (bIs2ndSection)
-                {
-                    StartCoroutine(DestroyFirstSection());
-                    StartCoroutine(CreateNewSection(true));
+                Debug.Log("<color=cyan>IS 2ND SECTION AHAA AHAA</color>");
 
-                }
-                else
-                {
-                    StartCoroutine(DestroySecondSection());
-                    StartCoroutine(CreateNewSection(false));
-                }
+                StartCoroutine(DestroyFirstSection());
+                StartCoroutine(CreateNewSection(true));
+
+            }
+            else
+            {
+                Debug.Log("<color=yellow>IS 1ST SECTION AHAA AHAA</color>");
+
+                StartCoroutine(DestroySecondSection());
+                StartCoroutine(CreateNewSection(false));
             }
 
             spawnNewSection = false;
@@ -153,6 +152,8 @@ public class LevelManager : MonoBehaviour
     IEnumerator DestroyFirstSection()
     {
         GameObject firstSection = GameObject.FindGameObjectWithTag("SectionP1");
+        if(firstSection == null) { Debug.LogWarning("FirstSection doesnt exist!");
+            yield break; }
         Destroy(firstSection);
         Debug.Log("FirstSectionDestroyed");
         yield return new WaitForSeconds(1.5f);
@@ -161,6 +162,11 @@ public class LevelManager : MonoBehaviour
     IEnumerator DestroySecondSection()
     {
         GameObject secondSection = GameObject.FindGameObjectWithTag("Section1P1");
+        if (secondSection == null)
+        {
+            Debug.LogWarning("SecondSection doesnt exist!");
+            yield break;
+        }
         Destroy(secondSection);
         Debug.Log("SecondSectionDestroyed");
         yield return new WaitForSeconds(1.5f);
