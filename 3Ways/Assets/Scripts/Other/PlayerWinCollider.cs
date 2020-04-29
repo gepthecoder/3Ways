@@ -43,6 +43,8 @@ public class PlayerWinCollider : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         GameTimer.timeHasStarted = false;
+        yield return new WaitForSeconds(1f);
+        CameraFollow.Win = true;
     }
 
     private void SpawnFireWorks()
