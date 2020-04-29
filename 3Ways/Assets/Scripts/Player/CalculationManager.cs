@@ -227,7 +227,7 @@ public class CalculationManager : MonoBehaviour
             //////////////////////////////////////////MULTIPLICATION////////////////////////////////////
             case 6:
                 // A * B = C
-                SET_AND_CALCULATE(0, 5, MULTIPLICATION, 0, 5, 1, 2);
+                SET_AND_CALCULATE(1, 7, MULTIPLICATION, 1, 7, 1, 2);
                 break;
             case 7:
                 // A * B = C
@@ -244,7 +244,7 @@ public class CalculationManager : MonoBehaviour
             case 9:
                 // A / B = C
                 // MATH->EASY->LEVEL9 [0,10]
-                SET_AND_CALCULATE(0, 10, DIVISION, 0, 10, 1, 2);
+                SET_AND_CALCULATE(1, 16, DIVISION, 1, 10, 1, 2);
                 break;
             //////////////////////////////////////////MULTIPLICATION\DIVISION////////////////////////////////////
             case 10:

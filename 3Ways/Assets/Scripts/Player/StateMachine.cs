@@ -103,7 +103,7 @@ public class StateMachine : MonoBehaviour
 
                 if (LevelManager.currentSectionCount == levelManager.GetNumberOfSections((int)CalculationManager.DIFFICULTIES.EASY))
                 {
-                    Debug.LogWarning("Next section is win room!");
+                    Debug.Log("Next section is win room!");
                     iTempState = (int)TempState.NEXT_STOP_WIN_ROOM;
                     LevelManager.spawnWinSection = true;
                     return true;
@@ -112,7 +112,11 @@ public class StateMachine : MonoBehaviour
                 {
                     Debug.LogWarning("Spawn!");
                     LevelManager.spawnNewSection = true;
-                    StartCoroutine(TransitionToNextLevel());
+                    //StartCoroutine(TransitionToNextLevel());
+                    Debug.Log("<color=red>iTempState Other</color>");
+
+                    iTempState = (int)TempState.OTHER;
+                    PlayerControl.doorAnimeOpened = false;
                 }
                 else if (LevelManager.currentSectionCount == 1)
                 {
@@ -120,11 +124,12 @@ public class StateMachine : MonoBehaviour
                     Debug.Log("<color=red>current section is 1</color>");
 
                     StartCoroutine(TransitionToNextLevel());
-                }
-                Debug.Log("<color=red>iTempState Other</color>");
+                    Debug.Log("<color=red>iTempState Other</color>");
 
-                iTempState = (int)TempState.OTHER;
-                PlayerControl.doorAnimeOpened = false;
+                    iTempState = (int)TempState.OTHER;
+                    PlayerControl.doorAnimeOpened = false;
+                }
+               
             }
             else if (calcucaltions.currentCorrectDoor != ChooseDoor.selectedDoor && iCurrentState == (int)PlayerStates.ENTERING && PlayerControl.doorAnimeOpened)
             {
@@ -156,7 +161,7 @@ public class StateMachine : MonoBehaviour
     IEnumerator TransitionToNextLevel()
     {
         Debug.Log("<color=red>Waiiiitiiiing to transition</color>");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         Debug.Log("<color=red>Call create equation</color>");
         playerControl.HandleValues();
         calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);

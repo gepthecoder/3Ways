@@ -150,7 +150,7 @@ public class PlayerControl : MonoBehaviour
         // PASS LEVEL
         else if(StateMachine.iCurrentState == (int)StateMachine.PlayerStates.PASS)
         {
-            //Debug.Log("<color=blue>PASS</color>");
+            Debug.Log("<color=blue>PASS</color>");
             StartCoroutine(Continue());
         }
         // REPEAT
@@ -397,15 +397,19 @@ public class PlayerControl : MonoBehaviour
     {
         PLAY_ANIMATION_THINK(false);
         PLAY_ANIMATION_PASS(true);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1.5f);
+        Debug.Log("<color=brown>Pass Cage Pos</color>");
+
         passCagePos = GetSelectedCageDoorTransform(ChooseDoor.selectedDoor);
         transform.LookAt(passCagePos);
-        yield return new WaitForSeconds(1.5f);
+        Debug.Log("<color=brown>LOOK ATT</color>");
         PLAY_ANIMATION_PASS(false);
-        yield return new WaitForSeconds(.45f);
+
+        yield return new WaitForSeconds(.5f);
         //MoveOn();
         canChooseDoor = true;
         transition = true;
+        Debug.Log("<color=brown>Transitioooon</color>");
     }
 
     private void MoveOn()
@@ -658,6 +662,7 @@ public class PlayerControl : MonoBehaviour
                 Debug.LogError("Failed to request door.. door 0 choosen");
                 break;
         }
+        Debug.Log(cageDoorPos.name + " GET SELECTED TRANSFORM");
         return cageDoorPos;
     }
 

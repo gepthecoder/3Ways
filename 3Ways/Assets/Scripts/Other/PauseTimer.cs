@@ -7,6 +7,8 @@ public class PauseTimer : MonoBehaviour
 
     private Text pauseTimer;
     private float pT;
+
+    public bool bForce;
     
     void Start()
     {
@@ -17,6 +19,7 @@ public class PauseTimer : MonoBehaviour
     {
         if (pauseMenuOpened)
         {
+            bForce = true;
             pT += Time.unscaledDeltaTime;
 
             string minutes = ((int)pT / 60).ToString("00");
@@ -26,9 +29,14 @@ public class PauseTimer : MonoBehaviour
             pauseTimer.text = minutes + ":" + seconds + ":" + miliseconds;
         }
         else {
-            Debug.Log("Pause timer to zero!");
-            ForceSetCurrentTime(0);
-            return; }
+            if (bForce)
+            {
+                Debug.Log("Pause timer to zero!");
+                ForceSetCurrentTime(0);
+                bForce = false;
+                return;
+            }
+          }
         
     }
 

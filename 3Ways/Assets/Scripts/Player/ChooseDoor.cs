@@ -35,12 +35,9 @@ public class ChooseDoor : MonoBehaviour
                     if (hit.transform.tag == "SF_Door")
                     {
                         Debug.Log("touched gameobject name: " + hit.transform.name);
-
-                        doorChoosen = true;
-                        doorPressed = true;
                         nTry++;
 
-                        if(nTry > 1)
+                        if (nTry > 1)
                         {
                             //Destroy reward -> REWARD ONLY SHOWN IF PLAYER SELECTED CORRECT DOOR IN FIRST TRY
                             GameObject reward = GameObject.FindGameObjectWithTag("reward");
@@ -54,6 +51,9 @@ public class ChooseDoor : MonoBehaviour
                             Debug.Log("door 0 choosen!");
                             selectedDoor = (int)Doors.DOOR0;
                             PlayerControl.canChooseDoor = false;
+
+                            doorChoosen = true;
+                            doorPressed = true;
                             chooseDoorTimer = 0;
                         }
                         else if (hit.transform.name == "Door1")
@@ -62,6 +62,9 @@ public class ChooseDoor : MonoBehaviour
                             Debug.Log("door 1 choosen!");
                             selectedDoor = (int)Doors.DOOR1;
                             PlayerControl.canChooseDoor = false;
+
+                            doorChoosen = true;
+                            doorPressed = true;
                             chooseDoorTimer = 0;
                         }
                         else if (hit.transform.name == "Door2")
@@ -70,6 +73,9 @@ public class ChooseDoor : MonoBehaviour
                             Debug.Log("door 2 choosen!");
                             selectedDoor = (int)Doors.DOOR2;
                             PlayerControl.canChooseDoor = false;
+
+                            doorChoosen = true;
+                            doorPressed = true;
                             chooseDoorTimer = 0;
                         }
                         else if(hit.transform.name == "door")
@@ -83,6 +89,9 @@ public class ChooseDoor : MonoBehaviour
                                 Debug.Log("door 0 choosen! - door");
                                 selectedDoor = (int)Doors.DOOR0;
                                 PlayerControl.canChooseDoor = false;
+
+                                doorChoosen = true;
+                                doorPressed = true;
                                 chooseDoorTimer = 0;
                             }
                             else if (hit.transform.parent.transform.name.Contains("1"))
@@ -92,6 +101,9 @@ public class ChooseDoor : MonoBehaviour
                                 Debug.Log("door 1 choosen! - door");
                                 selectedDoor = (int)Doors.DOOR1;
                                 PlayerControl.canChooseDoor = false;
+
+                                doorChoosen = true;
+                                doorPressed = true;
                                 chooseDoorTimer = 0;
                             }
                             else if (hit.transform.parent.transform.name.Contains("2"))
@@ -101,6 +113,9 @@ public class ChooseDoor : MonoBehaviour
                                 Debug.Log("door 2 choosen! - door");
                                 selectedDoor = (int)Doors.DOOR2;
                                 PlayerControl.canChooseDoor = false;
+
+                                doorChoosen = true;
+                                doorPressed = true;
                                 chooseDoorTimer = 0;
                             }
                         }

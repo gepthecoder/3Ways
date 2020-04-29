@@ -70,21 +70,35 @@ public class LevelManager : MonoBehaviour
             if (bIs2ndSection)
             {
                 Debug.Log("<color=cyan>IS 2ND SECTION AHAA AHAA</color>");
-
+                StartCoroutine(TransitionToNextLevel());
                 StartCoroutine(DestroyFirstSection());
                 StartCoroutine(CreateNewSection(true));
+
 
             }
             else
             {
                 Debug.Log("<color=yellow>IS 1ST SECTION AHAA AHAA</color>");
+                StartCoroutine(TransitionToNextLevel());
 
                 StartCoroutine(DestroySecondSection());
                 StartCoroutine(CreateNewSection(false));
+
             }
 
             spawnNewSection = false;
         }
+    }
+
+    IEnumerator TransitionToNextLevel()
+    {
+        Debug.Log("<color=red>Waiiiitiiiing to transition</color>");
+        yield return new WaitForSeconds(2f);
+        Debug.Log("<color=red>Call create equation</color>");
+        playerControler.HandleValues();
+        calculations.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);
+        CageScript.enemiesSpawned = false;
+
     }
     // returns total number of sections for each difficulty
     public int GetNumberOfSections(int difficulty)
