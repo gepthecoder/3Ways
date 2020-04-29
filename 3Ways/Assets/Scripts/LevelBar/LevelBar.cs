@@ -51,11 +51,22 @@ public class LevelBar : MonoBehaviour
         HandleUI_Levels(sLevelBar.value);
     }
 
-    private void ReplaceSprites(int lvl)
+    private IEnumerator ReplaceSprites(int lvl)
     {
+        playAnime(lvl);
+        yield return new WaitForSeconds(.5f);
         Image img = lvlUIs[lvl].GetComponent<Image>();
         img.sprite = levelDoneSprite;
-        DisableChild(lvl);
+        if(lvl != 10)
+        {
+            DisableChild(lvl);
+        }
+    }
+
+    private void playAnime(int lvl)
+    {
+        Animator anime = lvlUIs[lvl].GetComponent<Animator>();
+        anime.SetTrigger("checkpoint");
     }
 
     private void DisableChild(int lvl)
@@ -81,50 +92,43 @@ public class LevelBar : MonoBehaviour
 
         if(barValue > 55.25 && barValue < 56)
         {
-            ReplaceSprites(0);
+            StartCoroutine(ReplaceSprites(0));
         }
         else if(barValue > 111.25 && barValue < 112)
         {
-            ReplaceSprites(1);
-
+            StartCoroutine(ReplaceSprites(1));
         }
         else if (barValue > 167.25 && barValue < 168)
         {
-            ReplaceSprites(2);
-
+            StartCoroutine(ReplaceSprites(2));
         }
         else if (barValue > 223.25 && barValue < 224)
         {
-            ReplaceSprites(3);
-
+            StartCoroutine(ReplaceSprites(3));
         }
         else if (barValue > 279.25 && barValue < 280)
         {
-            ReplaceSprites(4);
-
+            StartCoroutine(ReplaceSprites(4));
         }
         else if (barValue > 335.25 && barValue < 336)
         {
-            ReplaceSprites(5);
-
+            StartCoroutine(ReplaceSprites(5));
         }
         else if (barValue > 391.25 && barValue < 392)
         {
-            ReplaceSprites(6);
-
+            StartCoroutine(ReplaceSprites(6));
         }
         else if (barValue > 443.25 && barValue < 444)
         {
-            ReplaceSprites(7);
-
+            StartCoroutine(ReplaceSprites(7));
         }
         else if (barValue > 499.25 && barValue < 500)
         {
-            ReplaceSprites(8);
+            StartCoroutine(ReplaceSprites(8));
         }
         else if (barValue > 555.25 && barValue < 556)
         {
-            ReplaceSprites(9);
+            StartCoroutine(ReplaceSprites(9));
         }
     }
 
