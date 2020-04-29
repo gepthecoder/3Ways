@@ -762,6 +762,7 @@ GameObject:
   - component: {fileID: 127406367}
   - component: {fileID: 127406369}
   - component: {fileID: 127406368}
+  - component: {fileID: 127406370}
   m_Layer: 5
   m_Name: CheckPointLvl4
   m_TagString: levelImg
@@ -825,6 +826,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127406366}
   m_CullTransparentMesh: 0
+--- !u!95 &127406370
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127406366}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9af517fb22d890c49bbe1d4a0d3fa85c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &163335787
 GameObject:
   m_ObjectHideFlags: 0
@@ -2549,6 +2569,7 @@ GameObject:
   - component: {fileID: 600306071}
   - component: {fileID: 600306073}
   - component: {fileID: 600306072}
+  - component: {fileID: 600306074}
   m_Layer: 5
   m_Name: CheckPointLvl9
   m_TagString: levelImg
@@ -2612,6 +2633,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600306070}
   m_CullTransparentMesh: 0
+--- !u!95 &600306074
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600306070}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9af517fb22d890c49bbe1d4a0d3fa85c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &605925463
 GameObject:
   m_ObjectHideFlags: 0
@@ -3404,13 +3444,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1718138, g: 0.29058507, b: 0.3679245, a: 1}
+  m_Color: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a74dacc9bfcf47749a8630eac3456429, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 2c5290d979ff26b4e9e62794bad730ab, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4220,6 +4260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuOpened: 0
+  bForce: 0
 --- !u!1 &1077170484
 GameObject:
   m_ObjectHideFlags: 0
@@ -4710,8 +4751,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291147795}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: 0, y: 0, z: 394}
+  m_LocalScale: {x: 18.77, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 1537185947}
   m_RootOrder: 0
@@ -5212,6 +5253,7 @@ GameObject:
   - component: {fileID: 1351030120}
   - component: {fileID: 1351030122}
   - component: {fileID: 1351030121}
+  - component: {fileID: 1351030123}
   m_Layer: 5
   m_Name: CheckPointLvl6
   m_TagString: levelImg
@@ -5275,6 +5317,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351030119}
   m_CullTransparentMesh: 0
+--- !u!95 &1351030123
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351030119}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9af517fb22d890c49bbe1d4a0d3fa85c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1374384673
 GameObject:
   m_ObjectHideFlags: 0
@@ -5359,6 +5420,7 @@ GameObject:
   - component: {fileID: 1411671883}
   - component: {fileID: 1411671885}
   - component: {fileID: 1411671884}
+  - component: {fileID: 1411671886}
   m_Layer: 5
   m_Name: CheckPointLvl3
   m_TagString: levelImg
@@ -5422,6 +5484,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411671882}
   m_CullTransparentMesh: 0
+--- !u!95 &1411671886
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411671882}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9af517fb22d890c49bbe1d4a0d3fa85c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1455311037
 GameObject:
   m_ObjectHideFlags: 0
@@ -6533,6 +6614,7 @@ GameObject:
   - component: {fileID: 1632832564}
   - component: {fileID: 1632832566}
   - component: {fileID: 1632832565}
+  - component: {fileID: 1632832567}
   m_Layer: 5
   m_Name: CheckPointLvl8
   m_TagString: levelImg
@@ -6596,6 +6678,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1632832563}
   m_CullTransparentMesh: 0
+--- !u!95 &1632832567
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632832563}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9af517fb22d890c49bbe1d4a0d3fa85c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1638380007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7729,6 +7830,7 @@ GameObject:
   - component: {fileID: 1738492567}
   - component: {fileID: 1738492569}
   - component: {fileID: 1738492568}
+  - component: {fileID: 1738492570}
   m_Layer: 5
   m_Name: CheckPointLvl1
   m_TagString: levelImg
@@ -7792,6 +7894,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738492566}
   m_CullTransparentMesh: 0
+--- !u!95 &1738492570
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738492566}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9af517fb22d890c49bbe1d4a0d3fa85c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1766642704
 GameObject:
   m_ObjectHideFlags: 0
@@ -7842,13 +7963,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1254902, g: 0.6, b: 0.7137255, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.93386865, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: a10e83a4e4adc6e429e96c9612aaa0c9, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -7953,6 +8074,7 @@ GameObject:
   - component: {fileID: 1843561702}
   - component: {fileID: 1843561704}
   - component: {fileID: 1843561703}
+  - component: {fileID: 1843561705}
   m_Layer: 5
   m_Name: CheckPointLvl7
   m_TagString: levelImg
@@ -8016,6 +8138,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1843561701}
   m_CullTransparentMesh: 0
+--- !u!95 &1843561705
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843561701}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9af517fb22d890c49bbe1d4a0d3fa85c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1876343049
 GameObject:
   m_ObjectHideFlags: 0
@@ -8900,6 +9041,7 @@ GameObject:
   - component: {fileID: 2031905880}
   - component: {fileID: 2031905882}
   - component: {fileID: 2031905881}
+  - component: {fileID: 2031905883}
   m_Layer: 5
   m_Name: CheckPointLvl2
   m_TagString: levelImg
@@ -8963,6 +9105,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031905879}
   m_CullTransparentMesh: 0
+--- !u!95 &2031905883
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031905879}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9af517fb22d890c49bbe1d4a0d3fa85c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2056061823
 GameObject:
   m_ObjectHideFlags: 0
@@ -8974,6 +9135,7 @@ GameObject:
   - component: {fileID: 2056061824}
   - component: {fileID: 2056061826}
   - component: {fileID: 2056061825}
+  - component: {fileID: 2056061827}
   m_Layer: 5
   m_Name: CheckPointLvl5
   m_TagString: levelImg
@@ -9037,6 +9199,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056061823}
   m_CullTransparentMesh: 0
+--- !u!95 &2056061827
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056061823}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9af517fb22d890c49bbe1d4a0d3fa85c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2069131778
 GameObject:
   m_ObjectHideFlags: 0
