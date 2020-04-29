@@ -73,17 +73,14 @@ public class LevelManager : MonoBehaviour
                 StartCoroutine(TransitionToNextLevel());
                 StartCoroutine(DestroyFirstSection());
                 StartCoroutine(CreateNewSection(true));
-
-
+                
             }
             else
             {
                 Debug.Log("<color=yellow>IS 1ST SECTION AHAA AHAA</color>");
                 StartCoroutine(TransitionToNextLevel());
-
                 StartCoroutine(DestroySecondSection());
                 StartCoroutine(CreateNewSection(false));
-
             }
 
             spawnNewSection = false;
@@ -93,7 +90,7 @@ public class LevelManager : MonoBehaviour
     IEnumerator TransitionToNextLevel()
     {
         Debug.Log("<color=red>Waiiiitiiiing to transition</color>");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         Debug.Log("<color=red>Call create equation</color>");
         playerControler.HandleValues();
         calculations.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);

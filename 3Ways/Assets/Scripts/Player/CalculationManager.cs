@@ -244,13 +244,13 @@ public class CalculationManager : MonoBehaviour
             case 9:
                 // A / B = C
                 // MATH->EASY->LEVEL9 [0,10]
-                SET_AND_CALCULATE(1, 16, DIVISION, 1, 10, 1, 2);
+                SET_AND_CALCULATE(1, 16, DIVISION, 1, 16, 1, 2);
                 break;
             //////////////////////////////////////////MULTIPLICATION\DIVISION////////////////////////////////////
             case 10:
                 // A */ B = C
                 // MATH->EASY->LEVEL10 [10,20]
-                SET_AND_CALCULATE(10, 20, RANDOM_OPERATION(MULTIPLICATION, DIVISION), 10, 20, 1, 2);
+                SET_AND_CALCULATE(5, 26, RANDOM_OPERATION(MULTIPLICATION, DIVISION), 5, 26, 1, 2);
                 break;
         }
     }
@@ -484,6 +484,7 @@ public class CalculationManager : MonoBehaviour
             Debug.Log("<color=red>A: </color>" + A + "<color=green>B: </color>" + B);
             if (A % B != 0)
             {
+                Debug.Log("<color=red>Retry!!</color>");
                 SET_AND_CALCULATE(aMin, aMax, operation);
             }
         }else if (operation == SQUAREROOT)

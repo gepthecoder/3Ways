@@ -404,8 +404,6 @@ public class PlayerControl : MonoBehaviour
         transform.LookAt(passCagePos);
         Debug.Log("<color=brown>LOOK ATT</color>");
         PLAY_ANIMATION_PASS(false);
-
-        yield return new WaitForSeconds(.5f);
         //MoveOn();
         canChooseDoor = true;
         transition = true;

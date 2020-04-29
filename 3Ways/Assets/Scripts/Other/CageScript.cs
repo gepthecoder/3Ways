@@ -33,7 +33,7 @@ public class CageScript : MonoBehaviour
     {
         if (!enemiesSpawned)
         {
-            Debug.Log("PERSA FROM THE MAHALA");
+            Debug.Log("SPAWN REWARD & MONSTERS");
 
             if (calculations.currentCorrectDoor == (int)ChooseDoor.Doors.DOOR0)
             {
