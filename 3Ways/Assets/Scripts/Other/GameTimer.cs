@@ -39,7 +39,6 @@ public class GameTimer : MonoBehaviour
 
     public void SetCurrentGameTime(float time)
     {
-        Debug.Log("Game time set to: " + time);
         gT = time;
     }
 }

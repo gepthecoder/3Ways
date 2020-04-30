@@ -116,8 +116,7 @@ public class PlayerControl : MonoBehaviour
             float       step    = endOfGame ? 6f * Time.deltaTime   : moveSpeed * Time.deltaTime;
             Transform   GoToPos = endOfGame ? passWinPos            : centerPlayerPos;
             transform.position = Vector3.MoveTowards(transform.position, GoToPos.position, step);
-            //controller.Move(Vector3.forward * moveSpeed * Time.deltaTime);
-            Debug.Log("<color=green>RUNNING</color>");
+            //Debug.Log("<color=green>RUNNING</color>");
         }
         // UNLOCKING
         else if (StateMachine.iCurrentState == (int)StateMachine.PlayerStates.UNLOCKING)
@@ -150,7 +149,7 @@ public class PlayerControl : MonoBehaviour
         // PASS LEVEL
         else if(StateMachine.iCurrentState == (int)StateMachine.PlayerStates.PASS)
         {
-            Debug.Log("<color=blue>PASS</color>");
+            //Debug.Log("<color=blue>PASS</color>");
             StartCoroutine(Continue());
         }
         // REPEAT
@@ -183,11 +182,7 @@ public class PlayerControl : MonoBehaviour
         // WIN
         else if(StateMachine.iCurrentState == (int)StateMachine.PlayerStates.WIN)
         {
-            Debug.Log("WININI PANINI");
-            GoToEndPosition();
-            //GetWinPosition();
-            //float step = fallBackSpeed * Time.deltaTime;
-            //transform.position = Vector3.MoveTowards(transform.position, passWinPos.position, step);
+            GoToEndPosition();      
         }
     }
 
@@ -208,7 +203,6 @@ public class PlayerControl : MonoBehaviour
     {
         if (anime != null)
         {
-            //anime.SetBool("run", false);
             anime.SetBool("think", thinking);
         }
     }
@@ -249,7 +243,6 @@ public class PlayerControl : MonoBehaviour
     {
         if (ChooseDoor.selectedDoor == (int)ChooseDoor.Doors.DOOR0 && ChooseDoor.doorChoosen)
         {
-
             anime.SetTrigger("unlockingL");
             ChooseDoor.doorChoosen = false;
         }
@@ -399,7 +392,6 @@ public class PlayerControl : MonoBehaviour
         PLAY_ANIMATION_PASS(true);
         yield return new WaitForSeconds(1.5f);
         PLAY_ANIMATION_PASS(false);
-        //MoveOn();
         canChooseDoor = true;
         transition = true;
     }
@@ -424,28 +416,12 @@ public class PlayerControl : MonoBehaviour
 
     private IEnumerator SlideMotion()
     {
-        Debug.Log("SLIDE 1");
         PLAY_ANIMATION_SLIDE(true);
         yield return new WaitForSeconds(1.15f);
         PLAY_ANIMATION_SLIDE(false);
-        Debug.Log("SLIDE 0");
 
-        //transform.LookAt(centerDoorLookPos);
-        //////////////////////////////////////////////////////////////////////
-        //DestroyPreviousSection(LevelManager.currentLevel);
-        //if (changeData)
-        //{
-        //    Debug.Log("<color=red>curent level = </color>: " + LevelManager.currentLevel);
-        //    HandleValues();
-        //    changeData = false;
-        //}
         if (isWinningSection)
-        {
-            //GetWinPosition();
-            //transform.LookAt(passWinPos);
-            //endOfGame = true; 
-            Debug.Log("GO TO WIN");
-
+        {        
             StateMachine.iCurrentState = (int)StateMachine.PlayerStates.WIN;
         }
         else
@@ -454,8 +430,6 @@ public class PlayerControl : MonoBehaviour
             door.slide = false;
             StateMachine.iCurrentState = (int)StateMachine.PlayerStates.RUNNING;
         }
-
-
     }
 
     private void GoToEndPosition()
@@ -466,23 +440,13 @@ public class PlayerControl : MonoBehaviour
         GetDancePosition();
         float step = 5 * Time.deltaTime;
 
-        //if (PlayerWinCollider.PlayerWon)
-        //{
-            //JUMP
-            transform.LookAt(passWinLookAt);
+        //JUMP
+        transform.LookAt(passWinLookAt);
 
         //WE HAVE A WINNER
         anime.SetTrigger("win");
 
         transform.position = Vector3.MoveTowards(transform.position, dancePos.position, step);
-            
-        //}
-        //else
-        //{
-        //    transform.position = Vector3.MoveTowards(transform.position, passWinPos.position, step);
-        //}
-      
-
     }
 
     public void HandleValues()
@@ -490,22 +454,16 @@ public class PlayerControl : MonoBehaviour
         if (LevelManager.currentSectionCount % 2 == 0 && LevelManager.currentSectionCount != 0)
         {
             //GET FIRST SECTION DATA
-            Debug.Log("<color=red>FIRST SECTION DATA</color>");
             GetValues(1);
             calcucaltions.GetValues(1);
-            cage.GetValues(1);
-            //yield return new WaitForSeconds(.75f);
-            //calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);
+            cage.GetValues(1);  
         }
         else
         {
             //GET SECOND SECTION DATA
-            Debug.Log("<color=red>SECOND SECTION DATA</color>");
             GetValues(2);
             calcucaltions.GetValues(2);
             cage.GetValues(2);
-            //yield return new WaitForSeconds(.75f);
-            //calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);
         }
     }
 
@@ -589,7 +547,6 @@ public class PlayerControl : MonoBehaviour
 
     private void GetOtherPositions1()
     {
-        Debug.Log("other1");
         centerPlayerPos = GameObject.FindGameObjectWithTag("playerThinkPos").GetComponent<Transform>();
         centerDoorLookPos = GameObject.FindGameObjectWithTag("thinkPosLooking").GetComponent<Transform>();
     }
@@ -619,7 +576,6 @@ public class PlayerControl : MonoBehaviour
 
     private void GetOtherPositions2()
     {
-        Debug.Log("other2");
         centerPlayerPos = GameObject.FindGameObjectWithTag("playerThinkPos1").GetComponent<Transform>();
         centerDoorLookPos = GameObject.FindGameObjectWithTag("thinkPosLooking1").GetComponent<Transform>();
     }

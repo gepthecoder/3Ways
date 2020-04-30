@@ -9,6 +9,7 @@ public class CalculationManager : MonoBehaviour
 
     public enum DIFFICULTIES { EASY = 0, MEDIUM, HARD, GENIOUS, }
     public int currentDifficulty;
+    public int nTimes = 5;
 
     private TextMesh equationText;
 
@@ -35,6 +36,8 @@ public class CalculationManager : MonoBehaviour
     {
         SET_DIFFICULTY((int)DIFFICULTIES.EASY);
         CreateEquation(currentDifficulty, LevelManager.currentLevel);
+
+        FillDivisionEquationNumbers(nTimes, currentDifficulty);
     }
 
     //void Update()
@@ -48,6 +51,93 @@ public class CalculationManager : MonoBehaviour
     //    }
     //}
 
+    private List<int> Anums = new List<int>();
+    private List<int> Bnums = new List<int>();
+
+    private void FillDivisionEquationNumbers(int nTimes, int difficulty)
+    {
+        for (int i = 0; i < nTimes; i++)
+        {
+            PrepareDivisionEquations(difficulty);
+        }
+    }
+
+    private void PrepareDivisionEquations(int difficulty)
+    {
+        int A, B, temp;
+        switch (difficulty)
+        {
+            case (int)DIFFICULTIES.EASY:
+                A = Random.Range(10, 50);
+                B = Random.Range(1, 11);
+                if(B > A)
+                {
+                    temp = A;
+                    A = B;
+                    B = temp;
+                }
+                else if(A % B != 0)
+                {
+                    PrepareDivisionEquations(difficulty);
+                }
+                else { Anums.Add(A); Bnums.Add(B); }
+
+                break;
+            case (int)DIFFICULTIES.MEDIUM:
+                A = Random.Range(10, 100);
+                B = Random.Range(1, 15);
+                if (B > A)
+                {
+                    temp = A;
+                    A = B;
+                    B = temp;
+                }
+                else if (A % B != 0)
+                {
+                    PrepareDivisionEquations(difficulty);
+                }
+                else { Anums.Add(A); Bnums.Add(B); }
+
+                break;
+            case (int)DIFFICULTIES.HARD:
+                A = Random.Range(10, 200);
+                B = Random.Range(1, 20);
+                if (B > A)
+                {
+                    temp = A;
+                    A = B;
+                    B = temp;
+                }
+                else if (A % B != 0)
+                {
+                    PrepareDivisionEquations(difficulty);
+                }
+                else { Anums.Add(A); Bnums.Add(B); }
+
+                break;
+            case (int)DIFFICULTIES.GENIOUS:
+                A = Random.Range(10, 500);
+                B = Random.Range(1, 50);
+                if (B > A)
+                {
+                    temp = A;
+                    A = B;
+                    B = temp;
+                }
+                else if (A % B != 0)
+                {
+                    PrepareDivisionEquations(difficulty);
+                }
+                else { Anums.Add(A); Bnums.Add(B); }
+
+                break;
+
+            default:
+                break;
+        }
+    }
+
+   
     public void GetValues(int section)
     {
         switch (section)
@@ -171,7 +261,6 @@ public class CalculationManager : MonoBehaviour
 
     public void CreateEquation(int p_difficulty, int p_level)
     {
-        Debug.Log("<color=blue>CREATE EQUATION</color>");
         switch (p_difficulty)
         {
             case (int)DIFFICULTIES.EASY:
@@ -457,6 +546,11 @@ public class CalculationManager : MonoBehaviour
         return randomNum;
     }
 
+
+    /*
+     Divison Numbers for A
+         
+         */
     private void SET_AND_CALCULATE(int aMin, int aMax, string operation, int bMin=0, int bMax = 0, int deMin = 0, int deMax = 0)
     {
         int temp = 0;
@@ -475,18 +569,22 @@ public class CalculationManager : MonoBehaviour
         {
             //DIVISION EXCEPTION -> TO GET PRETTY NUMBERS
 
-            if (A < B)
-            {
-                temp = A;
-                A = B;
-                B = temp;
-            }
-            Debug.Log("<color=red>A: </color>" + A + "<color=green>B: </color>" + B);
-            if (A % B != 0)
-            {
-                Debug.Log("<color=red>Retry!!</color>");
-                SET_AND_CALCULATE(aMin, aMax, operation, bMin, bMax);
-            }
+            //if (A < B)
+            //{
+            //    temp = A;
+            //    A = B;
+            //    B = temp;
+            //}
+            //Debug.Log("<color=red>A: </color>" + A + "<color=green>B: </color>" + B);
+            //if (A % B != 0)
+            //{
+            //    Debug.Log("<color=red>Retry!!</color>");
+            //    SET_AND_CALCULATE(aMin, aMax, operation, bMin, bMax);
+            //}
+            int t = Random.Range(0, nTimes);
+            A = Anums[t];
+            B = Bnums[t];
+
         }else if (operation == SQUAREROOT)
         {
             float sqrRootOfA = Mathf.Sqrt(A);

@@ -9,7 +9,5 @@ public class OpenDoor : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         inFrontOfDoor = true;
-        Debug.Log("<color=blue>IN FRONT OF DOOR!!</color>");
-
     }
 }

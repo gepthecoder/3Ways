@@ -52,7 +52,6 @@ public class StateMachine : MonoBehaviour
             playerControl.passCagePos = GetSelectedCageDoorTransform(ChooseDoor.selectedDoor);
             transform.LookAt(playerControl.passCagePos);
 
-            Debug.Log("<color=brown>LOOK ATT</color>");
             iCurrentState = (int)PlayerStates.TRANSITION;
             PlayerControl.transition = false;
         }
@@ -100,7 +99,6 @@ public class StateMachine : MonoBehaviour
                 // PASS LEVEL
                 iCurrentState = (int)PlayerStates.PASS;
                 LevelManager.currentSectionCount++;
-                Debug.Log("<color=blue>CURRENT SECTION = </color>" + LevelManager.currentSectionCount);
                 LevelManager.currentLevel++;
 
                 ChooseDoor.nTry = 0;
@@ -108,17 +106,14 @@ public class StateMachine : MonoBehaviour
                 
                 if (LevelManager.currentSectionCount == levelManager.GetNumberOfSections((int)CalculationManager.DIFFICULTIES.EASY))
                 {
-                    Debug.Log("Next section is win room!");
                     iTempState = (int)TempState.NEXT_STOP_WIN_ROOM;
                     LevelManager.spawnWinSection = true;
                     return true;
                 }
                 else if (LevelManager.currentSectionCount >= 2)
                 {
-                    Debug.LogWarning("Spawn!");
                     LevelManager.spawnNewSection = true;
                     //StartCoroutine(TransitionToNextLevel());
-                    Debug.Log("<color=red>iTempState Other</color>");
 
                     iTempState = (int)TempState.OTHER;
                     PlayerControl.doorAnimeOpened = false;
@@ -126,10 +121,7 @@ public class StateMachine : MonoBehaviour
                 else if (LevelManager.currentSectionCount == 1)
                 {
                     //just values no new section
-                    Debug.Log("<color=red>current section is 1</color>");
-
                     StartCoroutine(TransitionToNextLevel());
-                    Debug.Log("<color=red>iTempState Other</color>");
 
                     iTempState = (int)TempState.OTHER;
                     PlayerControl.doorAnimeOpened = false;
@@ -159,15 +151,11 @@ public class StateMachine : MonoBehaviour
     {
         yield return new WaitForSeconds(2.6f);
         playerControl.transform.LookAt(playerControl.centerDoorLookPos);
-        Debug.Log("<color=red>LOOK STRAIGHT</color>");
-        //PlayerControl.canChooseDoor = true;
     }
 
     IEnumerator TransitionToNextLevel()
     {
-        Debug.Log("<color=red>Waiiiitiiiing to transition</color>");
         yield return new WaitForSeconds(1f);
-        Debug.Log("<color=red>Call create equation</color>");
         playerControl.HandleValues();
         calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);
         CageScript.enemiesSpawned = false;
@@ -200,7 +188,6 @@ public class StateMachine : MonoBehaviour
                 Debug.LogError("Failed to request door.. door 0 choosen");
                 break;
         }
-        Debug.Log(cageDoorPos.name + " GET SELECTED TRANSFORM");
         return cageDoorPos;
     }
 }

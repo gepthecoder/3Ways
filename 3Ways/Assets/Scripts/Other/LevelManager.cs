@@ -133,9 +133,6 @@ public class LevelManager : MonoBehaviour
             Debug.Log("SPAWN 1ST SECTION!");
             Vector3 spawnPos = new Vector3(section2pos.position.x, section2pos.position.y, section2pos.position.z + offsetZ);
             Instantiate(SECTION1, spawnPos, section2pos.rotation);
-
-            //playerControler.GetValues(1);
-
         }
         else
         { // SPAWN SECOND SECTION, ON FIRST (current) POSITION WITH OFFSET
@@ -143,18 +140,7 @@ public class LevelManager : MonoBehaviour
             Vector3 spawnPos = new Vector3(section1pos.position.x, section1pos.position.y, section1pos.position.z + offsetZ);
             Debug.Log("SPAWN 2ND SECTION!");
             Instantiate(SECTION2, spawnPos, section1pos.rotation);
-
-            //playerControler.GetValues(2);
-
         }
-        //int section0 = is2ndSection ? 2 : 1;
-
-        //playerControler.GetValues(section0);
-        //calculations.GetValues(section0);
-        //cage.GetValues(section0);
-
-
-        //addNewSection = true; ///////////////////////////////////////////        SPREMNEU GLIH KR
     }
 
     IEnumerator DestroyFirstSection()
