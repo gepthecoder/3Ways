@@ -41,7 +41,7 @@ public class PlayerControl : MonoBehaviour
     public Transform centerDoorLookPos;
 
     // PASS POSITION
-    private Transform passCagePos;
+    public Transform passCagePos;
     private Transform passWinPos;
     // WIN LOOK AT TARGET
     private Transform passWinLookAt;
@@ -49,9 +49,9 @@ public class PlayerControl : MonoBehaviour
     private Transform dancePos;
 
     //public Transform[] passCagePositions;
-    private Transform cageDoor0Pos;
-    private Transform cageDoor1Pos;
-    private Transform cageDoor2Pos;
+    public Transform cageDoor0Pos;
+    public Transform cageDoor1Pos;
+    public Transform cageDoor2Pos;
 
     private Transform lookAtTheEnd;
 
@@ -398,16 +398,10 @@ public class PlayerControl : MonoBehaviour
         PLAY_ANIMATION_THINK(false);
         PLAY_ANIMATION_PASS(true);
         yield return new WaitForSeconds(1.5f);
-        Debug.Log("<color=brown>Pass Cage Pos</color>");
-
-        passCagePos = GetSelectedCageDoorTransform(ChooseDoor.selectedDoor);
-        transform.LookAt(passCagePos);
-        Debug.Log("<color=brown>LOOK ATT</color>");
         PLAY_ANIMATION_PASS(false);
         //MoveOn();
         canChooseDoor = true;
         transition = true;
-        Debug.Log("<color=brown>Transitioooon</color>");
     }
 
     private void MoveOn()
@@ -639,30 +633,7 @@ public class PlayerControl : MonoBehaviour
     }
     ///////////////////////////////////////////////////////////////////////////////////////
 
-    private Transform GetSelectedCageDoorTransform(int selectedDoor)
-    {
-        Transform cageDoorPos;
-
-        switch (selectedDoor)
-        {
-            case (int)ChooseDoor.Doors.DOOR0:
-                cageDoorPos = cageDoor0Pos;
-                break;
-            case (int)ChooseDoor.Doors.DOOR1:
-                cageDoorPos = cageDoor1Pos;
-                break;
-            case (int)ChooseDoor.Doors.DOOR2:
-                cageDoorPos = cageDoor2Pos;
-                break;
-
-            default:
-                cageDoorPos = cageDoor0Pos;
-                Debug.LogError("Failed to request door.. door 0 choosen");
-                break;
-        }
-        Debug.Log(cageDoorPos.name + " GET SELECTED TRANSFORM");
-        return cageDoorPos;
-    }
+   
 
     private Animator GetSelectedDoorAnime(int selectedDoor)
     {

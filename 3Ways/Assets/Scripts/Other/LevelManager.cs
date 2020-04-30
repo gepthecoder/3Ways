@@ -69,18 +69,18 @@ public class LevelManager : MonoBehaviour
             Debug.Log("create new section..");
             if (bIs2ndSection)
             {
-                Debug.Log("<color=cyan>IS 2ND SECTION AHAA AHAA</color>");
-                StartCoroutine(TransitionToNextLevel());
                 StartCoroutine(DestroyFirstSection());
-                StartCoroutine(CreateNewSection(true));
+                CreateNewSection(true);
+                Debug.Log("<color=cyan>2nd section spawned</color>");
+                StartCoroutine(TransitionToNextLevel());
                 
             }
             else
             {
-                Debug.Log("<color=yellow>IS 1ST SECTION AHAA AHAA</color>");
-                StartCoroutine(TransitionToNextLevel());
                 StartCoroutine(DestroySecondSection());
-                StartCoroutine(CreateNewSection(false));
+                CreateNewSection(false);
+                Debug.Log("<color=yellow>1st section spawned</color>");
+                StartCoroutine(TransitionToNextLevel());
             }
 
             spawnNewSection = false;
@@ -89,7 +89,6 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator TransitionToNextLevel()
     {
-        Debug.Log("<color=red>Waiiiitiiiing to transition</color>");
         yield return new WaitForSeconds(1f);
         Debug.Log("<color=red>Call create equation</color>");
         playerControler.HandleValues();
@@ -124,7 +123,7 @@ public class LevelManager : MonoBehaviour
         return numOfSections;
     }
 
-    IEnumerator CreateNewSection(bool is2nd)
+    void CreateNewSection(bool is2nd)
     {
         int offsetZ = 56;
 
@@ -135,7 +134,6 @@ public class LevelManager : MonoBehaviour
             Vector3 spawnPos = new Vector3(section2pos.position.x, section2pos.position.y, section2pos.position.z + offsetZ);
             Instantiate(SECTION1, spawnPos, section2pos.rotation);
 
-            yield return new WaitForSeconds(1f);
             //playerControler.GetValues(1);
 
         }
@@ -146,7 +144,6 @@ public class LevelManager : MonoBehaviour
             Debug.Log("SPAWN 2ND SECTION!");
             Instantiate(SECTION2, spawnPos, section1pos.rotation);
 
-            yield return new WaitForSeconds(1f);
             //playerControler.GetValues(2);
 
         }
@@ -167,7 +164,7 @@ public class LevelManager : MonoBehaviour
             yield break; }
         Destroy(firstSection);
         Debug.Log("FirstSectionDestroyed");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
     }
 
     IEnumerator DestroySecondSection()
@@ -180,7 +177,7 @@ public class LevelManager : MonoBehaviour
         }
         Destroy(secondSection);
         Debug.Log("SecondSectionDestroyed");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
     }
 
     

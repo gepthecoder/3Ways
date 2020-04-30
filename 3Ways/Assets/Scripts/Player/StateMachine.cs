@@ -48,6 +48,11 @@ public class StateMachine : MonoBehaviour
         // MOVE TO NEXT LEVEL
         if (PlayerControl.transition)
         {
+
+            playerControl.passCagePos = GetSelectedCageDoorTransform(ChooseDoor.selectedDoor);
+            transform.LookAt(playerControl.passCagePos);
+
+            Debug.Log("<color=brown>LOOK ATT</color>");
             iCurrentState = (int)PlayerStates.TRANSITION;
             PlayerControl.transition = false;
         }
@@ -100,7 +105,7 @@ public class StateMachine : MonoBehaviour
 
                 ChooseDoor.nTry = 0;
                 //PlayerControl.changeData = true;
-
+                
                 if (LevelManager.currentSectionCount == levelManager.GetNumberOfSections((int)CalculationManager.DIFFICULTIES.EASY))
                 {
                     Debug.Log("Next section is win room!");
@@ -172,6 +177,31 @@ public class StateMachine : MonoBehaviour
     IEnumerator JustWaitASec(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);
+    }
+
+    private Transform GetSelectedCageDoorTransform(int selectedDoor)
+    {
+        Transform cageDoorPos;
+
+        switch (selectedDoor)
+        {
+            case (int)ChooseDoor.Doors.DOOR0:
+                cageDoorPos = playerControl.cageDoor0Pos;
+                break;
+            case (int)ChooseDoor.Doors.DOOR1:
+                cageDoorPos = playerControl.cageDoor1Pos;
+                break;
+            case (int)ChooseDoor.Doors.DOOR2:
+                cageDoorPos = playerControl.cageDoor2Pos;
+                break;
+
+            default:
+                cageDoorPos = playerControl.cageDoor0Pos;
+                Debug.LogError("Failed to request door.. door 0 choosen");
+                break;
+        }
+        Debug.Log(cageDoorPos.name + " GET SELECTED TRANSFORM");
+        return cageDoorPos;
     }
 }
           

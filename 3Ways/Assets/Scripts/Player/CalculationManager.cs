@@ -244,13 +244,13 @@ public class CalculationManager : MonoBehaviour
             case 9:
                 // A / B = C
                 // MATH->EASY->LEVEL9 [0,10]
-                SET_AND_CALCULATE(1, 16, DIVISION, 1, 16, 1, 2);
+                SET_AND_CALCULATE(1, 30, DIVISION, 1, 30, 1, 2);
                 break;
             //////////////////////////////////////////MULTIPLICATION\DIVISION////////////////////////////////////
             case 10:
                 // A */ B = C
                 // MATH->EASY->LEVEL10 [10,20]
-                SET_AND_CALCULATE(5, 26, RANDOM_OPERATION(MULTIPLICATION, DIVISION), 5, 26, 1, 2);
+                SET_AND_CALCULATE(2, 26, RANDOM_OPERATION(MULTIPLICATION, DIVISION), 2, 26, 1, 2);
                 break;
         }
     }
@@ -468,7 +468,7 @@ public class CalculationManager : MonoBehaviour
         if (A == 0 || B == 0)
         {
             Debug.Log("Exception found.. try again (:");
-            SET_AND_CALCULATE(aMin, aMax, operation);
+            SET_AND_CALCULATE(aMin, aMax, operation, bMin, bMax);
         }
 
         if (operation == DIVISION)
@@ -485,7 +485,7 @@ public class CalculationManager : MonoBehaviour
             if (A % B != 0)
             {
                 Debug.Log("<color=red>Retry!!</color>");
-                SET_AND_CALCULATE(aMin, aMax, operation);
+                SET_AND_CALCULATE(aMin, aMax, operation, bMin, bMax);
             }
         }else if (operation == SQUAREROOT)
         {
@@ -493,7 +493,7 @@ public class CalculationManager : MonoBehaviour
             int gg = (int)Mathf.Round(sqrRootOfA);
             bool bb = (sqrRootOfA % gg) == 0 ? true : false; 
             if (!bb) { Debug.Log("Bad Number for rooting! <color=red>:</color><color=yellow>)</color");
-                SET_AND_CALCULATE(aMin, aMax, operation);
+                SET_AND_CALCULATE(aMin, aMax, operation, bMin, bMax);
             }
         }
         
