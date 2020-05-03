@@ -16,11 +16,11 @@ public class LevelManager : MonoBehaviour
 
     public static bool addNewSection;
     private int iSectionToAdd;
-   
-    private int iEASY_SECTIONS = 10;
-    private int iMEDIUM_SECTIONS = 8;
-    private int iHARD_SECTIONS = 10;
-    private int iGENIOUS_SECTIONS = 15;
+
+    public static int iEASY_SECTIONS = 3;
+    public static int iMEDIUM_SECTIONS = 8;
+    public static int iHARD_SECTIONS = 10;
+    public static int iGENIOUS_SECTIONS = 15;
 
     private PlayerControl playerControler;
     private CalculationManager calculations;

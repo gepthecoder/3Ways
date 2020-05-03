@@ -131,6 +131,7 @@ public class StateMachine : MonoBehaviour
             else if (calcucaltions.currentCorrectDoor != ChooseDoor.selectedDoor && iCurrentState == (int)PlayerStates.ENTERING && PlayerControl.doorAnimeOpened)
             {
                 // REPEAT CURRENT LEVEL
+                PlayrXP.iFailed++;
                 iCurrentState = (int)PlayerStates.REPEAT;
                 PlayerControl.doorAnimeOpened = false;
 

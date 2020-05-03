@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static bool GET_STAR;
+    public static bool WIN;
 
     private Animator CanvasAnimator;
     private Animator settingsUIanime;
@@ -43,6 +44,13 @@ public class UIManager : MonoBehaviour
             getStar.SetTrigger("getStar");
             GET_STAR = false;
         }
+
+        if (WIN)
+        {
+            StartCoroutine(ShowWinGui());
+            WIN = false;
+        }
+        
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -120,5 +128,23 @@ public class UIManager : MonoBehaviour
     public void HideSettings()
     {
         settingsUIanime.SetTrigger("hideSettings");
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    //                                  W I N  -  S H O W  S T A R S                                 //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public WinStars winStars;
+
+    public void ShowStars()
+    {
+        int starsToShow = winStars.NumberOfStarsToShow();
+        winStars.PlayAnime(starsToShow);
+    }
+
+    private IEnumerator ShowWinGui()
+    {
+        yield return new WaitForSeconds(5f);
+        CanvasAnimator.SetTrigger("win");
     }
 }

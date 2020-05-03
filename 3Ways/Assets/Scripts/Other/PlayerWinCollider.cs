@@ -43,6 +43,9 @@ public class PlayerWinCollider : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         GameTimer.timeHasStarted = false;
+        GameTimer.won = true;
+        PlayrXP.wonNowCalcualteGainedXP = true;
+        UIManager.WIN = true;
         yield return new WaitForSeconds(1f);
         CameraFollow.Win = true;
     }

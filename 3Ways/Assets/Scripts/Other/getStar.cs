@@ -11,6 +11,7 @@ public class getStar : MonoBehaviour
     {
         CoinManager.XP++;
         CoinManager.Save();
+        PlayrXP.iStars++;
         coinManager.DisplayTextElement(CoinManager.XP);
     }
 
