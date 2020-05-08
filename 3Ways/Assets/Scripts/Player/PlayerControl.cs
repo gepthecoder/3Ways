@@ -93,7 +93,7 @@ public class PlayerControl : MonoBehaviour
         // SPAWN PLAYER TO WAITING ROOM
         if(StateMachine.iCurrentState == (int)StateMachine.PlayerStates.SPAWNING)
         {
-            //Debug.Log("<color=green>SPAWNING</color>");
+            Debug.Log("<color=green>SPAWNING</color>");
             PLAY_ANIMATION_THINK(true); // TO:DO -> wait animation
             GameTimer.timeHasStarted = false;
         }
@@ -263,6 +263,7 @@ public class PlayerControl : MonoBehaviour
         bStartCountDown = true;
         yield return new WaitForSeconds(5f);
         // start running after player 2 connects -> TODO
+        Debug.Log("Lets Run!");
         StateMachine.bIsWaiting = false;
 
     }

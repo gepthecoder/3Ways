@@ -37,50 +37,68 @@ public class PlayerXPbar : MonoBehaviour
     private int level = 1;
     private float currentAmount = 0;
 
-    private float amountNeeded = 250.0f;
+    private float amountNeeded = 100.0f;
+    private float startValue = 0f;
+
 
     private Coroutine routine;
 
     public Text TXT_XP_INFO;
 
+    [SerializeField]
+    private Slider levelXPbar;
+
 
     private void SetTextElements_XP_INFO()
     {
-        TXT_XP_INFO.text = TXT_XP_INFO.text = PlayrXP.XPoints + " / " + amountNeeded;
+       TXT_XP_INFO.text = PlayrXP.XPoints + " / " + PlayerPrefs.GetFloat("amountNeeded");
     }
 
-    void OnEnable()
+    private void SET_MIN_MAX_SLIDER(float min, float max)
     {
-        InitColor();
-
-        currentAmount = PlayerPrefs.GetInt("XPoints", 0) / PlayerPrefs.GetFloat("amountNeeded", 250) * 1.0f;
-        Debug.Log("currentAmount = " + currentAmount);
-
-        bar_fill.fillAmount = currentAmount;
-
-        SetTextElements_XP_INFO();
+        levelXPbar.minValue = min;
+        levelXPbar.maxValue = max;
     }
 
     void Awake()
     {
+
         if (PlayerPrefs.HasKey("amountNeeded"))
         {
             // we had a previous session
-            amountNeeded = PlayerPrefs.GetFloat("amountNeeded", 250);
+            amountNeeded = PlayerPrefs.GetFloat("amountNeeded", 100);
+            startValue = PlayerPrefs.GetFloat("startValue", 0);
         }
         else
         {
             Save();
         }
+
+        InitColor();
+
+        currentAmount = PlayerPrefs.GetInt("XPoints", 0); /*/ PlayerPrefs.GetFloat("amountNeeded", 100) * 1.0f*/
+        Debug.Log("currentAmount = " + currentAmount);
+
+        SET_MIN_MAX_SLIDER(startValue, amountNeeded);
+        levelXPbar.value = currentAmount;
+
     }
 
     void Start()
     {
         InitPrefs();
+        UpdateLevel(level);
+        SetTextElements_XP_INFO();
+
+        Debug.Log("Amount Needed: " + amountNeeded);
+
     }
 
     void Update()
     {
+        SetTextElements_XP_INFO();
+
+
         if (ShowGainedXP)
         {
             Debug.Log("gainedXP = " + PlayrXP.gainedXP);
@@ -89,14 +107,16 @@ public class PlayerXPbar : MonoBehaviour
             PlayrXP.Save();
             Debug.Log("PlayrXP.XPoints= " + PlayrXP.XPoints);
 
-            float increase = PlayrXP.XPoints / amountNeeded;
+            float increase = PlayrXP.gainedXP /*/ amountNeeded*/;
             Debug.Log("Increase Value = " + increase);
-
-
+            
             UpdateProgress(increase);
-                
             ShowGainedXP = false;
 
+            if (GameTimer.playerHasBeatRecord)
+            {
+                UIManager.NEW_RECORD = true;
+            }
         }
     }
 
@@ -117,7 +137,7 @@ public class PlayerXPbar : MonoBehaviour
         level = PlayrXP.currentLevel;
     }
 
-    public void UpdateProgress(float amount, float duration = 0.1f)
+    public void UpdateProgress(float amount, float duration = 1f, bool lvlUP=false)
     {
         if(routine != null)
         {
@@ -125,6 +145,7 @@ public class PlayerXPbar : MonoBehaviour
         }
 
         float target = currentAmount + amount;
+
         routine = StartCoroutine(FillRoutine(target, duration));
     }
 
@@ -139,27 +160,30 @@ public class PlayerXPbar : MonoBehaviour
         {
             time += Time.deltaTime;
             float percent = time / duration;
-            bar_fill.fillAmount = tempAmount + diff * percent;
+            levelXPbar.value = tempAmount + diff * percent;
             yield return null;
         }
 
-        if(currentAmount >= 1)
+        if(currentAmount >= amountNeeded)
         {
+            UIManager.LEVEL_UP = true;
             LevelUp();
         }
     }
 
     private void LevelUp() {
         UpdateLevel(level + 1);
-        UpdateProgress(-1f, 0.2f);
         UpdateAmountNeeded();
+        SET_MIN_MAX_SLIDER(startValue, amountNeeded);
+        Debug.Log("DECREASE SLIDER FOR: " + -(currentAmount - startValue));
+        levelXPbar.value = currentAmount;
     }
 
     private void UpdateAmountNeeded()
     {
+        startValue = amountNeeded;
         amountNeeded *= 2;
         Save();
-        SetTextElements_XP_INFO();
     }
 
     private void UpdateLevel(int level)
@@ -174,7 +198,7 @@ public class PlayerXPbar : MonoBehaviour
     public void Save()
     {
         PlayerPrefs.SetFloat("amountNeeded", amountNeeded);
-
+        PlayerPrefs.SetFloat("startValue", startValue);
         PlayerPrefs.Save();
     }
 }

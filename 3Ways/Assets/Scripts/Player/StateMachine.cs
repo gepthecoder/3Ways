@@ -16,6 +16,7 @@ public class StateMachine : MonoBehaviour
     void Start() {  calcucaltions   = GetComponent<CalculationManager>();
                     playerControl   = GetComponent<PlayerControl>();
                     levelManager    = GetComponent<LevelManager>();
+        Debug.Log("<color=green>bIsWaiting = </color>" + bIsWaiting);
                  }
 
     public enum PlayerStates

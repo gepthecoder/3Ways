@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class UIManager : MonoBehaviour
 {
     public static bool GET_STAR;
     public static bool WIN;
+    public static bool NEW_RECORD;
+    public static bool LEVEL_UP;
 
     private Animator CanvasAnimator;
     private Animator settingsUIanime;
@@ -49,6 +52,18 @@ public class UIManager : MonoBehaviour
         {
             StartCoroutine(ShowWinGui());
             WIN = false;
+        }
+
+        if (NEW_RECORD)
+        {
+            NewRecordReached();
+            NEW_RECORD = false;
+        }
+
+        if (LEVEL_UP)
+        {
+            NewLevelReached();
+            LEVEL_UP = false;
         }
         
     }
@@ -147,4 +162,39 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         CanvasAnimator.SetTrigger("win");
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    //                                  W I N  -  B O N U S  F X                                     //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public Animator NewRecord;
+    public Animator LevelUP;
+
+    public void NewRecordReached()
+    {
+        NewRecord.SetTrigger("newRecord");
+    }
+
+    public void NewLevelReached()
+    {
+        LevelUP.SetTrigger("levelUp");
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    //                                  W I N  -  B U T T O N S                                      //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public Fader fade;
+
+    //////////////////////
+    //   R E P E A T   ///
+    //////////////////////
+
+
+    public void RepeatLevel()
+    {
+        fade.FadeIn();
+    }
+
+
 }

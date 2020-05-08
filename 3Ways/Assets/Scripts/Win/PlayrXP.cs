@@ -17,7 +17,9 @@ public class PlayrXP : MonoBehaviour
 
     public static int gainedXP;
 
-    private int Bonus;
+    private int BonusBestTime;
+    private int BonusGotAllStars;
+
 
     public Text TXT_XP_INFO;
 
@@ -41,8 +43,11 @@ public class PlayrXP : MonoBehaviour
     {
         if (wonNowCalcualteGainedXP)
         {
-            Bonus = GameTimer.playerHasBeatRecord ? 100 : 0;
-            gainedXP = (iStars) * 8 + Bonus - iFailed * 2;
+            BonusBestTime = GameTimer.playerHasBeatRecord ? 100 : 0;
+            BonusGotAllStars = LevelManager.iEASY_SECTIONS == iStars ? 100 : 0;
+            int multiplier = BonusGotAllStars == 100 ? 8 : 6;
+            int MinusTimeToLong = GameTimer.timeToLong ? -100 : 0;
+            gainedXP = ((iStars) * multiplier) + BonusBestTime + BonusGotAllStars - MinusTimeToLong;
             if(gainedXP < 0) { gainedXP = 0; }
             Debug.Log("Gained XP: " + gainedXP);
 

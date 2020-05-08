@@ -9,7 +9,9 @@ public class GameTimer : MonoBehaviour
     public static bool won;
     public static bool timeHasStarted;
     public static bool playerHasBeatRecord;
-    
+    public static bool timeToLong;
+
+
     private Text gameTimer;
     private float gT;
 
@@ -17,6 +19,8 @@ public class GameTimer : MonoBehaviour
 
     public Text TXT_yourTime;
     public Text TXT_bestTime;
+
+    public Text TXT_mainBestTime;
 
     void Awake()
     {
@@ -49,6 +53,7 @@ public class GameTimer : MonoBehaviour
         string seconds = (bestTime % 60).ToString("00");
         string miliseconds = ((int)(bestTime * 100f) % 100).ToString("00");
         TXT_bestTime.text = minutes + ":" + seconds + ":" + miliseconds;
+        TXT_mainBestTime.text = minutes + ":" + seconds + ":" + miliseconds;
         Save();
     }
 
@@ -59,6 +64,10 @@ public class GameTimer : MonoBehaviour
         {
             Debug.Log("Game time END: " + gT);
             Debug.Log("Best time is: " + bestTime);
+            if(gT > 25000)
+            {
+                timeToLong = true;
+            }
 
             if (bestTime == 0)
             {
