@@ -42,7 +42,6 @@ public class Fader : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-
     private void SetDefaultValues()
     {
         // BRING BACK DEFAULT STATE

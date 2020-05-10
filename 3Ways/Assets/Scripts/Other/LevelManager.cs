@@ -92,7 +92,7 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Debug.Log("<color=red>Call create equation</color>");
         playerControler.HandleValues();
-        calculations.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);
+        calculations.CreateEquation(CalculationManager.currentDifficulty, LevelManager.currentLevel);
         CageScript.enemiesSpawned = false;
 
     }

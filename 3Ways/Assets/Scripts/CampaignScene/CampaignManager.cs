@@ -64,13 +64,14 @@ public class CampaignManager : MonoBehaviour
 
     private void SetPrefsSlider()
     {
-        if (PlayerPrefs.HasKey("amountNeeded"))
+        if (PlayerPrefs.HasKey("amountNeeded") || PlayerPrefs.HasKey("XPoints"))
         {
             // we had a previous session
             amountNeeded = PlayerPrefs.GetFloat("amountNeeded", 100);
             startValue = PlayerPrefs.GetFloat("startValue", 0);
 
-            currentXP = PlayerPrefs.GetInt("XPoints", 0);
+            currentXP = PlayerPrefs.GetInt("XPoints");
+            Debug.Log("<color=yellow>GET PREF</color> " + currentXP);
             currentLevel = PlayerPrefs.GetInt("currentLevel", 1);
         }
         else
@@ -82,13 +83,16 @@ public class CampaignManager : MonoBehaviour
     private void SetSliderValue()
     {
         xpSlider.value = currentXP;
+        Debug.Log("<color=blue>Set Slider Value:</color> " + currentXP);
+
     }
 
     private void SetTextElementsForPlayerInfo()
     {
-        xProgressText.text = currentXP.ToString() + " / " + amountNeeded;
+        Debug.Log("<color=green>SET TEXT:</color> " + currentXP);
+        xProgressText.text = xpSlider.value + " / " + amountNeeded;
         firstNodeText.text = currentLevel.ToString();
-        secondNodeText.text = currentLevel + 1.ToString();
+        secondNodeText.text = (currentLevel + 1).ToString();
     }
 
     
@@ -98,15 +102,16 @@ public class CampaignManager : MonoBehaviour
         PlayerPrefs.SetFloat("startValue", startValue);
 
         PlayerPrefs.SetInt("XPoints", currentXP);
+        Debug.Log("<color=red>SET PREF</color> " + currentXP);
+
         PlayerPrefs.SetInt("currentLevel", currentLevel);
-        PlayerPrefs.Save();
     }
 
     //
 
     //STAR COINS
 
-    private int currentStarCoins = 0;
+    public int currentStarCoins = 0;
 
     public Text Coins_text;
 
@@ -217,12 +222,7 @@ public class CampaignManager : MonoBehaviour
             GENIOUS_BUTTON.interactable = true;
         }
     }
-
-
     //
-
-
-
 
     void Awake()
     {

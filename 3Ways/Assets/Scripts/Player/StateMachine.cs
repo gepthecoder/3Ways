@@ -159,7 +159,7 @@ public class StateMachine : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         playerControl.HandleValues();
-        calcucaltions.CreateEquation((int)CalculationManager.DIFFICULTIES.EASY, LevelManager.currentLevel);
+        calcucaltions.CreateEquation(CalculationManager.currentDifficulty, LevelManager.currentLevel);
         CageScript.enemiesSpawned = false;
 
     }

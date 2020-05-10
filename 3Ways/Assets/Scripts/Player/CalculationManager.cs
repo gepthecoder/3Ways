@@ -8,7 +8,7 @@ public class CalculationManager : MonoBehaviour
     public int currentCorrectDoor;
 
     public enum DIFFICULTIES { EASY = 0, MEDIUM, HARD, GENIOUS, }
-    public int currentDifficulty;
+    public static int currentDifficulty;
     public int nTimes = 5;
 
     private TextMesh equationText;
@@ -30,11 +30,21 @@ public class CalculationManager : MonoBehaviour
    
     void Awake()
     {
+        if (PlayerPrefs.HasKey("currentDifficulty"))
+        {
+            // we had a previous session
+            currentDifficulty = PlayerPrefs.GetInt("currentDifficulty", 0);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("currentDifficulty", currentDifficulty);
+        }
+
         GetValues(1);
     }
     void Start()
     {
-        SET_DIFFICULTY((int)DIFFICULTIES.EASY);
+        //SET_DIFFICULTY((int)DIFFICULTIES.EASY);
         CreateEquation(currentDifficulty, LevelManager.currentLevel);
 
         FillDivisionEquationNumbers(nTimes, currentDifficulty);
