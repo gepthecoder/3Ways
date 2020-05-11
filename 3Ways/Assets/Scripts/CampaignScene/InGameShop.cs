@@ -96,6 +96,36 @@ public class InGameShop : MonoBehaviour
 
     public GameObject NodePowerUps;
 
+    public Text Char_Text;
+    public Text Dance_Text;
+    public Text powerUps_Text;
+
+    private Color choosenColor = new Color(251, 211, 0, 255); //golden
+    private Color defaultColor = new Color(255, 255, 255, 255); //white
+
+    private void SetTextColor(int selectedNode)
+    {
+        switch (selectedNode)
+        {
+            case 0:
+                Char_Text.color = choosenColor;
+                Dance_Text.color = defaultColor; powerUps_Text.color = defaultColor;
+                break;
+            case 1:
+                Dance_Text.color = choosenColor;
+                Char_Text.color = defaultColor; powerUps_Text.color = defaultColor;
+                break;
+            case 2:
+                powerUps_Text.color = choosenColor;
+                Dance_Text.color = defaultColor; Char_Text.color = defaultColor;
+                break;
+           default:
+                Char_Text.color = choosenColor;
+                Dance_Text.color = defaultColor; powerUps_Text.color = defaultColor;
+                break;
+        }
+    }
+
     public void SetShopNode(int node)
     {
         switch (node)
@@ -104,18 +134,21 @@ public class InGameShop : MonoBehaviour
                 NodeChar.SetActive(true);
                 NodeDance.SetActive(false);
                 NodePowerUps.SetActive(false);
+                SetTextColor(node);
                 break;
 
             case 1:
                 NodeChar.SetActive(false);
                 NodeDance.SetActive(true);
                 NodePowerUps.SetActive(false);
+                SetTextColor(node);
                 break;
 
             case 2:
                 NodeChar.SetActive(false);
                 NodeDance.SetActive(false);
                 NodePowerUps.SetActive(true);
+                SetTextColor(node);
                 break;
         }
     }
@@ -125,11 +158,13 @@ public class InGameShop : MonoBehaviour
         NodeDancePageTwo.SetActive(true);
         NodeDancePageOne.SetActive(false);
     }
+
     public void FirstDancePage()
     {
         NodeDancePageTwo.SetActive(false);
         NodeDancePageOne.SetActive(true);
     }
+
     ///////////////////////////////////////////////////////////////////////////////////
 
 
@@ -146,6 +181,10 @@ public class InGameShop : MonoBehaviour
         GetPrefsDance();
         GetPrefsDancesBought();
         //
+
+        // POWER UPS
+        GetPrefsPowerUps();
+        //
     }
 
     void Start()
@@ -159,6 +198,10 @@ public class InGameShop : MonoBehaviour
         // DANCE MOVES
         SetDanceFrame(iCurrentDanceMove);
         HandleDanceGUIs(D1_BOUGHT, D2_BOUGHT, D3_BOUGHT, D4_BOUGHT, D5_BOUGHT);
+        //
+
+        // POWER UPS
+        SetPowerUpTextElements();
         //
     }
 
@@ -355,7 +398,6 @@ public class InGameShop : MonoBehaviour
 
     ///////////////////////////////////////////////////////////////////////////////////
 
-
     // PREFS -> DANCE MOVES SHOP
 
     private void GetPrefsDance()
@@ -546,8 +588,8 @@ public class InGameShop : MonoBehaviour
             case 3:
                 FRAME_TRIPPING_D0.SetActive(false);
                 FRAME_TRIPPING_D1.SetActive(false);
-                FRAME_TRIPPING_D2.SetActive(true);
-                FRAME_TRIPPING_D3.SetActive(false);
+                FRAME_TRIPPING_D2.SetActive(false);
+                FRAME_TRIPPING_D3.SetActive(true);
                 FRAME_TRIPPING_D4.SetActive(false);
                 FRAME_TRIPPING_D5.SetActive(false);
                 break;
@@ -555,8 +597,8 @@ public class InGameShop : MonoBehaviour
                 FRAME_TRIPPING_D0.SetActive(false);
                 FRAME_TRIPPING_D1.SetActive(false);
                 FRAME_TRIPPING_D2.SetActive(false);
-                FRAME_TRIPPING_D3.SetActive(true);
-                FRAME_TRIPPING_D4.SetActive(false);
+                FRAME_TRIPPING_D3.SetActive(false);
+                FRAME_TRIPPING_D4.SetActive(true);
                 FRAME_TRIPPING_D5.SetActive(false);
                 break;
             case 5:
@@ -564,16 +606,16 @@ public class InGameShop : MonoBehaviour
                 FRAME_TRIPPING_D1.SetActive(false);
                 FRAME_TRIPPING_D2.SetActive(false);
                 FRAME_TRIPPING_D3.SetActive(false);
-                FRAME_TRIPPING_D4.SetActive(true);
-                FRAME_TRIPPING_D5.SetActive(false);
+                FRAME_TRIPPING_D4.SetActive(false);
+                FRAME_TRIPPING_D5.SetActive(true);
                 break;
             default:
-                FRAME_TRIPPING_D0.SetActive(false);
+                FRAME_TRIPPING_D0.SetActive(true);
                 FRAME_TRIPPING_D1.SetActive(false);
                 FRAME_TRIPPING_D2.SetActive(false);
                 FRAME_TRIPPING_D3.SetActive(false);
                 FRAME_TRIPPING_D4.SetActive(false);
-                FRAME_TRIPPING_D5.SetActive(true);
+                FRAME_TRIPPING_D5.SetActive(false);
                 break;
         }
     }
@@ -642,4 +684,101 @@ public class InGameShop : MonoBehaviour
             }
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////////////////
+
+    // POWER UPS
+
+    private int numOfFreezes;
+    private int numOfBooks;
+    private int numOfPergaments;
+
+    public Text FreezeAmountTxt;
+    public Text BooksAmountTxt;
+    public Text PergamentAmountTxt;
+
+    protected const int FREEZE_PRICE = 15000;
+    protected const int BOOK_PRICE = 65000;
+    protected const int PERGAMENT_PRICE = 12000;
+
+
+    private void GetPrefsPowerUps()
+    {
+        if(PlayerPrefs.HasKey("numOfFreezes")   ||
+           PlayerPrefs.HasKey("numOfBooks")     ||
+           PlayerPrefs.HasKey("numOfPergaments"))
+        {
+            numOfFreezes    = PlayerPrefs.GetInt("numOfFreezes", 0);
+            numOfBooks      = PlayerPrefs.GetInt("numOfBooks", 0);
+            numOfPergaments = PlayerPrefs.GetInt("numOfPergaments", 0);
+        }
+        else { SetPrefsPowerUps(); }
+    }
+
+    private void SetPrefsPowerUps()
+    {
+        PlayerPrefs.SetInt("numOfFreezes", numOfFreezes);
+        PlayerPrefs.SetInt("numOfBooks", numOfBooks);
+        PlayerPrefs.SetInt("numOfPergaments", numOfPergaments);
+    }
+
+    private void SetPowerUpTextElements()
+    {
+        FreezeAmountTxt.text = numOfFreezes.ToString();
+        BooksAmountTxt.text = numOfBooks.ToString();
+        PergamentAmountTxt.text = numOfPergaments.ToString();
+
+    }
+
+    // Button Events
+
+    public void BuyFreeze()
+    {
+        if(iCurrentCrowns >= FREEZE_PRICE)
+        {
+            iCurrentCrowns -= FREEZE_PRICE;
+            SetPrefsCrowns();
+            SetTextCrowns();
+
+            numOfFreezes++;
+            SetPrefsPowerUps();
+            SetPowerUpTextElements();
+        }
+        else { Debug.Log("Not credit efficent!!"); }
+    }
+
+    public void BuyBooks()
+    {
+        if (iCurrentCrowns >= BOOK_PRICE)
+        {
+            iCurrentCrowns -= BOOK_PRICE;
+            SetPrefsCrowns();
+            SetTextCrowns();
+
+            numOfBooks++;
+            SetPrefsPowerUps();
+            SetPowerUpTextElements();
+        }
+        else { Debug.Log("Not credit efficent!!"); }
+    }
+
+    public void BuyPergament()
+    {
+        if (iCurrentCrowns >= PERGAMENT_PRICE)
+        {
+            iCurrentCrowns -= PERGAMENT_PRICE;
+            SetPrefsCrowns();
+            SetTextCrowns();
+
+            numOfPergaments++;
+            SetPrefsPowerUps();
+            SetPowerUpTextElements();
+        }
+        else { Debug.Log("Not credit efficent!!"); }
+    }
+
+
+
 }
