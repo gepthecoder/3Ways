@@ -52,6 +52,11 @@ public class powerUps : MonoBehaviour
     [Space(3)]
     public Material defaultFrameMaterial;
 
+    [Space(10)]
+    [Header("Pergament Of Wisdom Effect")]
+    [Space(10)]
+    public Material pergamentEffectFrameMaterial;
+
     void Awake()
     {
         GetPoWerUpValues();
@@ -65,6 +70,7 @@ public class powerUps : MonoBehaviour
 
         freezeEffectImageLeft.color = new Color(freezeEffectImageLeft.color.r, freezeEffectImageLeft.color.g, freezeEffectImageLeft.color.b, 0);
         freezeEffectImageRight.color = new Color(freezeEffectImageRight.color.r, freezeEffectImageRight.color.g, freezeEffectImageRight.color.b, 0);
+        HandlePowerUpButtons();
 
     }
 
@@ -131,6 +137,7 @@ public class powerUps : MonoBehaviour
             freezeEffectImageRight.color = new Color(freezeEffectImageRight.color.r, freezeEffectImageRight.color.g, freezeEffectImageRight.color.b, Mathf.Lerp(0, 255, 5f));
 
             freezeEffectImage.color = new Color(freezeEffectImage.color.r, freezeEffectImage.color.g, freezeEffectImage.color.b, Mathf.Lerp(0, 164, 5f));
+            HandlePowerUpButtons();
         }
         else { Debug.Log("No power ups left!!"); }
     }
@@ -204,9 +211,29 @@ public class powerUps : MonoBehaviour
             int iCorrect = calculations.currentCorrectDoor;
             SetDoorFramesEffect(iCorrect);
 
+            HandlePowerUpButtons();
+
         }
         else { Debug.Log("No power ups left!!"); }
 
+    }
+
+    private void SetPergamentFrameEffect(int correctDoor)
+    {
+        switch (correctDoor)
+        {
+            case (int)ChooseDoor.Doors.DOOR0:
+                doorFrames.door0_frame.material = pergamentEffectFrameMaterial;
+                break;
+
+            case (int)ChooseDoor.Doors.DOOR1:
+                doorFrames.door1_frame.material = pergamentEffectFrameMaterial;
+                break;
+
+            case (int)ChooseDoor.Doors.DOOR2:
+                doorFrames.door2_frame.material = pergamentEffectFrameMaterial;
+                break;
+        }
     }
 
     public void UsePowerUpPergament()
@@ -218,9 +245,30 @@ public class powerUps : MonoBehaviour
             SetPowerUpsText();
 
             //make corrct door effect
+            int iCorrect = calculations.currentCorrectDoor;
+            SetPergamentFrameEffect(iCorrect);
 
+            HandlePowerUpButtons();
         }
         else { Debug.Log("No power ups left!!"); }
 
+    }
+
+    private void HandlePowerUpButtons()
+    {
+        GetPoWerUpValues();
+
+        if(numOfFreezes == 0)
+        {
+            freezeBtn.interactable = false;
+        }
+        if (numOfBooks == 0)
+        {
+            booksBtn.interactable = false;
+        }
+        if (numOfPergaments == 0)
+        {
+            pergamentBtn.interactable = false;
+        }
     }
 }
