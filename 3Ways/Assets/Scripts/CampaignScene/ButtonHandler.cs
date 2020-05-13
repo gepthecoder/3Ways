@@ -23,4 +23,9 @@ public class ButtonHandler : MonoBehaviour
         SetDifficulty(difficulty);
         fader.SetTrigger("fadeOut");
     }
+
+    public void GoBackToMain()
+    {
+        fader.SetTrigger("fadeOutMenu");
+    }
 }
