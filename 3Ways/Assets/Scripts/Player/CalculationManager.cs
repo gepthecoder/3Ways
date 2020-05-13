@@ -27,7 +27,6 @@ public class CalculationManager : MonoBehaviour
 
     string currentEquation;
 
-   
     void Awake()
     {
         if (PlayerPrefs.HasKey("currentDifficulty"))

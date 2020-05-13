@@ -22,6 +22,15 @@ public class powerUps : MonoBehaviour
     public Text booksAmount;
     [Space(5)]
     public Text pergamentsAmount;
+    
+    [Space(10)]
+    [Header("Power Up Buttons")]
+    [Space(10)]
+    public Button freezeBtn;
+    [Space(5)]
+    public Button booksBtn;
+    [Space(5)]
+    public Button pergamentBtn;
 
     [Space(10)]
     [Header("Freeze Effect")]
@@ -33,13 +42,15 @@ public class powerUps : MonoBehaviour
     public Image freezeEffectImageRight;
 
     [Space(10)]
-    [Header("Power Up Buttons")]
+    [Header("Book Of Knowledge Effect")]
     [Space(10)]
-    public Button freezeBtn;
+    public PlayerControl doorFrames;
     [Space(5)]
-    public Button booksBtn;
+    public CalculationManager calculations;
     [Space(5)]
-    public Button pergamentBtn;
+    public Material bookOfKnowlegeFrameMaterial;
+    [Space(3)]
+    public Material defaultFrameMaterial;
 
     void Awake()
     {
@@ -124,6 +135,63 @@ public class powerUps : MonoBehaviour
         else { Debug.Log("No power ups left!!"); }
     }
 
+    private void SetDoorFramesEffect(int iCorrectDoor)
+    {
+        switch (iCorrectDoor)
+        {
+            case (int)ChooseDoor.Doors.DOOR0:
+                //color correct door -> 0 & a random door 1 or 2
+                doorFrames.door0_frame.material = bookOfKnowlegeFrameMaterial;
+                int iRand = Random.Range(0, 1);
+                if (iRand == 0)
+                {
+                    doorFrames.door1_frame.material = bookOfKnowlegeFrameMaterial;
+                    doorFrames.door2_frame.material = defaultFrameMaterial;
+                }
+                else
+                {
+                    doorFrames.door1_frame.material = defaultFrameMaterial;
+                    doorFrames.door2_frame.material = bookOfKnowlegeFrameMaterial;
+                }
+
+                break;
+
+            case (int)ChooseDoor.Doors.DOOR1:
+                //color correct door -> 1 & a random door 0 or 2
+                doorFrames.door1_frame.material = bookOfKnowlegeFrameMaterial;
+                int iRando = Random.Range(0, 1);
+                if (iRando == 0)
+                {
+                    doorFrames.door0_frame.material = bookOfKnowlegeFrameMaterial;
+                    doorFrames.door2_frame.material = defaultFrameMaterial;
+                }
+                else
+                {
+                    doorFrames.door0_frame.material = defaultFrameMaterial;
+                    doorFrames.door2_frame.material = bookOfKnowlegeFrameMaterial;
+                }
+
+                break;
+
+            case (int)ChooseDoor.Doors.DOOR2:
+                //color correct door -> 2 & a random door 0 or 1
+                doorFrames.door2_frame.material = bookOfKnowlegeFrameMaterial;
+                int iRandom = Random.Range(0, 1);
+                if (iRandom == 1)
+                {
+                    doorFrames.door0_frame.material = bookOfKnowlegeFrameMaterial;
+                    doorFrames.door1_frame.material = defaultFrameMaterial;
+                }
+                else
+                {
+                    doorFrames.door0_frame.material = defaultFrameMaterial;
+                    doorFrames.door1_frame.material = bookOfKnowlegeFrameMaterial;
+                }
+
+                break;
+        }
+    }
+
     public void UsePowerUpBook()
     {
         if (numOfBooks > 0)
@@ -133,6 +201,8 @@ public class powerUps : MonoBehaviour
             SetPowerUpsText();
 
             //make 50 / 50 effect on doors
+            int iCorrect = calculations.currentCorrectDoor;
+            SetDoorFramesEffect(iCorrect);
 
         }
         else { Debug.Log("No power ups left!!"); }

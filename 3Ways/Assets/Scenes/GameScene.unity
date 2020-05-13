@@ -9279,6 +9279,9 @@ MonoBehaviour:
   cageDoor1Pos: {fileID: 0}
   cageDoor2Pos: {fileID: 0}
   slideOnce: 0
+  door0_frame: {fileID: 0}
+  door1_frame: {fileID: 0}
+  door2_frame: {fileID: 0}
   redFrameMat: {fileID: 2100000, guid: d83c53277de967e49b88cde3cbe2b2ca, type: 2}
   greenFrameMat: {fileID: 2100006, guid: 36931c627b1b8a846ab386fb8f0f7937, type: 3}
   defaultMat: {fileID: 2100000, guid: 7474aa6baee1fc84ea7882a1a652b09c, type: 2}
@@ -13518,12 +13521,18 @@ MonoBehaviour:
   freezeAmount: {fileID: 1785725319}
   booksAmount: {fileID: 2028418715}
   pergamentsAmount: {fileID: 268358063}
-  freezeEffectImage: {fileID: 2137447731}
-  freezeEffectImageLeft: {fileID: 586606908}
-  freezeEffectImageRight: {fileID: 1020912318}
   freezeBtn: {fileID: 2021436502}
   booksBtn: {fileID: 252144118}
   pergamentBtn: {fileID: 323356355}
+  freezeEffectImage: {fileID: 2137447731}
+  freezeEffectImageLeft: {fileID: 586606908}
+  freezeEffectImageRight: {fileID: 1020912318}
+  doorFrames: {fileID: 1312999996}
+  calculations: {fileID: 1313000001}
+  bookOfKnowlegeFrameMaterial: {fileID: 2100004, guid: 36931c627b1b8a846ab386fb8f0f7937,
+    type: 3}
+  defaultFrameMaterial: {fileID: 2100000, guid: 7474aa6baee1fc84ea7882a1a652b09c,
+    type: 2}
 --- !u!1 &1646403812
 GameObject:
   m_ObjectHideFlags: 0

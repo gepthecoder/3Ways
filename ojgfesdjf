@@ -1,0 +1,395 @@
+[33mcommit f6670654b730f3f2f88d00e406054e6e17ece001[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sun May 10 22:58:38 2020 +0200
+
+    #53 -> Dance Move Shop (6 dances to choose from) + Scripting
+
+[33mcommit 6fe190da1efe900a6ad6e475e1f75ccdec465200[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sun May 10 18:39:53 2020 +0200
+
+    #52 -> Made Character Shop, Included 3 characters with full animation mechanic in game
+
+[33mcommit 74567cbd58a33cd027e0be42a008616345af301d[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Fri May 8 13:39:11 2020 +0200
+
+    Main Menu Scene (fully build) + Campaign Scene (partial)
+
+[33mcommit dcc4cc7aa07011efe02a59c102f5f065787439df[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sun May 3 14:38:56 2020 +0200
+
+    Winning GUI, lvl bar script, star effect
+
+[33mcommit b5d96fddffd636ece72014c181420fbbb9dadab4[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Thu Apr 30 18:12:49 2020 +0200
+
+    Clean up
+
+[33mcommit f2c8c861fd4e9d16f2e9e58967f3f06176e227fd[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Thu Apr 30 17:37:04 2020 +0200
+
+    #51 -> CalculationManager problem fix (loop when searching for a proper number to divide)
+
+[33mcommit fbbe3198a0b9ac8bab359374af9b5e701881ec4a[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Wed Apr 29 21:34:01 2020 +0200
+
+    Scene 29.04.2020
+
+[33mcommit 6dea529986275f36895a8b310f5bfb58bade0be1[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Wed Apr 29 21:33:18 2020 +0200
+
+    #50 -> Win CameraFollow FX
+
+[33mcommit eaad9fe9784617005d81499ba0c1faee30733db1[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Wed Apr 29 21:32:28 2020 +0200
+
+    #49 -> Cage door collider position changed closer to door
+
+[33mcommit f725ffff9db4ff7292d3efad2a34ea88603906c7[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Wed Apr 29 21:30:35 2020 +0200
+
+    #48 -> Checkpoint animation
+
+[33mcommit 8a95d5783d87f19619bc9d26f15c24805f803603[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Wed Apr 29 21:29:42 2020 +0200
+
+    #47 -> crash fix
+
+[33mcommit a0456e1df8580ee2d513755071910d551fa3935c[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Wed Apr 29 12:43:26 2020 +0200
+
+    #46 -> Update for BUG (crash) fix; problem was with double door raycasting
+
+[33mcommit 8bd8e8a5c84be48105dd407b6e07e485b6f0d540[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Mon Apr 27 21:54:15 2020 +0200
+
+    Fxed Major Bug (game runs smoothly on EASY); added cool GET STAR, GET CROWNS EFFECT
+
+[33mcommit 23846db45997cd2e052e99fa2c98572376531636[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sun Apr 26 15:21:47 2020 +0200
+
+    #45 -> In-game logo (pause menu), new get crowns FX (crowns calcuculated)
+
+[33mcommit 4a1e903dcb29141dac304ba883a7d3889627b153[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Thu Apr 23 13:41:24 2020 +0200
+
+    #44 ->Reward and Token + new GUI objects from asset store
+
+[33mcommit e6ee2b8eecbf11a2e171b70ab67bd241ec43ec75[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Mon Apr 20 13:11:47 2020 +0200
+
+    #43 -> Added some GUI objects as prefabs for future use; 321go.anim implemented in scripts (5sec spawning_state)
+
+[33mcommit 9e36f58090dad6c8e2578165541c67a3947c7cae[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sun Apr 19 11:52:40 2020 +0200
+
+    #42 -> Scene modifications
+
+[33mcommit a334d78444a21808eb3c678a5b5293884c3e4982[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sun Apr 19 11:51:52 2020 +0200
+
+    #41 ->  3 2 1 GO animation; TO:DO => anime call
+
+[33mcommit 1143f76c064843e249b2d10dea1e342e5b539ba0[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sun Apr 19 11:50:17 2020 +0200
+
+    #40 -> Time spent in PauseMenu is added to game time + graphical showcase
+
+[33mcommit eede32f451aea817a12afb4293de6c0c183a3360[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Fri Apr 17 22:01:39 2020 +0200
+
+    #39 -> Canvas & GameTimer.prefab modification
+
+[33mcommit 3ffd95f98de090af2fa37cd912e15c85800a2ae0[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Fri Apr 17 22:00:44 2020 +0200
+
+    #38 -> Game Settings, Pause Menu with animations
+
+[33mcommit c81b04f7fbc6cb4c3e5534a5ce0ecf9000bece3d[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Fri Apr 17 21:58:50 2020 +0200
+
+    #37 -> Time stops when PlayerWinCollider => onExit(Collider Other)
+
+[33mcommit f7648835e0362ef72c5192a2159f43c9cc373f37[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Thu Apr 16 18:59:59 2020 +0200
+
+    #36 -> GUI Animation set (pause menu, settings)
+
+[33mcommit c2b64a6865a442ac3fea14da8f90d734ac09f7fc[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Thu Apr 16 12:37:33 2020 +0200
+
+    Canves elements optimization
+
+[33mcommit 000563031f63626fd2a077fc655136610f7d8c2a[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Thu Apr 16 12:36:19 2020 +0200
+
+    #35 -> Choosen GUI Interfaces sorted in maps
+
+[33mcommit db2fcdbf613f85de99e115195afef5b4f0a28ab1[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Thu Apr 16 12:34:59 2020 +0200
+
+    #34 -> PlayerTracker.prefab UPDATE
+
+[33mcommit 4475ad25cda2d1c913c478a65bbc2a988a059d53[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Thu Apr 16 12:34:24 2020 +0200
+
+    #33 -> GameTimer.prefab
+
+[33mcommit 026c6d506168289a040b599bdfa278031d931203[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Thu Apr 16 12:33:42 2020 +0200
+
+    #32 -> Animations & Prefabs made for GUI Interface
+
+[33mcommit 39b13298f7b5751dfb0315a36c1b23795632581b[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Thu Apr 16 12:30:51 2020 +0200
+
+    HD Interface Assets
+
+[33mcommit 0bb83d2a09fa8870d7e459c40e22e7c9887d4261[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Thu Apr 16 11:10:21 2020 +0200
+
+    NEW GUI assets for game design. $16 worth of items.
+
+[33mcommit 937e1d3e83c67577f38335f4da8e075b6e3bef39[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Wed Apr 15 22:37:09 2020 +0200
+
+    Quick LevelBar Fix
+
+[33mcommit aaaae69132171e99579be9b3c9957be9c49adbbe[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Wed Apr 15 20:26:52 2020 +0200
+
+    #31 -> LevelBar.cs update. Lvl image sprite is now replaced with checkmark sprite after completing a level.
+
+[33mcommit 79ab38751a27068093aae40a12d6f53440b34e64[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Wed Apr 15 17:38:02 2020 +0200
+
+    #30 -> FinnishLineSection.prefab update; added GUI for player tracking; added LevelBar.cs script for tracking player position
+
+[33mcommit c1c5c7a0242fb4a4d3f18d5f85a953ec375e952d[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Wed Apr 15 14:49:58 2020 +0200
+
+    #29 -> New sprites import
+
+[33mcommit 1a26abcb807fbbb8d595cc110195c68d7c3e5ee6[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Tue Apr 14 23:04:03 2020 +0200
+
+    #28 -> Lava and finnish flag prefabs. Clean up needed.
+
+[33mcommit 906ba9e6d1bf03c6f7b7cee18622c69fec26cef2[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Tue Apr 14 20:02:59 2020 +0200
+
+    #27 -> Winning room update, player cotroller fixed now working
+
+[33mcommit 0221b4c9cc86539168e18b1eb2f328f85896854b[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sat Apr 11 22:01:47 2020 +0200
+
+    #26 -> Win section spawned on proper position. Player now normaly enters win room.
+
+[33mcommit 764e203d0fd3874ddd65c8ef418aa69e7b0fe86b[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sat Apr 11 14:10:06 2020 +0200
+
+    #25 -> Quick fix.. Player can now enter the winning room!
+
+[33mcommit 9ee1d32995c1d50b19b9f1b8aa753218392710fc[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sat Apr 11 13:57:13 2020 +0200
+
+    #24 -> Winning section added, player controls change, spawn manager
+
+[33mcommit aa6218dfd864b68fd3d4008fb42ae2d6db89db03[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Fri Apr 10 19:55:00 2020 +0200
+
+    #23 -> Added new script for win celebration
+
+[33mcommit 64a5f9399b809bfa5be6000932fa2604b87c8dac[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Fri Apr 10 10:52:24 2020 +0200
+
+    #22 -> Script optimizations for SINGLE PLAYER
+
+[33mcommit 98a0b019992b74ada39756c50fb381bc4e53c459[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Fri Apr 10 10:50:51 2020 +0200
+
+    #21 -> Created & added winning section prefab (configure scripts)
+
+[33mcommit 4f5e2bcc175ff4c354eb9542a1389759a05eb43a[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Wed Apr 8 16:02:33 2020 +0200
+
+    #20 -> Optimized scripts working beta model of the game. Clean up needed.
+
+[33mcommit 11c067c3ea32a237d76e25d215331f26541088c7[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Wed Apr 8 16:01:16 2020 +0200
+
+    P1 Section1/2 UPGRADE. New Prefab Name..
+
+[33mcommit 4596d2cde7dabb29776cb62ac4ab6956e83f162b[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Wed Apr 8 15:57:10 2020 +0200
+
+    Door "Open"animation shortage
+
+[33mcommit 0a39f00852806bb09deb7d262fe18470459adb14[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Tue Apr 7 13:24:48 2020 +0200
+
+    #19 -> GENIOUS difficulty done. Binominals implementation.
+
+[33mcommit 3ef832179c08bc6e03761d5a7b0e52b7e076039d[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sun Apr 5 22:43:30 2020 +0200
+
+    #18 -> player control values fix
+
+[33mcommit aa1ade42581a91f6170dc98e9df899c925b4267e[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sun Apr 5 22:42:14 2020 +0200
+
+    #17 -> EASY, MEDIUM, HARD math logic TO:DO-> difficulty : GENIOUS (equations)
+
+[33mcommit 3dcc92bea7f7a6eb68a0a7a81d4d30c53498c095[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sun Apr 5 22:28:09 2020 +0200
+
+    #16 -> get platform values fix (LevelManager.cs)
+
+[33mcommit 1b7091451d80fdb13542186ac9ad75305761bdf5[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sat Apr 4 12:55:49 2020 +0200
+
+    ignore change
+
+[33mcommit 578a5c0a8c292903010f88670a07aadbca08d561[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sat Apr 4 12:55:07 2020 +0200
+
+    #15 -> Level Design Prefabs, Enemy Prefabs, DoorFrameMatGlow
+
+[33mcommit 422f6c894b18cd2952aed29284eea3d6d7b62495[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sat Apr 4 12:53:43 2020 +0200
+
+    #14 -> OpenDoor & StopCollider script
+
+[33mcommit b8ac8f96882a78e4b36106f5f0c6fd35694a4c3f[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sat Apr 4 12:52:45 2020 +0200
+
+    #13 -> CameraFollow script
+
+[33mcommit 7f1195ce9e393728cf66ed0dd3102828f4e5d6dc[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sat Apr 4 12:52:04 2020 +0200
+
+    #12 -> CageScript - spawn enemies on positions in cage
+
+[33mcommit 2516990b5e59eebd692fb81e0ce83280aa5e76d3[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sat Apr 4 12:50:22 2020 +0200
+
+    #11 -> LevelManager
+
+[33mcommit c1c0ae51c317c53192d2502f387dd97c2caf291e[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sat Apr 4 12:49:15 2020 +0200
+
+    #10 -> Enemy behaviour ( attack, idle, look at.. )
+
+[33mcommit 253ef1af7f522bd00cd3e9188f608b82cf493c23[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sat Apr 4 12:47:43 2020 +0200
+
+    #9 -> CalculationManager ( used for game math )
+
+[33mcommit 7b5dc62ebcc8313b26e3207ff947e152c6357aed[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sat Apr 4 12:46:30 2020 +0200
+
+    #8 ->Choose door script
+
+[33mcommit 45031c1f9c86ef853e4d7618e7a91de48f697a9f[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sat Apr 4 12:15:45 2020 +0200
+
+    #7 -> PlayerControl - player movement behaviour
+
+[33mcommit 17d082794e2595d0b248f7ed97174a85a099e2d4[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sat Apr 4 12:13:19 2020 +0200
+
+    #6 -> StateMachine (takes care of player states)
+
+[33mcommit 5e19faa230fda9f44291524bda46c1cfa621b2ef[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sat Apr 4 12:12:04 2020 +0200
+
+    #5 -> junk files
+
+[33mcommit d638ca64fbd0b53c76278b94d756e857ed60e0e1[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sat Apr 4 12:11:06 2020 +0200
+
+    #4 -> Player animations
+
+[33mcommit d328171d194e530b095b508f8e960ae76c06a611[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Sat Apr 4 12:08:54 2020 +0200
+
+    #3 -> OpenDoor animations
+
+[33mcommit b3b149b819994d9a0518b65db774beade01fddae[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Wed Mar 25 23:20:18 2020 +0100
+
+    #2 -> Section for player 1 -> doors & results -->lightning
+
+[33mcommit a8645b8addb142c8d469d30381f04db81637d5df[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Wed Mar 25 14:20:26 2020 +0100
+
+    #1 -> Unity Game Build
+
+[33mcommit 343b5e5f7e92c75d11b6b1cb2fb77a20e5b69a82[m
+Author: gepthecoder <38008294+gepthecoder@users.noreply.github.com>
+Date:   Wed Mar 25 13:08:04 2020 +0100
+
+    Initial commit

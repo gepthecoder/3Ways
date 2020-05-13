@@ -60,9 +60,9 @@ public class PlayerControl : MonoBehaviour
 
     public int slideOnce = 0;
 
-    private MeshRenderer door0_frame;
-    private MeshRenderer door1_frame;
-    private MeshRenderer door2_frame;
+    public MeshRenderer door0_frame;
+    public MeshRenderer door1_frame;
+    public MeshRenderer door2_frame;
 
     public Material redFrameMat;
     public Material greenFrameMat;
