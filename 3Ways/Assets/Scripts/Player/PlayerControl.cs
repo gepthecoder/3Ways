@@ -68,6 +68,8 @@ public class PlayerControl : MonoBehaviour
     public Material greenFrameMat;
     public Material defaultMat;
 
+    private DanceMoves movesOfDance;
+
     void Awake()
     {
         GetValues(1);
@@ -79,6 +81,7 @@ public class PlayerControl : MonoBehaviour
         controller      = GetComponent<CharacterController>();
         calcucaltions   = GetComponent<CalculationManager>();
         cage            = GetComponent<CageScript>();
+        movesOfDance    = GetComponent<DanceMoves>();
 
         doorAnimeOpened = false;
         passLevel       = false;
@@ -448,6 +451,12 @@ public class PlayerControl : MonoBehaviour
         anime.SetTrigger("win");
 
         transform.position = Vector3.MoveTowards(transform.position, dancePos.position, step);
+
+        if(transform.position == dancePos.position)
+        {
+            Debug.Log("Dance !!");
+            movesOfDance.PlayDanceAnime(movesOfDance.iCurrentDanceMove, anime);
+        }
     }
 
     public void HandleValues()
