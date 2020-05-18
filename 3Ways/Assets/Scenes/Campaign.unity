@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: da976b1a4f7ebb949b0f71341e4f1821, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -7542,6 +7542,9 @@ MonoBehaviour:
   MEDIUM_BUTTON: {fileID: 1480961007}
   HARD_BUTTON: {fileID: 111978983}
   GENIOUS_BUTTON: {fileID: 274905386}
+  STAR_MED: {fileID: 1348553817}
+  STAR_HARD: {fileID: 1942891352}
+  STAR_GEN: {fileID: 874583046}
 --- !u!114 &557054773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17242,13 +17245,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283567887}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.39, y: 1.414, z: 1.044}
+  m_LocalRotation: {x: -0.20238444, y: -0, z: -0, w: 0.9793062}
+  m_LocalPosition: {x: 2.36, y: 1.414, z: 1.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2035967743}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -23.353, y: 0, z: 0}
 --- !u!81 &1283567889
 AudioListener:
   m_ObjectHideFlags: 0

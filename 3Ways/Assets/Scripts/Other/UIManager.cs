@@ -187,7 +187,7 @@ public class UIManager : MonoBehaviour
     public Fader fade;
 
     //////////////////////
-    //   R E P E A T   ///
+    //    R E P E A T   //
     //////////////////////
 
 
@@ -196,5 +196,47 @@ public class UIManager : MonoBehaviour
         fade.FadeIn();
     }
 
+    ////////////////////////
+    //  G A M E  M E N U  //
+    ////////////////////////
+
+    public void GoToMenu()
+    {
+        fade.FadeOut_Campaign();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    //                             I N - G A M E  R E W A R D  S P I N                               //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    [Space(10)]
+    [Header("SLOT INFO")]
+    [Space(5)]
+    public Animator SlotGUIAnime;
+
+    [Space(10)]
+    [Header("SLOT INFO")]
+    [Space(5)]
+    [SerializeField]
+    private Animator slotInfoAnime;
+
+    public void ShowSlot()
+    {
+        SlotGUIAnime.SetTrigger("showSlot");
+    }
+
+    public void HideSlot()
+    {
+        SlotGUIAnime.SetTrigger("hideSlot");
+    }
+
+    public void ShowInfo()
+    {
+        slotInfoAnime.SetTrigger("showInfo");
+    }
+
+    public void HideInfo()
+    {
+        slotInfoAnime.SetTrigger("hideInfo");
+    }
 
 }

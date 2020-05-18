@@ -56,7 +56,7 @@ public class openChest : MonoBehaviour
 
     IEnumerator GetRewards()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.4f);
 
         getCoinRewardAnime.SetTrigger("getGiftReward");
         coinDrop.SetActive(true);

@@ -203,6 +203,14 @@ public class InGameShop : MonoBehaviour
         // POWER UPS
         SetPowerUpTextElements();
         //
+
+        // OPEN SHOP FROM GAME
+        if(PlayerPrefs.GetInt("shopFromGame", 0) == 1)
+        {
+            OpenShop();
+            PlayerPrefs.SetInt("shopFromGame", 0);
+        }
+        
     }
 
     ///////////////////////////////////////////////////////////////////////////////////
@@ -729,7 +737,6 @@ public class InGameShop : MonoBehaviour
         FreezeAmountTxt.text = numOfFreezes.ToString();
         BooksAmountTxt.text = numOfBooks.ToString();
         PergamentAmountTxt.text = numOfPergaments.ToString();
-
     }
 
     // Button Events

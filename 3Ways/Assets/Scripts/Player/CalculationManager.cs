@@ -85,7 +85,8 @@ public class CalculationManager : MonoBehaviour
                     A = B;
                     B = temp;
                 }
-                else if(A % B != 0)
+
+                if(A % B != 0)
                 {
                     PrepareDivisionEquations(difficulty);
                 }
@@ -101,11 +102,14 @@ public class CalculationManager : MonoBehaviour
                     A = B;
                     B = temp;
                 }
-                else if (A % B != 0)
+
+                if (A % B != 0)
                 {
                     PrepareDivisionEquations(difficulty);
                 }
-                else { Anums.Add(A); Bnums.Add(B); }
+                else { Anums.Add(A); Bnums.Add(B);
+                    Debug.Log("a:" + A + " b: " + B);
+                }
 
                 break;
             case (int)DIFFICULTIES.HARD:
@@ -117,7 +121,8 @@ public class CalculationManager : MonoBehaviour
                     A = B;
                     B = temp;
                 }
-                else if (A % B != 0)
+
+                if (A % B != 0)
                 {
                     PrepareDivisionEquations(difficulty);
                 }
@@ -133,7 +138,8 @@ public class CalculationManager : MonoBehaviour
                     A = B;
                     B = temp;
                 }
-                else if (A % B != 0)
+
+                if (A % B != 0)
                 {
                     PrepareDivisionEquations(difficulty);
                 }
@@ -264,7 +270,6 @@ public class CalculationManager : MonoBehaviour
     {
         if (level < 0 || level > 10) { Debug.LogWarning("<color=red>level num to create equation was out of range</color>");
 
-            return;
         }
     }
 
@@ -568,11 +573,11 @@ public class CalculationManager : MonoBehaviour
         int B = Random.Range(bMin, bMax);
         Debug.Log("A: " + A + " B: " + B);
 
-        if (A == 0 || B == 0)
-        {
-            Debug.Log("Exception found.. try again (:");
-            SET_AND_CALCULATE(aMin, aMax, operation, bMin, bMax);
-        }
+        //if (A == 0 || B == 0)
+        //{
+        //    Debug.Log("Exception found.. try again (:");
+        //    SET_AND_CALCULATE(aMin, aMax, operation, bMin, bMax);
+        //}
 
         if (operation == DIVISION)
         {
@@ -590,9 +595,11 @@ public class CalculationManager : MonoBehaviour
             //    Debug.Log("<color=red>Retry!!</color>");
             //    SET_AND_CALCULATE(aMin, aMax, operation, bMin, bMax);
             //}
-            int t = Random.Range(0, nTimes);
+            int t = Random.Range(0, nTimes-1);
             A = Anums[t];
             B = Bnums[t];
+
+            Debug.Log("Division  A:" + A + " B:" + B);
 
         }else if (operation == SQUAREROOT)
         {

@@ -168,6 +168,10 @@ public class CampaignManager : MonoBehaviour
     public Button HARD_BUTTON;
     public Button GENIOUS_BUTTON;
 
+    public GameObject STAR_MED;
+    public GameObject STAR_HARD;
+    public GameObject STAR_GEN;
+
     private void SetInteractabilityOfButtons()
     {
         if(currentStarCoins < 50)
@@ -182,7 +186,7 @@ public class CampaignManager : MonoBehaviour
         {
             //HARD & GENIOUS DISABLED
             Destroy(lockSignMed.gameObject);
-            Destroy(Medium_Txt.transform.parent);
+            Destroy(STAR_MED);
 
             EASY_BUTTON.interactable = true;
             MEDIUM_BUTTON.interactable = true;
@@ -193,10 +197,10 @@ public class CampaignManager : MonoBehaviour
         {
             //HARD & GENIOUS DISABLED
             Destroy(lockSignMed.gameObject);
-            Destroy(Medium_Txt.transform.parent);
+            Destroy(STAR_MED);
 
             Destroy(lockSignHard.gameObject);
-            Destroy(Hard_Txt.transform.parent);
+            Destroy(STAR_HARD);
 
             EASY_BUTTON.interactable = true;
             MEDIUM_BUTTON.interactable = true;
@@ -208,13 +212,13 @@ public class CampaignManager : MonoBehaviour
         {
             //HARD & GENIOUS DISABLED
             Destroy(lockSignMed.gameObject);
-            Destroy(Medium_Txt.transform.parent);
+            Destroy(STAR_MED);
 
             Destroy(lockSignHard.gameObject);
-            Destroy(Hard_Txt.transform.parent);
+            Destroy(STAR_HARD);
 
             Destroy(lockSignGen.gameObject);
-            Destroy(Genious_Txt.transform.parent);
+            Destroy(STAR_GEN);
 
             EASY_BUTTON.interactable = true;
             MEDIUM_BUTTON.interactable = true;

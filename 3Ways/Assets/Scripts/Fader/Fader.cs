@@ -18,6 +18,11 @@ public class Fader : MonoBehaviour
         anime.SetTrigger("fadeOutCampaign");
     }
 
+    public void FadeOut_Shop()
+    {
+        anime.SetTrigger("fadeOutShop");
+    }
+
     public void FadeOut_Multiplayer()
     {
         Debug.Log("No multiplayer jet :(.. somming soon :*");
@@ -35,6 +40,20 @@ public class Fader : MonoBehaviour
         // LOAD GAME SCENE
         SetDefaultValues();
         SceneManager.LoadScene("GameScene");
+    }
+
+    public void GoToMenuAfterWin()
+    {
+        SetDefaultValues();
+        SceneManager.LoadScene("Campaign");
+
+    }
+
+    public void GoToShopAfterWin()
+    {
+        SetDefaultValues();
+        SceneManager.LoadScene("Campaign");
+        PlayerPrefs.SetInt("shopFromGame", 1);
     }
 
     public void GoToScene(string sceneName)

@@ -11,7 +11,6 @@ public class PlayerWinCollider : MonoBehaviour
     public Transform fireWorksPos;
 
     public GameObject coinsFly;
-    public Transform coinsFlyPos;
 
     void Start()
     {
@@ -57,6 +56,6 @@ public class PlayerWinCollider : MonoBehaviour
 
     private void SpawnCoins()
     {
-        Instantiate(coinsFly, coinsFlyPos.position, coinsFlyPos.rotation);
+        coinsFly.SetActive(true);
     }
 }
