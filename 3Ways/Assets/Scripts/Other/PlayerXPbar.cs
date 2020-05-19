@@ -120,6 +120,18 @@ public class PlayerXPbar : MonoBehaviour
         }
     }
 
+    public void EXTRA_XP()
+    {
+
+        PlayrXP.XPoints += 100;
+        PlayrXP.Save();
+
+        float increase = 100;
+        Debug.Log("Increase Value = " + increase);
+
+        UpdateProgress(increase);
+    }
+
     void InitColor()
     {
         circle_1.color = color;

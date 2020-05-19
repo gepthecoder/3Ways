@@ -20,6 +20,7 @@ public class TimeAdditionScript : MonoBehaviour
     public void Continue()
     {
         Debug.Log("Start game again!!!");
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
+        UIManager.pauseMenuOpened = false;
     }
 }

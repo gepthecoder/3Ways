@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour
     public static bool addNewSection;
     private int iSectionToAdd;
 
-    public static int iEASY_SECTIONS = 10;
+    public static int iEASY_SECTIONS = 3;
     public static int iMEDIUM_SECTIONS = 10;
     public static int iHARD_SECTIONS = 10;
     public static int iGENIOUS_SECTIONS = 10;

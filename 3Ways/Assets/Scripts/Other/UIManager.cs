@@ -30,6 +30,7 @@ public class UIManager : MonoBehaviour
         gameTimer = GetComponentInChildren<GameTimer>();
         pauseTimer = GetComponentInChildren<PauseTimer>();
 
+        pauseMenuOpened = false;
         GET_STAR = false;
     }
 
@@ -71,11 +72,12 @@ public class UIManager : MonoBehaviour
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     //                                  P A U S E   M E N U                                          //
     ///////////////////////////////////////////////////////////////////////////////////////////////////
-
+    public static bool pauseMenuOpened;
     
     public void OpenPauseMenu()
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
+        pauseMenuOpened = true;
         CanvasAnimator.SetTrigger("showPauseMenu");   
     }
 
@@ -134,10 +136,22 @@ public class UIManager : MonoBehaviour
     ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     public GameObject settingsUI;
+    private bool audioSettingsOpened;
 
     public void ShowSettings()
     {
-        settingsUIanime.SetTrigger("showSettings");
+        if (audioSettingsOpened)
+        {
+            //close
+            settingsUIanime.SetTrigger("hideSettings");
+            audioSettingsOpened = false;
+        }
+        else
+        {
+            //open
+            settingsUIanime.SetTrigger("showSettings");
+            audioSettingsOpened = true;
+        }
     }
 
     public void HideSettings()

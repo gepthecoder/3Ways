@@ -16,19 +16,14 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
     public bool isTestAd = true;
 
     public Slot slotMachine;
+    public PlayerXPbar xp;
+    
+    private bool extraXP;
+    private bool slotSpin;
 
     void Start()
     {
         InitializeMonetization();
-    }
-
-    void Update()
-    {
-        if (AdIsPlayingStopGameplay)
-        {
-            Time.timeScale = 0;
-        }
-        else { Time.timeScale = 1; }
     }
 
     private void InitializeMonetization()
@@ -37,16 +32,29 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
         Advertisement.Initialize(playstore_id, isTestAd);
     }
 
-    public void DisplayInterstitialAD()
+    public void DisplayInterstitial()
     {
-        Advertisement.Show(video_ad);
+        if(Advertisement.IsReady())
+            Advertisement.Show(video_ad);
+    }
+
+    public void DisplayRewardedExtraAD()
+    {
+        if (Advertisement.IsReady())
+        {
+            extraXP = true;
+            Advertisement.Show(rewardedVideo_ad);
+        }
     }
 
     public void DisplayRewardedAD()
     {
-        AdIsPlayingStopGameplay = true;
-
-        Advertisement.Show(rewardedVideo_ad);
+        if (Advertisement.IsReady())
+        {
+            AdIsPlayingStopGameplay = true;
+            slotSpin = true;
+            Advertisement.Show(rewardedVideo_ad);
+        }
     }
 
     //public void DisplayVideoAD() { Advertisement.Show(playstore_id); }
@@ -57,10 +65,23 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
         // Define conditional logic for each ad completion status:
         if (showResult == ShowResult.Finished)
         {
-            // Reward the user for watching the ad to completion.
-            Debug.LogWarning("You get the reward!!");
-            AdIsPlayingStopGameplay = false;
-            StartCoroutine(spinTheSlot());
+            if (slotSpin)
+            {
+                // Reward the user for watching the ad to completion.
+                Debug.LogWarning("You get the reward!!");
+                AdIsPlayingStopGameplay = false;
+                StartCoroutine(spinTheSlot());
+                slotSpin = false;
+            }
+
+            if (extraXP)
+            {
+                Debug.LogWarning("You get the extra points!!");
+                xp.EXTRA_XP();
+                extraXP = false;
+            }
+          
+            
         }
         else if (showResult == ShowResult.Skipped)
         {
@@ -95,6 +116,12 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
     {
         yield return new WaitForSeconds(1.5f);
         slotMachine.SPIN_SLOT();
+    }
+
+    private IEnumerator GetExtraXP()
+    {
+        yield return new WaitForSeconds(1f);
+
     }
 
 }

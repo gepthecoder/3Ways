@@ -81,6 +81,18 @@ public class XPBar : MonoBehaviour
         }
     }
 
+    //public function for increasing slider for amount x
+    public void ExtraXP(int amount)
+    {
+        PlayrXP.XPoints += amount;
+        PlayrXP.Save();
+
+
+        SET_XP_VALUE_ON_SLIDER(PlayrXP.XPoints, xp_Needed);
+        HandleXP_Bar();
+        TXT_XP_INFO.text = PlayrXP.XPoints + " / " + xp_Needed;
+    }
+
   
     public void SET_MAX_XP_VALUE_ON_SLIDER()
     {

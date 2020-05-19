@@ -57,8 +57,20 @@ public class GameTimer : MonoBehaviour
         Save();
     }
 
+    private void HandleTimeScale()
+    {
+        if (AdManager.AdIsPlayingStopGameplay)
+        {
+            Time.timeScale = 0;
+        }
+        else if (UIManager.pauseMenuOpened) { Time.timeScale = 0; }
+
+        else { Time.timeScale = 1; }
+    }
+
     void Update()
     {
+        HandleTimeScale();
 
         if (won)
         {
