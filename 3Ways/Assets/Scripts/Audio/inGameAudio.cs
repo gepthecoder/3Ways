@@ -11,22 +11,22 @@ public class inGameAudio : MonoBehaviour
     [Space(10)]
     public AudioMixer audioMixer;
     [Space(10)]
-    public Image IMG_SOUND;
-    [Space(5)]
-    public Sprite soundON_sprite;
-    [Space(5)]
-    public Sprite soundOFF_sprite;
-    [Space(3)]
-    [Header("****************************************")]
-
-    [Space(10)]
     [Header("IN-GAME AUDIO SETTINGS")]
+    [Space(10)]
+    [Header("**************************************************************")]
     [Space(10)]
     public Image IMG_MUSIC;
     [Space(5)]
     public Sprite musicON_sprite;
     [Space(5)]
     public Sprite musicOFF_sprite;
+    [Space(10)]
+    public Image IMG_SOUND;
+    [Space(5)]
+    public Sprite soundON_sprite;
+    [Space(5)]
+    public Sprite soundOFF_sprite;
+    [Space(3)]
 
     private int soundON;
     private int musicON;
@@ -52,6 +52,7 @@ public class inGameAudio : MonoBehaviour
     void Start()
     {
         GetCurrentVolumes();
+        StartAudioFX();
     }
     
     /// <summary>
@@ -75,6 +76,12 @@ public class inGameAudio : MonoBehaviour
         PlayerPrefs.SetInt("soundON", soundON);
         PlayerPrefs.SetInt("musicON", musicON);
         PlayerPrefs.Save();
+    }
+
+    private void StartAudioFX()
+    {
+        SET_MUSICFX();
+        SET_SOUNDFX();
     }
 
     public void SET_MUSICFX()
@@ -149,10 +156,12 @@ public class inGameAudio : MonoBehaviour
         if (vol == (int)SoundSetting.ON)
         {
             PlayerPrefs.SetFloat("sfxVolume", 0);
+            audioMixer.SetFloat("sfxVolume", 0);
         }
         else
         {
             PlayerPrefs.SetFloat("sfxVolume", -80);
+            audioMixer.SetFloat("sfxVolume", -80);
         }
 
     }
@@ -162,10 +171,13 @@ public class inGameAudio : MonoBehaviour
         if (vol == (int)SoundSetting.ON)
         {
             PlayerPrefs.SetFloat("musicVolume", 0);
+            audioMixer.SetFloat("musicVolume", 0);
+
         }
         else
         {
             PlayerPrefs.SetFloat("musicVolume", -80);
+            audioMixer.SetFloat("musicVolume", -80);
         }
 
     }

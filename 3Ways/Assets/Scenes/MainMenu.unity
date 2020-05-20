@@ -11376,7 +11376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numOfCrowns: 0
   chestButton: {fileID: 1322526994}
-  msToWait: 10000
+  msToWait: 300000
   chestTimer: {fileID: 116573648691845897}
   claimGiftTxt: {fileID: 2012233380}
   frameAnime: {fileID: 595140043}
@@ -29705,7 +29705,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: GEP
+  m_Text: Unknown
 --- !u!222 &1606016796
 CanvasRenderer:
   m_ObjectHideFlags: 0
