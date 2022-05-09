@@ -7,3 +7,4 @@ Do you want to play a fun game full of amazing mechanics where your currency is 
 
 Game is very simple to master. Your main goal is to quickly choose the correct door depending on the right result of the equation. If you press the wrong door you will gain less xp and be devasted by an magical creature hidden in a cage behind door.
 
+https://g3pgames.itch.io/3ways-math-edition
